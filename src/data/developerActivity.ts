@@ -2,7 +2,7 @@ import type { DeveloperRepo } from '../types';
 
 export const GITHUB_PROFILE_URL = 'https://github.com/boyasaikiran';
 export const LINKEDIN_PROFILE_URL = 'https://www.linkedin.com/in/boya-saikiran-15aab1294/';
-export const OWNER_EMAIL = 'kurragrushnesh@gmail.com';
+export const OWNER_EMAIL = 'boyasaikiran37@gmail.com';
 
 export const CURATED_REPOSITORIES: DeveloperRepo[] = [
   {
