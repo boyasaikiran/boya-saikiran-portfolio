@@ -56,9 +56,9 @@ export const TIMELINE: TimelineItem[] = [
     id: 'gk-hacks',
     period: '2025',
     category: 'HACKATHON',
-    title: 'Hackathon Finalist — Smart Timetable Generator',
+    title: 'Hackathon Participant — Smart Timetable Generator',
     organization: 'G-K Hacks 2025',
-    role: 'Team Lead & Algorithmic Developer',
+    role: 'Team Member & Algorithmic Developer',
     location: 'Competitive Hackathon',
     description: 'Engineered an automated conflict-resolution academic timetable generator utilizing constraint satisfaction algorithms to eliminate faculty, room, and curriculum scheduling clashes.',
     highlights: [
@@ -66,23 +66,7 @@ export const TIMELINE: TimelineItem[] = [
       'Presented functional prototype generating deterministic clash-free weekly matrices.',
       'Collaborated in rapid multi-disciplinary team sprint during competitive hackathon.'
     ],
-    statusTag: 'Finalist Team',
-    verified: true
-  },
-  {
-    id: 'sail-vocational',
-    period: 'Vocational Training',
-    category: 'VOCATIONAL TRAINING',
-    title: 'Vocational Industrial Training',
-    organization: 'Bhilai Steel Plant (Steel Authority of India Limited - SAIL)',
-    role: 'Vocational Trainee',
-    location: 'Bhilai, Chhattisgarh, India',
-    description: 'Completed technical vocational training exploring industrial automation, heavy engineering operational workflows, instrumentation systems, and plant-level computational monitoring.',
-    highlights: [
-      'Observed large-scale industrial control systems, instrumentation telemetry, and automated plant processes.',
-      'Gained practical insight into safety-critical industrial computing environments and hardware reliability standards.'
-    ],
-    statusTag: 'Completed Training',
+    statusTag: 'Participated',
     verified: true
   },
   {
@@ -144,36 +128,6 @@ export const TIMELINE: TimelineItem[] = [
       'Explored creative software APIs and collaborative digital problem statements under timed contest constraints.'
     ],
     statusTag: 'Participated',
-    verified: true
-  },
-  {
-    id: 'azure-ai-program',
-    period: 'Curriculum Completed',
-    category: 'RECOGNITION',
-    title: 'Azure AI Fundamentals Program',
-    organization: 'Microsoft Learn / Azure',
-    role: 'Program Trainee',
-    location: 'Online Curriculum',
-    description: 'Completed dedicated coursework covering computer vision APIs, natural language processing, conversational AI, and responsible AI principles on Microsoft Azure.',
-    highlights: [
-      'Hands-on exposure to Azure Cognitive Services and Computer Vision REST endpoints.'
-    ],
-    statusTag: 'Completed Program',
-    verified: true
-  },
-  {
-    id: 'tap-academy',
-    period: 'Foundation Training',
-    category: 'EDUCATION',
-    title: 'Java Full Stack & DSA Specialization',
-    organization: 'TAP Academy',
-    role: 'Student Trainee',
-    location: 'Technical Training',
-    description: 'Rigorous foundation training in Core Java, object-oriented software engineering principles, complex data structures, and algorithmic optimization.',
-    highlights: [
-      'Mastered memory allocation, collections framework, multi-threading, and exception handling in Java.'
-    ],
-    statusTag: 'Completed Specialization',
     verified: true
   }
 ];

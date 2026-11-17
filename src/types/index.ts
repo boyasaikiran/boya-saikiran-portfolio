@@ -8,7 +8,7 @@ export type ProjectCategory =
 export type ProjectStatus = 
   | 'Completed & Evaluated'
   | 'In Production / Live'
-  | 'Hackathon Finalist'
+  | 'Hackathon Project'
   | 'Active Research'
   | 'Experimental Prototype';
 
@@ -75,7 +75,6 @@ export type TimelineCategory =
   | 'INTERNSHIP'
   | 'LEADERSHIP'
   | 'HACKATHON'
-  | 'VOCATIONAL TRAINING'
   | 'WEB DEVELOPMENT'
   | 'RECOGNITION';
 

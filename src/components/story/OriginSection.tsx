@@ -32,8 +32,8 @@ const CHAPTERS: JourneyChapter[] = [
     badge: 'Code & Logic',
     icon: <Code2 className="text-[#FF3548]" size={20} />,
     summary: 'Mastering low-level programming constructs, memory handling, object-oriented concepts, and core data structures.',
-    details: 'The journey began with foundational computer science principles. Working extensively with C, C++, and Java through rigorous coursework and TAP Academy specialization instilled an obsession with algorithmic efficiency, pointer mechanics, and clean modular architecture.',
-    focusKeywords: ['C/C++', 'Java (TAP Academy)', 'Data Structures', 'Algorithmic Problem Solving']
+    details: 'The journey began with foundational computer science principles. Working extensively with C, C++, and Java through rigorous computer science coursework and hands-on laboratory implementations instilled an obsession with algorithmic efficiency, pointer mechanics, and clean modular architecture.',
+    focusKeywords: ['C/C++', 'Java', 'Data Structures', 'Algorithmic Problem Solving']
   },
   {
     id: 'ml-discovery',
@@ -92,8 +92,8 @@ const CHAPTERS: JourneyChapter[] = [
     badge: '2023 – 2027',
     icon: <GraduationCap className="text-[#FF3548]" size={20} />,
     summary: 'Serving as AI/ML Department Event Coordinator while pursuing continuous technical growth.',
-    details: 'Technical skill flourishes in collaborative environments. As Event Coordinator for the Matrix Association (AI & ML Department, 2025–2026), Boya coordinates hackathons and workshops. Industrial training at Bhilai Steel Plant (SAIL) and cohort acceptance into McKinsey Forward continue to broaden his engineering horizon.',
-    focusKeywords: ['Matrix Association Coordinator', 'Bhilai Steel Plant', 'McKinsey Forward', 'G-K Hacks']
+    details: 'Technical skill flourishes in collaborative environments. As Event Coordinator for the Matrix Association (AI & ML Department, 2025–2026), Boya coordinates hackathons and workshops. Departmental leadership, competitive hackathons, and cohort acceptance into McKinsey Forward continue to broaden his engineering horizon.',
+    focusKeywords: ['Matrix Association Coordinator', 'McKinsey Forward', 'G-K Hacks', 'KIDS Studio']
   }
 ];
 

@@ -435,7 +435,7 @@ export const PROJECTS: Project[] = [
     title: 'Smart Timetable Generator',
     tagline: 'Constraint-satisfaction automated scheduler resolving faculty, room, and curriculum conflicts.',
     category: 'Academic / Hackathon',
-    status: 'Hackathon Finalist',
+    status: 'Hackathon Project',
     techStack: ['Python', 'Algorithms', 'Constraint Satisfaction', 'Data Structures', 'Streamlit'],
     featured: false,
     overview: 'An algorithmic scheduling application developed during G-K Hacks 2025 to eliminate the tedious, conflict-prone manual chore of organizing university academic timetables.',

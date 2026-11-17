@@ -16,7 +16,7 @@ export const SKILLS: SkillNode[] = [
     name: 'Java',
     category: 'PROGRAMMING',
     level: 'Hands-on Experience',
-    description: 'Object-oriented programming, data structures, algorithms, and system fundamentals acquired through comprehensive TAP Academy coursework and academic projects.',
+    description: 'Object-oriented programming, data structures, algorithms, and system fundamentals acquired through academic coursework and practical projects.',
     projectsUsed: ['Academic Systems & Algorithms', 'Data Structure Implementations'],
     relatedSkillIds: ['c-plus-plus', 'python']
   },
@@ -285,7 +285,7 @@ export const SKILLS: SkillNode[] = [
     name: 'Docker',
     category: 'TOOLS AND PLATFORMS',
     level: 'Used in Projects',
-    description: 'Containerization fundamentals, Dockerfiles, multi-stage builds, images, and isolated reproducibility for ML environments (KodeKloud Certified).',
+    description: 'Containerization fundamentals, Dockerfiles, multi-stage builds, images, and isolated reproducibility for ML environments.',
     projectsUsed: ['ML Environment Containerization', 'Coursework Projects'],
     relatedSkillIds: ['git', 'google-cloud']
   },
@@ -303,7 +303,7 @@ export const SKILLS: SkillNode[] = [
     name: 'Google Cloud',
     category: 'TOOLS AND PLATFORMS',
     level: 'Familiar',
-    description: 'Cloud computing fundamentals, Compute Engine, cloud storage, and AI ecosystem exploration via Google Cloud training programs.',
+    description: 'Cloud computing fundamentals, Compute Engine, cloud storage, and AI ecosystem exploration.',
     projectsUsed: ['Cloud Training & Deployment Labs'],
     relatedSkillIds: ['docker', 'azure-ai']
   },
@@ -312,8 +312,8 @@ export const SKILLS: SkillNode[] = [
     name: 'Microsoft Azure AI',
     category: 'TOOLS AND PLATFORMS',
     level: 'Familiar',
-    description: 'Cloud cognitive services, Azure AI Studio, machine learning workspaces, and completed Azure AI Fundamentals curriculum.',
-    projectsUsed: ['Azure AI Fundamentals Program'],
+    description: 'Cloud cognitive services, Azure AI Studio, and machine learning workspace environments.',
+    projectsUsed: ['Cloud AI Explorations & Services'],
     relatedSkillIds: ['google-cloud', 'machine-learning']
   }
 ];

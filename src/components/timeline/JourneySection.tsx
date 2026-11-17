@@ -20,8 +20,8 @@ export const JourneySection: React.FC = () => {
   const [selectedFilter, setSelectedFilter] = useState<string>('ALL');
 
   const filterOptions = [
-    { label: 'All Milestones (11)', value: 'ALL' },
-    { label: 'Education & Training', value: 'EDUCATION' },
+    { label: `All Milestones (${TIMELINE.length})`, value: 'ALL' },
+    { label: 'Education', value: 'EDUCATION' },
     { label: 'Internships & Research', value: 'INTERNSHIP' },
     { label: 'Leadership', value: 'LEADERSHIP' },
     { label: 'Hackathons', value: 'HACKATHON' },
@@ -31,7 +31,6 @@ export const JourneySection: React.FC = () => {
   const filteredItems = selectedFilter === 'ALL'
     ? TIMELINE
     : TIMELINE.filter(item => {
-        if (selectedFilter === 'EDUCATION') return item.category === 'EDUCATION' || item.category === 'VOCATIONAL TRAINING';
         if (selectedFilter === 'INTERNSHIP') return item.category === 'INTERNSHIP' || item.category === 'RECOGNITION';
         return item.category === selectedFilter;
       });
@@ -46,8 +45,6 @@ export const JourneySection: React.FC = () => {
         return <Award size={16} className="text-[#FF3548]" />;
       case 'HACKATHON':
         return <Code size={16} className="text-[#75E5ED]" />;
-      case 'VOCATIONAL TRAINING':
-        return <Building2 size={16} className="text-[#C6CBD5]" />;
       case 'WEB DEVELOPMENT':
         return <Code size={16} className="text-[#C6CBD5]" />;
       case 'RECOGNITION':
