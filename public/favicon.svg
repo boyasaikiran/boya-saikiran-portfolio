@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <rect width="64" height="64" rx="16" fill="#07080C"/>
+  <circle cx="32" cy="32" r="28" stroke="#272D3A" stroke-width="1.5"/>
+  <circle cx="32" cy="32" r="18" stroke="#272D3A" stroke-width="1.5" stroke-dasharray="3 3"/>
+  <circle cx="32" cy="32" r="8" stroke="#E32636" stroke-width="1.5"/>
+  <!-- Web radials -->
+  <line x1="32" y1="4" x2="32" y2="60" stroke="#E32636" stroke-width="1.5" opacity="0.6"/>
+  <line x1="4" y1="32" x2="60" y2="32" stroke="#E32636" stroke-width="1.5" opacity="0.6"/>
+  <line x1="12" y1="12" x2="52" y2="52" stroke="#75E5ED" stroke-width="1" opacity="0.4"/>
+  <line x1="12" y1="52" x2="52" y2="12" stroke="#75E5ED" stroke-width="1" opacity="0.4"/>
+  <!-- Central core -->
+  <circle cx="32" cy="32" r="4" fill="#FF3548"/>
+  <circle cx="32" cy="32" r="2" fill="#FFFFFF"/>
+</svg>
