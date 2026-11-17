@@ -387,8 +387,96 @@ export const PROJECTS: Project[] = [
     ]
   },
   {
-    id: 'otp-verification-system',
+    id: 'gift-genie',
     missionNumber: 'MISSION-09',
+    title: 'GiftGenie — Recommendation Platform',
+    tagline: 'Intelligent gift recommendation engine matching recipient personality traits, occasion context, and budget preferences.',
+    category: 'Web Application',
+    status: 'In Production / Live',
+    techStack: ['JavaScript', 'Web Development', 'Algorithms', 'DOM Engine', 'HTML5/CSS3'],
+    githubUrl: 'https://github.com/boyasaikiran/GiftGenie',
+    featured: false,
+    overview: 'An interactive web application engineered to solve the decision-paralysis of gift purchasing by analyzing recipient hobbies, age demographics, relationship dynamics, and spending constraints.',
+    problemStatement: 'Gift shoppers spend excessive time browsing hundreds of generic retail listings that fail to account for personal nuances, occasion etiquette, and specific price limits.',
+    objective: 'Build an intuitive recommendation platform combining multi-attribute scoring filters with an engaging client-side interface that delivers personalized suggestions in seconds.',
+    datasetAndSources: 'Curated taxonomy of gift archetypes, occasion matrices (birthdays, anniversaries, corporate, festive), and price-bracket catalog indices.',
+    architecture: 'Recipient attribute ingestion -> Dynamic heuristic scoring algorithm weighting sentiment, budget, and interest tags -> Ranked recommendation candidate generator -> Responsive web UI with instant search filtering.',
+    technologyChoices: 'Vanilla JavaScript provides zero-overhead speed and responsive DOM rendering without requiring heavy frontend framework runtimes.',
+    implementationProcess: [
+      'Structured comprehensive gift preference mapping dictionaries categorizing items by sentiment and age groups.',
+      'Developed heuristic scoring algorithms evaluating degree of match against user-specified criteria.',
+      'Built a sleek, responsive user interface with intuitive step-by-step preference selectors.'
+    ],
+    challenges: [
+      'Balancing budget constraints against item relevance to avoid over-budget or irrelevant recommendations.'
+    ],
+    solutions: [
+      'Enforced strict price-boundary thresholding prior to calculating interest similarity coefficients.'
+    ],
+    evaluationMethodology: 'User experience testing evaluating recommendation diversity, latency, and usability.',
+    results: {
+      metrics: [
+        { label: 'Language', value: 'JavaScript', type: 'experimental' },
+        { label: 'Domain', value: 'Web Commerce AI', type: 'experimental' },
+        { label: 'Repository', value: 'Public', type: 'experimental' }
+      ],
+      reportedSummary: 'Fast, playful, and practical gift curation engine operating client-side with zero load lag.',
+      validationDisclaimer: 'Recommendation quality is driven by curated interest matrices and criteria weighting.'
+    },
+    limitations: [
+      'Recommendations rely on internal catalog mappings rather than real-time live eCommerce affiliate feeds.'
+    ],
+    futureImprovements: [
+      'Integrate live retail API endpoints (Amazon, Shopify) for real-time inventory checking and price tracking.'
+    ]
+  },
+  {
+    id: 'recover-orchestrator',
+    missionNumber: 'MISSION-10',
+    title: 'Recover-Orchestrator — Process Automation',
+    tagline: 'System process orchestration utility managing system recovery workflows, process monitoring, and operational task execution.',
+    category: 'System Tooling',
+    status: 'Completed & Evaluated',
+    techStack: ['Python', 'Automation', 'Process Orchestration', 'System Monitoring', 'Subprocesses'],
+    githubUrl: 'https://github.com/boyasaikiran/Recover-Orchestrator',
+    featured: false,
+    overview: 'A robust Python system utility engineered to monitor running processes, detect unexpected crashes or system faults, and automatically orchestrate stateful recovery and task execution routines.',
+    problemStatement: 'Long-running computing pipelines, background daemon scripts, and local microservices frequently experience unhandled termination or stall states without automated recovery mechanisms.',
+    objective: 'Develop an automated orchestration engine capable of polling process lifecycle states, logging system health telemetry, and triggering graceful automated restarts.',
+    datasetAndSources: 'System runtime logs, process telemetry, and synthetic process fault-injection testbeds.',
+    architecture: 'Process heartbeat supervisor -> Crash detection listener -> Automated operational restart orchestrator -> Structured telemetry logger and alert dispatcher.',
+    technologyChoices: 'Python standard library (`subprocess`, `os`, `signal`, `threading`) enables native, cross-platform process introspection and robust process lifecycle control without external dependencies.',
+    implementationProcess: [
+      'Built asynchronous polling workers monitoring process PID states and exit return codes.',
+      'Implemented configurable backoff restart policies with retry caps to prevent infinite restart loops on fatal faults.',
+      'Engineered structured logging tracking recovery timestamps, incident logs, and service uptime.'
+    ],
+    challenges: [
+      'Distinguishing between intentional user termination signals (SIGINT/SIGTERM) and unhandled application crashes.'
+    ],
+    solutions: [
+      'Registered POSIX and Windows signal handlers to gracefully clean up supervisor state on deliberate termination.'
+    ],
+    evaluationMethodology: 'Simulated fault-injection testing evaluating time-to-recovery and supervisor resilience.',
+    results: {
+      metrics: [
+        { label: 'Language', value: 'Python', type: 'experimental' },
+        { label: 'Domain', value: 'DevOps & Tooling', type: 'experimental' },
+        { label: 'Architecture', value: 'Fault-Tolerant', type: 'experimental' }
+      ],
+      reportedSummary: 'Reliable, lightweight process supervisor maintaining uptime for critical local compute workflows.',
+      validationDisclaimer: 'Engineered for workstation and server-level Python process orchestration.'
+    },
+    limitations: [
+      'Designed primarily for single-node process monitoring rather than distributed container clusters.'
+    ],
+    futureImprovements: [
+      'Add Webhook notifications (Discord, Slack) on recovery incident events.'
+    ]
+  },
+  {
+    id: 'otp-verification-system',
+    missionNumber: 'MISSION-11',
     title: 'Secure OTP Verification System',
     tagline: 'Web authentication verification system featuring secure token lifecycle, expiration logic, and clean interface.',
     category: 'System & Security',
@@ -431,7 +519,7 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 'smart-timetable-generator',
-    missionNumber: 'MISSION-10',
+    missionNumber: 'MISSION-12',
     title: 'Smart Timetable Generator',
     tagline: 'Constraint-satisfaction automated scheduler resolving faculty, room, and curriculum conflicts.',
     category: 'Academic / Hackathon',
@@ -474,20 +562,6 @@ export const PROJECTS: Project[] = [
 ];
 
 export const ADDITIONAL_PROJECTS = [
-  {
-    title: 'GiftGenie',
-    category: 'Web Application',
-    tech: 'JavaScript, Web Development, Algorithms',
-    status: 'Public Repository',
-    description: 'Interactive web platform providing intelligent gift recommendations based on recipient personality traits, occasion context, and budget preferences.'
-  },
-  {
-    title: 'Recover-Orchestrator',
-    category: 'System Tooling',
-    tech: 'Python, Automation, Process Orchestration',
-    status: 'Public Repository',
-    description: 'Python process orchestration utility managing system recovery workflows, process monitoring, and automated operational task execution.'
-  },
   {
     title: 'campus-insight-hub-73',
     category: 'Campus Analytics',

@@ -11,9 +11,11 @@ export const MissionsSection: React.FC = () => {
   const [activeProjectModal, setActiveProjectModal] = useState<Project | null>(null);
 
   const filterOptions = [
-    { label: 'All Missions (10)', value: 'ALL' },
+    { label: `All Missions (${PROJECTS.length})`, value: 'ALL' },
     { label: 'Computer Vision', value: 'Computer Vision' },
     { label: 'AI / Machine Learning', value: 'AI / Machine Learning' },
+    { label: 'Web Applications', value: 'Web Application' },
+    { label: 'System Tooling', value: 'System Tooling' },
     { label: 'System & Security', value: 'System & Security' },
     { label: 'Academic & Hackathon', value: 'Academic / Hackathon' },
   ];

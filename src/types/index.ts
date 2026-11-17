@@ -2,6 +2,8 @@ export type ProjectCategory =
   | 'Computer Vision'
   | 'AI / Machine Learning'
   | 'System & Security'
+  | 'Web Application'
+  | 'System Tooling'
   | 'Academic / Hackathon'
   | 'Research Prototype';
 

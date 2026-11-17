@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ExternalLink, ArrowRight, Compass, Eye, Sprout, Lock } from 'lucide-react';
+import { ExternalLink, ArrowRight, Compass, Eye, Sprout, Lock, Globe, Wrench } from 'lucide-react';
 import { GithubIcon } from '../ui/Icons';
 import type { Project } from '../../types';
 import { soundManager } from '../../audio/soundEffects';
@@ -19,6 +19,10 @@ export const MissionCard: React.FC<MissionCardProps> = ({ project, onOpenDetails
         return <Sprout size={14} className="text-[#75E5ED]" />;
       case 'System & Security':
         return <Lock size={14} className="text-[#FF3548]" />;
+      case 'Web Application':
+        return <Globe size={14} className="text-[#75E5ED]" />;
+      case 'System Tooling':
+        return <Wrench size={14} className="text-[#C6CBD5]" />;
       default:
         return <Compass size={14} className="text-[#8D94A3]" />;
     }
