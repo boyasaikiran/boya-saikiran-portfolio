@@ -11,7 +11,7 @@ import {
   ExternalLink
 } from 'lucide-react';
 import { GithubIcon, LinkedinIcon } from '../ui/Icons';
-import { OWNER_EMAIL, OWNER_PHONE, OWNER_PHONE_RAW, GITHUB_PROFILE_URL, LINKEDIN_PROFILE_URL } from '../../data/developerActivity';
+import { OWNER_EMAIL, OWNER_PHONE, OWNER_PHONE_RAW, RESUME_URL, GITHUB_PROFILE_URL, LINKEDIN_PROFILE_URL } from '../../data/developerActivity';
 import { soundManager } from '../../audio/soundEffects';
 
 export const ContactSection: React.FC = () => {
@@ -100,8 +100,8 @@ export const ContactSection: React.FC = () => {
 
   const handleDownloadResume = () => {
     soundManager.playClick();
-    // Opens or downloads verified profile information
-    window.open(LINKEDIN_PROFILE_URL, '_blank');
+    // Opens verified resume PDF in a new tab
+    window.open(RESUME_URL, '_blank', 'noopener,noreferrer');
   };
 
   return (
@@ -233,16 +233,25 @@ export const ContactSection: React.FC = () => {
                 <ExternalLink size={12} className="text-[#8D94A3] group-hover:text-white" />
               </a>
 
-              <button
+              <a
+                href={RESUME_URL}
+                target="_blank"
+                rel="noopener noreferrer"
                 onClick={handleDownloadResume}
                 className="w-full p-3 rounded-xl bg-[#07080C] border border-[#272D3A] hover:border-[#E32636] flex items-center justify-between text-xs font-mono text-[#C6CBD5] hover:text-white transition-colors group"
+                aria-label="Open Boya Saikiran Resume PDF"
               >
                 <div className="flex items-center gap-2.5">
                   <FileText size={16} className="text-[#FF3548]" />
                   <span>Resume &amp; Profile</span>
                 </div>
-                <ExternalLink size={12} className="text-[#8D94A3] group-hover:text-white" />
-              </button>
+                <div className="flex items-center gap-1.5">
+                  <span className="px-1.5 py-0.5 rounded bg-[#E32636]/10 border border-[#E32636]/30 text-[10px] text-[#FF3548]">
+                    PDF
+                  </span>
+                  <ExternalLink size={12} className="text-[#8D94A3] group-hover:text-white" />
+                </div>
+              </a>
             </div>
 
             {/* Location & Academic Base */}

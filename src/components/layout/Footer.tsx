@@ -1,7 +1,7 @@
 import React from 'react';
-import { ArrowUp, Terminal } from 'lucide-react';
+import { ArrowUp, Terminal, FileText } from 'lucide-react';
 import { GithubIcon, LinkedinIcon } from '../ui/Icons';
-import { GITHUB_PROFILE_URL, LINKEDIN_PROFILE_URL, OWNER_EMAIL } from '../../data/developerActivity';
+import { GITHUB_PROFILE_URL, LINKEDIN_PROFILE_URL, OWNER_EMAIL, RESUME_URL } from '../../data/developerActivity';
 import { soundManager } from '../../audio/soundEffects';
 
 export const Footer: React.FC = () => {
@@ -71,6 +71,18 @@ export const Footer: React.FC = () => {
               >
                 <Terminal size={15} />
               </a>
+
+              <a
+                href={RESUME_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => soundManager.playClick()}
+                className="p-2.5 rounded-lg bg-[#121621] border border-[#272D3A] text-[#8D94A3] hover:text-white hover:border-[#FF3548] transition-colors"
+                aria-label="Open Resume PDF"
+                title="Open Resume PDF"
+              >
+                <FileText size={15} className="text-[#FF3548]" />
+              </a>
             </div>
           </div>
 
@@ -99,6 +111,18 @@ export const Footer: React.FC = () => {
             </div>
             <div>
               <a href="#contact" className="text-[#8D94A3] hover:text-white transition-colors">07 // Communication</a>
+            </div>
+            <div>
+              <a
+                href={RESUME_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => soundManager.playClick()}
+                className="text-[#FF3548] hover:text-white transition-colors flex items-center gap-1"
+              >
+                <span>08 // Resume PDF</span>
+                <span className="text-[10px] text-[#75E5ED]">↗</span>
+              </a>
             </div>
           </div>
 

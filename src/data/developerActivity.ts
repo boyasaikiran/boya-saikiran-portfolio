@@ -5,6 +5,7 @@ export const LINKEDIN_PROFILE_URL = 'https://www.linkedin.com/in/boya-saikiran-1
 export const OWNER_EMAIL = 'boyasaikiran37@gmail.com';
 export const OWNER_PHONE = '+91 6303093649';
 export const OWNER_PHONE_RAW = '6303093649';
+export const RESUME_URL = '/Boya_Saikiran_Resume.pdf';
 
 export const CURATED_REPOSITORIES: DeveloperRepo[] = [
   {

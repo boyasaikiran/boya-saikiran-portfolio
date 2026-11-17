@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Volume2, VolumeX, Terminal, ExternalLink } from 'lucide-react';
+import { Menu, X, Volume2, VolumeX, Terminal, FileText, ExternalLink } from 'lucide-react';
 import { GithubIcon, LinkedinIcon } from '../ui/Icons';
 import { soundManager } from '../../audio/soundEffects';
-import { GITHUB_PROFILE_URL, LINKEDIN_PROFILE_URL } from '../../data/developerActivity';
+import { GITHUB_PROFILE_URL, LINKEDIN_PROFILE_URL, RESUME_URL } from '../../data/developerActivity';
 
 const NAV_ITEMS = [
   { id: 'hero', label: 'Home' },
@@ -162,6 +162,20 @@ export const Navbar: React.FC = () => {
             <LinkedinIcon size={15} />
           </a>
 
+          {/* Resume PDF quick link */}
+          <a
+            href={RESUME_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => soundManager.playClick()}
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-mono bg-[#121621] border border-[#272D3A] text-[#C6CBD5] hover:text-white hover:border-[#FF3548] transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF3548]"
+            title="Open Resume PDF"
+            aria-label="Open Resume PDF"
+          >
+            <FileText size={12} className="text-[#FF3548]" />
+            <span>RESUME</span>
+          </a>
+
           {/* Terminal / Contact quick trigger */}
           <button
             onClick={() => handleNavClick('contact')}
@@ -223,6 +237,17 @@ export const Navbar: React.FC = () => {
               ))}
 
               <div className="pt-4 border-t border-[#272D3A] flex items-center justify-around">
+                <a
+                  href={RESUME_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => soundManager.playClick()}
+                  className="flex items-center gap-1.5 text-xs font-mono text-[#C6CBD5] hover:text-[#FF3548]"
+                >
+                  <FileText size={14} className="text-[#FF3548]" />
+                  <span>Resume PDF</span>
+                  <ExternalLink size={10} />
+                </a>
                 <a
                   href={GITHUB_PROFILE_URL}
                   target="_blank"
