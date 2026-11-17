@@ -199,7 +199,7 @@ export const ContactSection: React.FC = () => {
               >
                 <div className="flex items-center gap-2.5">
                   <FileText size={16} className="text-[#FF3548]" />
-                  <span>Resume &amp; Verified Credentials</span>
+                  <span>Resume &amp; Profile</span>
                 </div>
                 <ExternalLink size={12} className="text-[#8D94A3] group-hover:text-white" />
               </button>

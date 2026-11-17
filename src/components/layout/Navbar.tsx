@@ -11,7 +11,6 @@ const NAV_ITEMS = [
   { id: 'arsenal', label: 'Arsenal' },
   { id: 'missions', label: 'Missions' },
   { id: 'journey', label: 'Journey' },
-  { id: 'achievements', label: 'Achievements' },
   { id: 'contact', label: 'Contact' },
 ];
 

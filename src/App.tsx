@@ -9,7 +9,6 @@ import { OriginSection } from './components/story/OriginSection';
 import { ArsenalSection } from './components/skills/ArsenalSection';
 import { MissionsSection } from './components/projects/MissionsSection';
 import { JourneySection } from './components/timeline/JourneySection';
-import { AchievementsSection } from './components/achievements/AchievementsSection';
 import { DeveloperActivitySection } from './components/activity/DeveloperActivitySection';
 import { ContactSection } from './components/contact/ContactSection';
 import { Footer } from './components/layout/Footer';
@@ -69,10 +68,7 @@ export function App() {
         {/* Sector 05: Journey Timeline */}
         <JourneySection />
 
-        {/* Sector 06: Achievements & Verified Credentials */}
-        <AchievementsSection />
-
-        {/* Sector 07: Developer Activity & Repositories */}
+        {/* Sector 06: Developer Activity & Repositories */}
         <DeveloperActivitySection />
 
         {/* Sector 08: Contact & Next Chapter */}
