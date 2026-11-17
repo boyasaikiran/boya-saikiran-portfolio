@@ -9,10 +9,9 @@ export const AchievementsSection: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>('ALL');
 
   const categories = [
-    { label: 'All Credentials (12)', value: 'ALL' },
+    { label: `All Certifications (${CERTIFICATIONS.length})`, value: 'ALL' },
     { label: 'AI & Deep Learning', value: 'AI & Deep Learning' },
     { label: 'Cloud & DevOps', value: 'Cloud & DevOps' },
-    { label: 'Core Engineering', value: 'Core Engineering' },
     { label: 'Cybersecurity & Systems', value: 'Cybersecurity & Systems' },
   ];
 
@@ -46,8 +45,8 @@ export const AchievementsSection: React.FC = () => {
           </h2>
 
           <p className="text-sm sm:text-base text-[#8D94A3] max-w-2xl mx-auto leading-relaxed">
-            Verified academic certifications, technical training bootcamps, and specialized industry credentials 
-            spanning vision language models, deep learning, containerization, and cyber-physical systems.
+            Verified industry certifications and accredited programs from Microsoft, IBM, Cisco, Google, 
+            and Simplilearn covering Azure AI Fundamentals, Generative AI, AI practice, and cybersecurity.
           </p>
         </div>
 

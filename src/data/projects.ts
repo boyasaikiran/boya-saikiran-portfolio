@@ -389,94 +389,145 @@ export const PROJECTS: Project[] = [
   {
     id: 'gift-genie',
     missionNumber: 'MISSION-09',
-    title: 'GiftGenie — Recommendation Platform',
-    tagline: 'Intelligent gift recommendation engine matching recipient personality traits, occasion context, and budget preferences.',
+    title: 'GiftGenie — Multi-Agent Platform',
+    tagline: 'Multi-agent recommendation engine with parallel analysis, LangGraph.js, and Claude API integration.',
     category: 'Web Application',
     status: 'In Production / Live',
-    techStack: ['JavaScript', 'Web Development', 'Algorithms', 'DOM Engine', 'HTML5/CSS3'],
+    techStack: ['JavaScript', 'LangGraph.js', 'Claude API', 'Firebase', 'Firestore', 'Multi-Agent'],
     githubUrl: 'https://github.com/boyasaikiran/GiftGenie',
-    featured: false,
-    overview: 'An interactive web application engineered to solve the decision-paralysis of gift purchasing by analyzing recipient hobbies, age demographics, relationship dynamics, and spending constraints.',
-    problemStatement: 'Gift shoppers spend excessive time browsing hundreds of generic retail listings that fail to account for personal nuances, occasion etiquette, and specific price limits.',
-    objective: 'Build an intuitive recommendation platform combining multi-attribute scoring filters with an engaging client-side interface that delivers personalized suggestions in seconds.',
-    datasetAndSources: 'Curated taxonomy of gift archetypes, occasion matrices (birthdays, anniversaries, corporate, festive), and price-bracket catalog indices.',
-    architecture: 'Recipient attribute ingestion -> Dynamic heuristic scoring algorithm weighting sentiment, budget, and interest tags -> Ranked recommendation candidate generator -> Responsive web UI with instant search filtering.',
-    technologyChoices: 'Vanilla JavaScript provides zero-overhead speed and responsive DOM rendering without requiring heavy frontend framework runtimes.',
+    featured: true,
+    overview: 'An advanced multi-agent recommendation architecture decomposing gift selection into specialized agents: preference analysis, constraint filtering, dynamic candidate ranking, and natural language recommendation explanation.',
+    problemStatement: 'Gift shoppers struggle with generic search listings that fail to balance personal recipient traits, budget boundaries, and occasion etiquette.',
+    objective: 'Build an end-to-end multi-agent orchestration pipeline that parses natural language inputs and constraints into structured evaluations and ranked, explainable suggestions.',
+    datasetAndSources: 'User preference vectors, multi-tier gift taxonomies, and occasion knowledge bases stored in Firebase and Firestore.',
+    architecture: 'Input prompt -> LangGraph.js multi-agent supervisor -> Parallel analysis worker nodes (Preference Analyzer, Constraint Filter, Ranker) -> Claude API reasoning model -> Firebase/Firestore state persistence -> Interactive responsive web interface.',
+    technologyChoices: 'LangGraph.js enables cyclical and parallel agent graphs with bounded retry loops. Claude API provides high-precision semantic parsing and nuanced recommendation justifications.',
     implementationProcess: [
-      'Structured comprehensive gift preference mapping dictionaries categorizing items by sentiment and age groups.',
-      'Developed heuristic scoring algorithms evaluating degree of match against user-specified criteria.',
-      'Built a sleek, responsive user interface with intuitive step-by-step preference selectors.'
+      'Decomposed recommendation tasks into preference analysis, constraint filtering, ranking, and recommendation-explanation stages.',
+      'Developed a multi-agent workflow with parallel analysis and bounded retries to support reliable recommendation processing.',
+      'Built an end-to-end prototype that converts user preferences and constraints into structured analysis and ranked recommendations.',
+      'Integrated Firebase and Firestore for real-time user session management and historical recommendation persistence.'
     ],
     challenges: [
-      'Balancing budget constraints against item relevance to avoid over-budget or irrelevant recommendations.'
+      'Managing latency across parallel LLM agent calls while maintaining consistent schema validation.',
+      'Handling conflicting constraints (e.g. ultra-low budget with premium luxury preferences).'
     ],
     solutions: [
-      'Enforced strict price-boundary thresholding prior to calculating interest similarity coefficients.'
+      'Engineered bounded retry loops with prompt relaxation fallback stages to resolve conflicting constraints.',
+      'Structured JSON output schemas enforced across each agent turn to prevent hallucination.'
     ],
-    evaluationMethodology: 'User experience testing evaluating recommendation diversity, latency, and usability.',
+    evaluationMethodology: 'Benchmarked across diverse user persona test scenarios measuring constraint satisfaction and response latency.',
     results: {
       metrics: [
-        { label: 'Language', value: 'JavaScript', type: 'experimental' },
-        { label: 'Domain', value: 'Web Commerce AI', type: 'experimental' },
-        { label: 'Repository', value: 'Public', type: 'experimental' }
+        { label: 'Architecture', value: 'Multi-Agent', type: 'experimental', context: 'LangGraph.js + Claude API' },
+        { label: 'Database', value: 'Firestore', type: 'experimental', context: 'Firebase persistence' },
+        { label: 'Language', value: 'JavaScript', type: 'experimental' }
       ],
-      reportedSummary: 'Fast, playful, and practical gift curation engine operating client-side with zero load lag.',
-      validationDisclaimer: 'Recommendation quality is driven by curated interest matrices and criteria weighting.'
+      reportedSummary: 'Robust multi-agent platform transforming conversational recipient details into well-reasoned gift selections.',
+      validationDisclaimer: 'Operates with structured prompt chains and bounded agent retries.'
     },
     limitations: [
-      'Recommendations rely on internal catalog mappings rather than real-time live eCommerce affiliate feeds.'
+      'API rate limits require intelligent token caching during peak traffic.'
     ],
     futureImprovements: [
-      'Integrate live retail API endpoints (Amazon, Shopify) for real-time inventory checking and price tracking.'
+      'Add multi-turn conversational memory so users can iteratively refine suggestions.'
     ]
   },
   {
     id: 'recover-orchestrator',
     missionNumber: 'MISSION-10',
-    title: 'Recover-Orchestrator — Process Automation',
-    tagline: 'System process orchestration utility managing system recovery workflows, process monitoring, and operational task execution.',
+    title: 'Recovery Orchestrator — Decision Workflow',
+    tagline: 'Payment-recovery decision framework validated by 175 automated tests with idempotent webhook processing.',
     category: 'System Tooling',
     status: 'Completed & Evaluated',
-    techStack: ['Python', 'Automation', 'Process Orchestration', 'System Monitoring', 'Subprocesses'],
+    techStack: ['Python', 'FastAPI', 'PostgreSQL', 'SQLAlchemy', 'Webhooks', 'Pytest (175 Tests)'],
     githubUrl: 'https://github.com/boyasaikiran/Recover-Orchestrator',
-    featured: false,
-    overview: 'A robust Python system utility engineered to monitor running processes, detect unexpected crashes or system faults, and automatically orchestrate stateful recovery and task execution routines.',
-    problemStatement: 'Long-running computing pipelines, background daemon scripts, and local microservices frequently experience unhandled termination or stall states without automated recovery mechanisms.',
-    objective: 'Develop an automated orchestration engine capable of polling process lifecycle states, logging system health telemetry, and triggering graceful automated restarts.',
-    datasetAndSources: 'System runtime logs, process telemetry, and synthetic process fault-injection testbeds.',
-    architecture: 'Process heartbeat supervisor -> Crash detection listener -> Automated operational restart orchestrator -> Structured telemetry logger and alert dispatcher.',
-    technologyChoices: 'Python standard library (`subprocess`, `os`, `signal`, `threading`) enables native, cross-platform process introspection and robust process lifecycle control without external dependencies.',
+    featured: true,
+    overview: 'A high-reliability payment-recovery decision framework and orchestration backend built with Python, FastAPI, and PostgreSQL, rigorously validated with 175 automated tests.',
+    problemStatement: 'Payment operations and transactional webhooks frequently experience network dropouts, duplicate deliveries, and ambiguous failure states that result in revenue leakage without deterministic recovery logic.',
+    objective: 'Engineer a structured payment-recovery decision system incorporating risk constraints, confidence thresholds, retry limits, and automated escalation rules.',
+    datasetAndSources: 'Simulated payment transaction lifecycle streams, idempotency key logs, and comprehensive synthetic fault-injection test suites.',
+    architecture: 'Webhook receiver -> Idempotency deduplication check -> Risk constraint & confidence evaluation engine -> Deterministic state machine (Retry / Escalate / Settle) -> PostgreSQL / SQLAlchemy persistent recovery records -> Audit logging & metrics.',
+    technologyChoices: 'FastAPI provides high-speed asynchronous REST endpoints. SQLAlchemy with PostgreSQL ensures ACID compliance and strict transaction isolation during concurrent webhook spikes.',
     implementationProcess: [
-      'Built asynchronous polling workers monitoring process PID states and exit return codes.',
-      'Implemented configurable backoff restart policies with retry caps to prevent infinite restart loops on fatal faults.',
-      'Engineered structured logging tracking recovery timestamps, incident logs, and service uptime.'
+      'Designed a structured payment-recovery decision framework using risk constraints, confidence thresholds, retry limits, and escalation rules.',
+      'Implemented deterministic event processing, idempotent webhook handling, and persistent recovery records to support consistent outcomes across repeated events.',
+      'Built and validated 175 automated tests, ensuring high test coverage across core recovery workflows and complex edge cases.',
+      'Constructed structured logging pipelines for root-cause analysis of payment drop-offs.'
     ],
     challenges: [
-      'Distinguishing between intentional user termination signals (SIGINT/SIGTERM) and unhandled application crashes.'
+      'Preventing double-spend and duplicate processing under concurrent identical webhook deliveries.',
+      'Maintaining deterministic recovery transitions across transient database connection failures.'
     ],
     solutions: [
-      'Registered POSIX and Windows signal handlers to gracefully clean up supervisor state on deliberate termination.'
+      'Implemented database-level idempotency locks and unique transaction event tokens.',
+      'Configured exponential backoff retry algorithms with dead-letter queue escalation.'
     ],
-    evaluationMethodology: 'Simulated fault-injection testing evaluating time-to-recovery and supervisor resilience.',
+    evaluationMethodology: 'Comprehensive automated testing suite running 175 unit and integration tests across edge failure scenarios.',
     results: {
       metrics: [
-        { label: 'Language', value: 'Python', type: 'experimental' },
-        { label: 'Domain', value: 'DevOps & Tooling', type: 'experimental' },
-        { label: 'Architecture', value: 'Fault-Tolerant', type: 'experimental' }
+        { label: 'Automated Tests', value: '175 Passed', type: 'experimental', context: 'Comprehensive test coverage' },
+        { label: 'Stack Core', value: 'FastAPI + SQL', type: 'experimental', context: 'PostgreSQL / SQLAlchemy' },
+        { label: 'Webhook Handling', value: '100% Idempotent', type: 'experimental', context: 'Deduplicated event pipeline' }
       ],
-      reportedSummary: 'Reliable, lightweight process supervisor maintaining uptime for critical local compute workflows.',
-      validationDisclaimer: 'Engineered for workstation and server-level Python process orchestration.'
+      reportedSummary: 'Engineered for enterprise reliability, zero duplicate events, and bulletproof payment recovery audit trails.',
+      validationDisclaimer: 'Validated across 175 rigorous automated test suites covering edge cases and error handling.'
     },
     limitations: [
-      'Designed primarily for single-node process monitoring rather than distributed container clusters.'
+      'Configured for single-region relational database clusters.'
     ],
     futureImprovements: [
-      'Add Webhook notifications (Discord, Slack) on recovery incident events.'
+      'Add distributed Redis lock coordination for multi-region active-active deployments.'
+    ]
+  },
+  {
+    id: 'ops-guardian',
+    missionNumber: 'MISSION-11',
+    title: 'OpsGuardian — Root-Cause Diagnostic System',
+    tagline: 'Containerized troubleshooting sandbox with Prometheus & Grafana investigating simulated application failures.',
+    category: 'System Tooling',
+    status: 'Completed & Evaluated',
+    techStack: ['Python', 'FastAPI', 'PostgreSQL', 'Docker', 'Prometheus', 'Grafana'],
+    featured: true,
+    overview: 'A containerized diagnostic and monitoring platform engineered to investigate simulated application failures, perform structured troubleshooting workflows, and identify systemic root causes using Prometheus and Grafana telemetry.',
+    problemStatement: 'Distributed systems experience intermittent failures, resource exhaustion, and deadlocks where traditional manual inspection is too slow to pinpoint underlying root causes.',
+    objective: 'Build a containerized diagnostic sandbox that exposes telemetry endpoints, captures failure metrics, and provides structured investigation playbooks for repeatable troubleshooting.',
+    datasetAndSources: 'Simulated application error logs, container resource telemetry (CPU, memory, latency, query queues), and structured failure-injection traces.',
+    architecture: 'Dockerized microservice environment -> Prometheus metric scrapers capturing system health & error rates -> Grafana real-time diagnostic dashboards -> Root-cause decision trees & automated investigation routines.',
+    technologyChoices: 'Docker guarantees reproducible failure reproduction. Prometheus and Grafana deliver industry-standard time-series metrics visualization for rapid incident triage.',
+    implementationProcess: [
+      'Developed a structured troubleshooting workflow, applying critical thinking to identify root causes and acting as an adaptable problem solver during simulated application failures.',
+      'Built monitoring and diagnostic components to investigate simulated application failures and identify underlying causes.',
+      'Documented investigation and recovery procedures, utilizing clear written communication to enable repeatable troubleshooting for cross-functional stakeholders.'
+    ],
+    challenges: [
+      'Correlating disparate metric anomalies with specific code execution failures.',
+      'Simulating realistic multi-component failure states (e.g. connection pool exhaustion vs CPU starvation).'
+    ],
+    solutions: [
+      'Configured targeted Grafana alert thresholds linked to structured diagnostic playbooks.',
+      'Implemented modular failure-injection endpoints to systematically stress-test each component.'
+    ],
+    evaluationMethodology: 'Scenario-based troubleshooting exercises measuring Mean Time to Detection (MTTD) and Root Cause Identification.',
+    results: {
+      metrics: [
+        { label: 'Monitoring', value: 'Prometheus', type: 'experimental', context: 'Time-series telemetry' },
+        { label: 'Dashboards', value: 'Grafana', type: 'experimental', context: 'Real-time observability' },
+        { label: 'Deployment', value: 'Docker', type: 'experimental', context: 'Containerized sandbox' }
+      ],
+      reportedSummary: 'Actionable diagnostic platform demonstrating strong root-cause analysis, adaptability, and clear stakeholder documentation.',
+      validationDisclaimer: 'Engineered as a containerized observability and failure diagnostic sandbox.'
+    },
+    limitations: [
+      'Simulations are calibrated for containerized microservice architectures.'
+    ],
+    futureImprovements: [
+      'Integrate OpenTelemetry distributed tracing (Jaeger) for end-to-end span diagnostics.'
     ]
   },
   {
     id: 'otp-verification-system',
-    missionNumber: 'MISSION-11',
+    missionNumber: 'MISSION-12',
     title: 'Secure OTP Verification System',
     tagline: 'Web authentication verification system featuring secure token lifecycle, expiration logic, and clean interface.',
     category: 'System & Security',
@@ -519,7 +570,7 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 'smart-timetable-generator',
-    missionNumber: 'MISSION-12',
+    missionNumber: 'MISSION-13',
     title: 'Smart Timetable Generator',
     tagline: 'Constraint-satisfaction automated scheduler resolving faculty, room, and curriculum conflicts.',
     category: 'Academic / Hackathon',

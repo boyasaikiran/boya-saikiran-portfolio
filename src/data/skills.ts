@@ -7,27 +7,45 @@ export const SKILLS: SkillNode[] = [
     name: 'Python',
     category: 'PROGRAMMING',
     level: 'Hands-on Experience',
-    description: 'Primary engineering language utilized across all deep learning, computer vision, data pipelines, and backend microservices.',
-    projectsUsed: ['Cross-View University Campus Locator', 'Real-time CCTV Night Vision Colorizer', 'Diabetes Risk Prediction', 'Automated Parking System', 'Smart Crop Recommendation'],
-    relatedSkillIds: ['pytorch', 'scikit-learn', 'opencv', 'flask', 'streamlit']
+    description: 'Primary engineering language utilized across backend development (FastAPI), deep learning (PyTorch), data science, and automation.',
+    projectsUsed: ['Recovery Orchestrator', 'OpsGuardian', 'Cross-View Campus Locator', 'Real-time CCTV Night Vision Colorizer', 'Diabetes Risk Prediction'],
+    relatedSkillIds: ['fastapi', 'pytorch', 'scikit-learn', 'opencv', 'sqlalchemy']
+  },
+  {
+    id: 'javascript',
+    name: 'JavaScript',
+    category: 'PROGRAMMING',
+    level: 'Hands-on Experience',
+    description: 'Modern ES6+ development for full-stack web applications, Node.js backends, DOM architectures, and LangGraph.js multi-agent systems.',
+    projectsUsed: ['GiftGenie — Multi-Agent Platform', 'KarunyaHacks Web Features', 'OTP Verification System', 'The Web of Ideas Portfolio'],
+    relatedSkillIds: ['langgraph', 'node-js', 'react', 'rest-apis']
+  },
+  {
+    id: 'sql',
+    name: 'SQL',
+    category: 'PROGRAMMING',
+    level: 'Hands-on Experience',
+    description: 'Relational database schema design, normalized data modeling, ACID transactions, complex queries, and ORM abstractions (SQLAlchemy).',
+    projectsUsed: ['Recovery Orchestrator', 'OpsGuardian Diagnostic Database'],
+    relatedSkillIds: ['postgresql', 'sqlalchemy', 'python']
+  },
+  {
+    id: 'bash-shell',
+    name: 'Bash / Shell',
+    category: 'PROGRAMMING',
+    level: 'Used in Projects',
+    description: 'Linux shell scripting, command-line automation, environment configuration, container lifecycle scripts, and automated test runners.',
+    projectsUsed: ['OpsGuardian Docker Sandbox', 'Automated Test Pipelines'],
+    relatedSkillIds: ['docker', 'git']
   },
   {
     id: 'java',
     name: 'Java',
     category: 'PROGRAMMING',
     level: 'Hands-on Experience',
-    description: 'Object-oriented programming, data structures, algorithms, and system fundamentals acquired through academic coursework and practical projects.',
+    description: 'Object-oriented programming, data structures, algorithms, and system fundamentals acquired through computer science coursework.',
     projectsUsed: ['Academic Systems & Algorithms', 'Data Structure Implementations'],
     relatedSkillIds: ['c-plus-plus', 'python']
-  },
-  {
-    id: 'javascript',
-    name: 'JavaScript',
-    category: 'PROGRAMMING',
-    level: 'Used in Projects',
-    description: 'Modern ES6+ development for client-side interactivity, DOM manipulation, asynchronous operations, and interactive web applications.',
-    projectsUsed: ['GiftGenie', 'OTP Verification System', 'The Web of Ideas Portfolio'],
-    relatedSkillIds: ['react', 'node-js', 'html', 'css']
   },
   {
     id: 'c',
@@ -43,12 +61,30 @@ export const SKILLS: SkillNode[] = [
     name: 'C++',
     category: 'PROGRAMMING',
     level: 'Used in Projects',
-    description: 'Performance-critical algorithmic problem solving, Standard Template Library (STL), and object-oriented architectures.',
+    description: 'Algorithmic problem solving, Standard Template Library (STL), and object-oriented memory management.',
     projectsUsed: ['Competitive Problem Solving', 'Algorithmic Optimization'],
     relatedSkillIds: ['c', 'java']
   },
 
   // --- AI AND MACHINE LEARNING ---
+  {
+    id: 'langgraph',
+    name: 'LangGraph.js',
+    category: 'AI AND MACHINE LEARNING',
+    level: 'Hands-on Experience',
+    description: 'Multi-agent orchestration, stateful agent graphs, parallel execution nodes, and bounded retry loops integrating Claude API.',
+    projectsUsed: ['GiftGenie — Multi-Agent Recommendation Platform'],
+    relatedSkillIds: ['javascript', 'claude-api', 'deep-learning']
+  },
+  {
+    id: 'deep-learning',
+    name: 'Deep Learning',
+    category: 'AI AND MACHINE LEARNING',
+    level: 'Hands-on Experience',
+    description: 'Neural representations, backpropagation dynamics, custom loss functions, and vision transformer architectures.',
+    projectsUsed: ['Cross-View Campus Locator (24KIDS422)', 'CCTV Night Vision Colorizer', 'AI vs Human Classifier'],
+    relatedSkillIds: ['pytorch', 'swin-transformer', 'efficientnet', 'computer-vision']
+  },
   {
     id: 'pytorch',
     name: 'PyTorch',
@@ -56,32 +92,32 @@ export const SKILLS: SkillNode[] = [
     level: 'Hands-on Experience',
     description: 'Dynamic neural network construction, autograd mechanics, custom loss functions, and vision transformer training.',
     projectsUsed: ['Cross-View University Campus Locator', 'Real-time CCTV Night Vision Colorizer', 'AI vs Human Image Classifier'],
-    relatedSkillIds: ['deep-learning', 'transfer-learning', 'swin-transformer', 'efficientnet', 'opencv']
-  },
-  {
-    id: 'tensorflow-keras',
-    name: 'TensorFlow / Keras',
-    category: 'AI AND MACHINE LEARNING',
-    level: 'Used in Projects',
-    description: 'Building and fine-tuning sequential and functional neural network architectures, pre-processing layers, and model export pipelines.',
-    projectsUsed: ['Deep Learning Explorations', 'Image Classification Benchmarks'],
-    relatedSkillIds: ['pytorch', 'deep-learning', 'machine-learning']
+    relatedSkillIds: ['deep-learning', 'swin-transformer', 'efficientnet', 'opencv']
   },
   {
     id: 'scikit-learn',
     name: 'Scikit-learn',
     category: 'AI AND MACHINE LEARNING',
     level: 'Hands-on Experience',
-    description: 'Supervised and unsupervised learning, ensemble algorithms (Random Forest), cross-validation, calibrated logistic regression, and scikit-learn repository exploration.',
+    description: 'Supervised classification, ensemble methods (Random Forest), probability calibration (Platt scaling), and codebase exploration of official repo.',
     projectsUsed: ['Diabetes Risk Prediction', 'Smart Crop Recommendation System', 'scikit-learn Open-Source Study'],
     relatedSkillIds: ['numpy', 'pandas', 'machine-learning']
+  },
+  {
+    id: 'machine-learning',
+    name: 'Machine Learning',
+    category: 'AI AND MACHINE LEARNING',
+    level: 'Hands-on Experience',
+    description: 'Predictive modeling, hyperparameter optimization, cross-validation, and bias-variance tradeoff balancing.',
+    projectsUsed: ['Diabetes Risk Prediction', 'Smart Crop Recommendation System', 'Automated Parking System'],
+    relatedSkillIds: ['scikit-learn', 'deep-learning']
   },
   {
     id: 'numpy',
     name: 'NumPy',
     category: 'AI AND MACHINE LEARNING',
     level: 'Hands-on Experience',
-    description: 'Vectorized mathematical operations, multi-dimensional tensor manipulations, array broadcasting, and high-performance numeric computations.',
+    description: 'Vectorized mathematical operations, multi-dimensional tensor manipulations, array broadcasting, and numeric computation.',
     projectsUsed: ['Crop Recommendation System', 'Campus Locator Feature Transformations'],
     relatedSkillIds: ['pandas', 'scikit-learn', 'pytorch']
   },
@@ -90,65 +126,38 @@ export const SKILLS: SkillNode[] = [
     name: 'Pandas',
     category: 'AI AND MACHINE LEARNING',
     level: 'Hands-on Experience',
-    description: 'Tabular data wrangling, data hygiene, exploratory data analysis, time-series transformations, and statistical summaries.',
-    projectsUsed: ['Smart Crop Recommendation System', 'Benchmark Dataset Preparation'],
+    description: 'Data wrangling, exploratory data analysis, time-series transformations, and statistical summaries for tabular datasets.',
+    projectsUsed: ['Smart Crop Recommendation System', 'Diabetes Clinical Benchmark Data'],
     relatedSkillIds: ['numpy', 'scikit-learn']
-  },
-  {
-    id: 'deep-learning',
-    name: 'Deep Learning',
-    category: 'AI AND MACHINE LEARNING',
-    level: 'Hands-on Experience',
-    description: 'Theory and practice of backpropagation, optimization dynamics (Adam, SGD, Cosine Annealing), regularization, attention mechanisms, and deep representation learning.',
-    projectsUsed: ['Cross-View Campus Locator', 'AI vs Human Classifier', 'Chest X-Ray Analysis'],
-    relatedSkillIds: ['pytorch', 'cnn', 'swin-transformer', 'transfer-learning']
-  },
-  {
-    id: 'transfer-learning',
-    name: 'Transfer Learning',
-    category: 'AI AND MACHINE LEARNING',
-    level: 'Hands-on Experience',
-    description: 'Leveraging large-scale pre-trained weights (ImageNet) to accelerate convergence and maximize generalization on specialized domain-specific tasks.',
-    projectsUsed: ['Cross-View Campus Locator', 'AI vs Human Image Classifier'],
-    relatedSkillIds: ['pytorch', 'swin-transformer', 'efficientnet']
-  },
-  {
-    id: 'machine-learning',
-    name: 'Machine Learning',
-    category: 'AI AND MACHINE LEARNING',
-    level: 'Hands-on Experience',
-    description: 'Core concepts including bias-variance tradeoff, regularization, hyperparameter optimization, and ensemble decision methods.',
-    projectsUsed: ['Smart Crop Recommendation System', 'Algorithmic Classifiers'],
-    relatedSkillIds: ['scikit-learn', 'deep-learning']
   },
 
   // --- COMPUTER VISION ---
+  {
+    id: 'computer-vision',
+    name: 'Computer Vision',
+    category: 'COMPUTER VISION',
+    level: 'Hands-on Experience',
+    description: 'Spatial feature extraction, image retrieval, cross-view geo-localization, and real-time infrared-to-color video translation.',
+    projectsUsed: ['Cross-View Campus Locator (24KIDS422)', 'CCTV Night Vision Colorizer', 'Automated Parking System', 'Leaf Vein Classification'],
+    relatedSkillIds: ['opencv', 'swin-transformer', 'faiss', 'pytorch']
+  },
   {
     id: 'opencv',
     name: 'OpenCV',
     category: 'COMPUTER VISION',
     level: 'Hands-on Experience',
-    description: 'Image processing, spatial filtering, edge detection, color space conversions, geometric transformations, and video stream manipulation.',
+    description: 'Real-time video frame processing, spatial filtering, color space conversions (CIE Lab), morphological operations, and ROI mapping.',
     projectsUsed: ['Real-time CCTV Night Vision Colorizer', 'Automated Parking Management System', 'Leaf Vein Classification', 'Campus Locator Preprocessing'],
-    relatedSkillIds: ['mediapipe', 'feature-extraction', 'pytorch']
+    relatedSkillIds: ['computer-vision', 'pytorch', 'feature-extraction']
   },
   {
-    id: 'mediapipe',
-    name: 'MediaPipe',
+    id: 'swin-transformer',
+    name: 'Swin Transformer',
     category: 'COMPUTER VISION',
     level: 'Hands-on Experience',
-    description: 'High-speed in-browser and cross-platform hand, pose, and face landmark tracking with real-time 3D coordinate estimation.',
-    projectsUsed: ['Computer Vision Pose & Feature Experiments'],
-    relatedSkillIds: ['opencv', 'javascript']
-  },
-  {
-    id: 'cnn',
-    name: 'CNNs',
-    category: 'COMPUTER VISION',
-    level: 'Hands-on Experience',
-    description: 'Convolutional feature hierarchies, spatial pooling, receptive field modeling, and convolutional neural backbones.',
-    projectsUsed: ['AI vs Human Classifier', 'Bird Species Classification', 'Pneumonia Detection'],
-    relatedSkillIds: ['efficientnet', 'pytorch', 'deep-learning']
+    description: 'Hierarchical Vision Transformer with Shifted Windows, delivering multi-scale attention modeling with linear computational complexity.',
+    projectsUsed: ['Cross-View University Campus Locator (24KIDS422)'],
+    relatedSkillIds: ['pytorch', 'deep-learning', 'faiss', 'feature-extraction']
   },
   {
     id: 'efficientnet',
@@ -157,25 +166,16 @@ export const SKILLS: SkillNode[] = [
     level: 'Hands-on Experience',
     description: 'Compound scaling architectures utilizing inverted residual blocks and squeeze-and-excitation optimization for efficient vision models.',
     projectsUsed: ['AI vs Human Image Classifier'],
-    relatedSkillIds: ['cnn', 'pytorch', 'transfer-learning']
+    relatedSkillIds: ['pytorch', 'transfer-learning']
   },
   {
-    id: 'swin-transformer',
-    name: 'Swin Transformer',
+    id: 'faiss',
+    name: 'FAISS',
     category: 'COMPUTER VISION',
     level: 'Hands-on Experience',
-    description: 'Hierarchical Vision Transformer with Shifted Windows, delivering multi-scale attention modeling with linear computational complexity.',
+    description: 'Facebook AI Similarity Search library for high-speed indexing, clustering, and sub-millisecond retrieval of dense 256-D vector embeddings.',
     projectsUsed: ['Cross-View University Campus Locator'],
-    relatedSkillIds: ['pytorch', 'deep-learning', 'feature-extraction', 'faiss']
-  },
-  {
-    id: 'image-retrieval',
-    name: 'Image Retrieval',
-    category: 'COMPUTER VISION',
-    level: 'Hands-on Experience',
-    description: 'Content-based image retrieval (CBIR), deep metric embeddings, cosine similarity scoring, and nearest-neighbor candidate ranking.',
-    projectsUsed: ['Cross-View University Campus Locator'],
-    relatedSkillIds: ['faiss', 'feature-extraction', 'swin-transformer']
+    relatedSkillIds: ['swin-transformer', 'python']
   },
   {
     id: 'feature-extraction',
@@ -183,64 +183,73 @@ export const SKILLS: SkillNode[] = [
     category: 'COMPUTER VISION',
     level: 'Hands-on Experience',
     description: 'Dense vector representations, projection heads, L2 normalization, and spatial pooling for high-dimensional semantic embeddings.',
-    projectsUsed: ['Cross-View University Campus Locator', 'AI vs Human Classifier'],
-    relatedSkillIds: ['swin-transformer', 'image-retrieval', 'pytorch']
-  },
-  {
-    id: 'faiss',
-    name: 'FAISS',
-    category: 'COMPUTER VISION',
-    level: 'Hands-on Experience',
-    description: 'Facebook AI Similarity Search library for high-speed indexing, clustering, and sub-millisecond retrieval of dense vector embeddings.',
-    projectsUsed: ['Cross-View University Campus Locator'],
-    relatedSkillIds: ['image-retrieval', 'swin-transformer', 'python']
+    projectsUsed: ['Cross-View University Campus Locator', 'Leaf Vein Classification'],
+    relatedSkillIds: ['swin-transformer', 'opencv', 'pytorch']
   },
 
   // --- WEB DEVELOPMENT ---
   {
-    id: 'html',
-    name: 'HTML',
+    id: 'fastapi',
+    name: 'FastAPI',
     category: 'WEB DEVELOPMENT',
     level: 'Hands-on Experience',
-    description: 'Semantic markup, accessibility landmarks, modern HTML5 media APIs, canvas element management, and SEO metadata.',
-    projectsUsed: ['The Web of Ideas Portfolio', 'OTP Verification System'],
-    relatedSkillIds: ['css', 'javascript', 'react']
+    description: 'Modern, high-performance asynchronous Python web framework for building resilient REST APIs, webhook handlers, and microservices.',
+    projectsUsed: ['Recovery Orchestrator (175 Tests)', 'OpsGuardian Diagnostic Sandbox'],
+    relatedSkillIds: ['python', 'rest-apis', 'sqlalchemy', 'webhooks']
   },
   {
-    id: 'css',
-    name: 'CSS',
+    id: 'node-js',
+    name: 'Node.js',
     category: 'WEB DEVELOPMENT',
     level: 'Hands-on Experience',
-    description: 'Responsive layouts, Flexbox, Grid, CSS animations, custom properties, and dark cinematic UI design systems.',
-    projectsUsed: ['The Web of Ideas Portfolio', 'Responsive Web Interfaces'],
-    relatedSkillIds: ['html', 'react', 'javascript']
+    description: 'Server-side JavaScript runtime, npm ecosystem orchestration, asynchronous I/O, and backend API engineering.',
+    projectsUsed: ['KarunyaHacks Web Applications', 'Build Toolchains'],
+    relatedSkillIds: ['javascript', 'express-js', 'rest-apis']
+  },
+  {
+    id: 'express-js',
+    name: 'Express.js',
+    category: 'WEB DEVELOPMENT',
+    level: 'Hands-on Experience',
+    description: 'Minimalist web framework for Node.js powering RESTful routing, middleware pipelines, and API integrations.',
+    projectsUsed: ['KarunyaHacks Web Application Features'],
+    relatedSkillIds: ['node-js', 'javascript', 'rest-apis']
   },
   {
     id: 'react',
     name: 'React',
     category: 'WEB DEVELOPMENT',
     level: 'Hands-on Experience',
-    description: 'Modern component-driven frontend architecture, hooks, state management, interactive 3D canvas integration, and high-performance rendering.',
-    projectsUsed: ['GiftGenie', 'OTP Verification System', 'The Web of Ideas Portfolio'],
-    relatedSkillIds: ['javascript', 'html', 'css', 'node-js']
+    description: 'Component-driven frontend architecture, hooks, state management, interactive 3D canvas integration, and high-performance UI rendering.',
+    projectsUsed: ['The Web of Ideas Portfolio', 'Interactive Web Interfaces'],
+    relatedSkillIds: ['javascript', 'node-js', 'html', 'css']
   },
   {
-    id: 'node-js',
-    name: 'Node.js',
-    category: 'WEB DEVELOPMENT',
-    level: 'Used in Projects',
-    description: 'Server-side JavaScript runtime, npm ecosystem orchestration, package automation, and backend API integration.',
-    projectsUsed: ['Build Toolchains', 'Web Applications'],
-    relatedSkillIds: ['javascript', 'react', 'rest-apis']
-  },
-  {
-    id: 'flask',
-    name: 'Flask',
+    id: 'rest-apis',
+    name: 'REST APIs',
     category: 'WEB DEVELOPMENT',
     level: 'Hands-on Experience',
-    description: 'Lightweight Python WSGI micro-framework for serving machine learning models, REST endpoints, and authentication workflows.',
-    projectsUsed: ['OTP Verification System', 'Model Inference Microservices'],
-    relatedSkillIds: ['python', 'rest-apis']
+    description: 'Designing, documenting, and consuming stateless HTTP RESTful API endpoints with structured JSON schemas and status codes.',
+    projectsUsed: ['KarunyaHacks Trainee Work', 'Recovery Orchestrator', 'OTP Verification System'],
+    relatedSkillIds: ['fastapi', 'node-js', 'express-js']
+  },
+  {
+    id: 'sqlalchemy',
+    name: 'SQLAlchemy',
+    category: 'WEB DEVELOPMENT',
+    level: 'Hands-on Experience',
+    description: 'Python SQL toolkit and Object Relational Mapper (ORM) providing full power and flexibility of SQL with ACID transaction safety.',
+    projectsUsed: ['Recovery Orchestrator (Decision Workflow)'],
+    relatedSkillIds: ['fastapi', 'postgresql', 'sql', 'python']
+  },
+  {
+    id: 'webhooks',
+    name: 'Webhooks',
+    category: 'WEB DEVELOPMENT',
+    level: 'Hands-on Experience',
+    description: 'Event-driven architectures, idempotent webhook processing, signature verification, and persistent event deduplication.',
+    projectsUsed: ['Recovery Orchestrator (Payment Recovery)'],
+    relatedSkillIds: ['fastapi', 'rest-apis', 'sqlalchemy']
   },
   {
     id: 'streamlit',
@@ -252,22 +261,76 @@ export const SKILLS: SkillNode[] = [
     relatedSkillIds: ['python', 'scikit-learn', 'pandas']
   },
   {
-    id: 'rest-apis',
-    name: 'REST APIs',
+    id: 'html',
+    name: 'HTML',
     category: 'WEB DEVELOPMENT',
     level: 'Hands-on Experience',
-    description: 'Designing, documenting, and consuming stateless HTTP RESTful API endpoints with structured JSON schemas and status codes.',
-    projectsUsed: ['OTP Verification System', 'Flask Backends', 'Portfolio Integrations'],
-    relatedSkillIds: ['flask', 'node-js', 'python']
+    description: 'Semantic markup, accessibility landmarks, modern HTML5 media APIs, canvas element management, and SEO metadata.',
+    projectsUsed: ['The Web of Ideas Portfolio', 'OTP Verification System', 'GiftGenie'],
+    relatedSkillIds: ['css', 'javascript', 'react']
+  },
+  {
+    id: 'css',
+    name: 'CSS',
+    category: 'WEB DEVELOPMENT',
+    level: 'Hands-on Experience',
+    description: 'Responsive layouts, Flexbox, Grid, CSS animations, custom properties, and dark cinematic UI design systems.',
+    projectsUsed: ['The Web of Ideas Portfolio', 'Responsive Web Interfaces', 'GiftGenie'],
+    relatedSkillIds: ['html', 'react', 'javascript']
   },
 
   // --- TOOLS AND PLATFORMS ---
+  {
+    id: 'docker',
+    name: 'Docker & Docker Compose',
+    category: 'TOOLS AND PLATFORMS',
+    level: 'Hands-on Experience',
+    description: 'Containerization, Dockerfile optimization, multi-container Docker Compose orchestration, and reproducible failure-testing sandboxes.',
+    projectsUsed: ['OpsGuardian Root-Cause Sandbox', 'Microservice Containerization'],
+    relatedSkillIds: ['prometheus-grafana', 'git', 'bash-shell']
+  },
+  {
+    id: 'prometheus-grafana',
+    name: 'Prometheus & Grafana',
+    category: 'TOOLS AND PLATFORMS',
+    level: 'Hands-on Experience',
+    description: 'Time-series telemetry scraping, service health dashboards, alerting rules, and visual root-cause diagnostics.',
+    projectsUsed: ['OpsGuardian Root-Cause Diagnostic System'],
+    relatedSkillIds: ['docker', 'fastapi', 'python']
+  },
+  {
+    id: 'postgresql',
+    name: 'PostgreSQL',
+    category: 'TOOLS AND PLATFORMS',
+    level: 'Hands-on Experience',
+    description: 'Enterprise relational database management, transaction isolation, indexes, and persistent recovery logging.',
+    projectsUsed: ['Recovery Orchestrator', 'OpsGuardian Database'],
+    relatedSkillIds: ['sql', 'sqlalchemy', 'fastapi']
+  },
+  {
+    id: 'mongodb',
+    name: 'MongoDB',
+    category: 'TOOLS AND PLATFORMS',
+    level: 'Used in Projects',
+    description: 'NoSQL document database, BSON schemas, flexible collection structures, and aggregation pipelines.',
+    projectsUsed: ['Document Storage & Web Backends'],
+    relatedSkillIds: ['node-js', 'javascript']
+  },
+  {
+    id: 'firebase-firestore',
+    name: 'Firebase & Firestore',
+    category: 'TOOLS AND PLATFORMS',
+    level: 'Hands-on Experience',
+    description: 'Real-time cloud database, document collections, user session state, and serverless persistence for multi-agent workflows.',
+    projectsUsed: ['GiftGenie Multi-Agent Platform'],
+    relatedSkillIds: ['javascript', 'langgraph']
+  },
   {
     id: 'git',
     name: 'Git',
     category: 'TOOLS AND PLATFORMS',
     level: 'Hands-on Experience',
-    description: 'Distributed version control, atomic commits, branching workflows, merge conflict resolution, and collaborative code hygiene.',
+    description: 'Distributed version control, atomic commits, branching workflows, code reviews, and collaborative hygiene.',
     projectsUsed: ['All projects and repositories'],
     relatedSkillIds: ['github']
   },
@@ -281,15 +344,6 @@ export const SKILLS: SkillNode[] = [
     relatedSkillIds: ['git']
   },
   {
-    id: 'docker',
-    name: 'Docker',
-    category: 'TOOLS AND PLATFORMS',
-    level: 'Used in Projects',
-    description: 'Containerization fundamentals, Dockerfiles, multi-stage builds, images, and isolated reproducibility for ML environments.',
-    projectsUsed: ['ML Environment Containerization', 'Coursework Projects'],
-    relatedSkillIds: ['git', 'google-cloud']
-  },
-  {
     id: 'vs-code',
     name: 'VS Code',
     category: 'TOOLS AND PLATFORMS',
@@ -299,21 +353,12 @@ export const SKILLS: SkillNode[] = [
     relatedSkillIds: ['git', 'python']
   },
   {
-    id: 'google-cloud',
-    name: 'Google Cloud',
-    category: 'TOOLS AND PLATFORMS',
-    level: 'Familiar',
-    description: 'Cloud computing fundamentals, Compute Engine, cloud storage, and AI ecosystem exploration.',
-    projectsUsed: ['Cloud Training & Deployment Labs'],
-    relatedSkillIds: ['docker', 'azure-ai']
-  },
-  {
     id: 'azure-ai',
-    name: 'Microsoft Azure AI',
+    name: 'Microsoft Azure AI (AI-900)',
     category: 'TOOLS AND PLATFORMS',
-    level: 'Familiar',
-    description: 'Cloud cognitive services, Azure AI Studio, and machine learning workspace environments.',
-    projectsUsed: ['Cloud AI Explorations & Services'],
-    relatedSkillIds: ['google-cloud', 'machine-learning']
+    level: 'Hands-on Experience',
+    description: 'Certified Azure AI Fundamentals (AI-900), covering cognitive services, computer vision APIs, NLP, and responsible AI principles.',
+    projectsUsed: ['Certified Azure AI Fundamentals (AI-900)'],
+    relatedSkillIds: ['python', 'deep-learning']
   }
 ];

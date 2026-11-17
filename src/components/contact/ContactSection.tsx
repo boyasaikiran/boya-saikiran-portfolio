@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { 
   Send, 
   Mail, 
+  Phone,
   FileText, 
   Copy, 
   Check, 
@@ -10,11 +11,12 @@ import {
   ExternalLink
 } from 'lucide-react';
 import { GithubIcon, LinkedinIcon } from '../ui/Icons';
-import { OWNER_EMAIL, GITHUB_PROFILE_URL, LINKEDIN_PROFILE_URL } from '../../data/developerActivity';
+import { OWNER_EMAIL, OWNER_PHONE, OWNER_PHONE_RAW, GITHUB_PROFILE_URL, LINKEDIN_PROFILE_URL } from '../../data/developerActivity';
 import { soundManager } from '../../audio/soundEffects';
 
 export const ContactSection: React.FC = () => {
   const [copiedEmail, setCopiedEmail] = useState(false);
+  const [copiedPhone, setCopiedPhone] = useState(false);
   const [formState, setFormState] = useState({
     name: '',
     email: '',
@@ -34,6 +36,13 @@ export const ContactSection: React.FC = () => {
     navigator.clipboard.writeText(OWNER_EMAIL);
     setCopiedEmail(true);
     setTimeout(() => setCopiedEmail(false), 2500);
+  };
+
+  const handleCopyPhone = () => {
+    soundManager.playClick();
+    navigator.clipboard.writeText(OWNER_PHONE);
+    setCopiedPhone(true);
+    setTimeout(() => setCopiedPhone(false), 2500);
   };
 
   const validateForm = () => {
@@ -145,7 +154,7 @@ export const ContactSection: React.FC = () => {
                   className="flex items-center gap-1.5 px-4 py-2 rounded-lg bg-[#07080C] border border-[#272D3A] hover:border-[#FF3548] text-xs font-mono text-[#F5F6F8] transition-colors"
                 >
                   {copiedEmail ? <Check size={14} className="text-[#75E5ED]" /> : <Copy size={14} />}
-                  <span>{copiedEmail ? 'Copied to Clipboard' : 'Copy Address'}</span>
+                  <span>{copiedEmail ? 'Copied' : 'Copy Address'}</span>
                 </button>
 
                 <a
@@ -155,6 +164,37 @@ export const ContactSection: React.FC = () => {
                 >
                   <Send size={13} />
                   <span>Launch Mail</span>
+                </a>
+              </div>
+            </div>
+
+            {/* Direct Phone / Cellular Channel */}
+            <div className="bg-[#121621] border border-[#272D3A] rounded-2xl p-6 relative">
+              <div className="text-xs font-mono text-[#8D94A3] uppercase tracking-wider mb-2 flex items-center gap-2">
+                <Phone size={14} className="text-[#75E5ED]" />
+                <span>Direct Voice / Cellular</span>
+              </div>
+
+              <div className="text-sm sm:text-base font-bold text-white font-mono break-all mb-4">
+                {OWNER_PHONE}
+              </div>
+
+              <div className="flex items-center gap-3">
+                <button
+                  onClick={handleCopyPhone}
+                  className="flex items-center gap-1.5 px-4 py-2 rounded-lg bg-[#07080C] border border-[#272D3A] hover:border-[#75E5ED] text-xs font-mono text-[#F5F6F8] transition-colors"
+                >
+                  {copiedPhone ? <Check size={14} className="text-[#75E5ED]" /> : <Copy size={14} />}
+                  <span>{copiedPhone ? 'Copied' : 'Copy Number'}</span>
+                </button>
+
+                <a
+                  href={`tel:${OWNER_PHONE_RAW}`}
+                  onClick={() => soundManager.playClick()}
+                  className="flex items-center gap-1.5 px-4 py-2 rounded-lg bg-[#75E5ED]/10 border border-[#75E5ED]/30 hover:bg-[#75E5ED]/20 text-xs font-mono text-[#75E5ED] hover:text-white transition-colors"
+                >
+                  <Phone size={13} />
+                  <span>Call Direct</span>
                 </a>
               </div>
             </div>
