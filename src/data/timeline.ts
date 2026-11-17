@@ -86,21 +86,6 @@ export const TIMELINE: TimelineItem[] = [
     verified: true
   },
   {
-    id: 'thiranex-selection',
-    period: 'Internship Selection',
-    category: 'WEB DEVELOPMENT',
-    title: 'Web Development Internship Selection',
-    organization: 'Thiranex',
-    role: 'Selected Candidate',
-    location: 'Remote / Hybrid',
-    description: 'Successfully selected for the web development internship program following technical evaluation of web programming capabilities.',
-    highlights: [
-      'Recognized for technical aptitude in modern web development standards and frontend foundations.'
-    ],
-    statusTag: 'Selected',
-    verified: true
-  },
-  {
     id: 'mckinsey-forward',
     period: 'Accepted Cohort',
     category: 'RECOGNITION',
