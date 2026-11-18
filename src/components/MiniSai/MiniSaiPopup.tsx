@@ -1,11 +1,11 @@
 import React, { useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Compass, User, Mail, Sparkles, Terminal } from 'lucide-react';
+import { X, Compass, User, Mail, Sparkles, Terminal, MessageSquare, RotateCcw } from 'lucide-react';
 import { useMiniSai } from '../../context/MiniSaiContext';
 import { soundManager } from '../../audio/soundEffects';
 
 export const MiniSaiPopup: React.FC = () => {
-  const { isPopupOpen, closePopup, shootWebTo } = useMiniSai();
+  const { isPopupOpen, closePopup, shootWebTo, openAssistant, startTour, triggerReplayIntro } = useMiniSai();
   const popupRef = useRef<HTMLDivElement>(null);
   const firstButtonRef = useRef<HTMLButtonElement>(null);
 
@@ -172,8 +172,41 @@ export const MiniSaiPopup: React.FC = () => {
               </button>
             </div>
 
+            {/* Autonomous Capabilities Bar */}
+            <div className="mt-4 pt-3 border-t border-[#272D3A] grid grid-cols-2 gap-2">
+              <button
+                onClick={() => openAssistant()}
+                className="flex items-center justify-center gap-1.5 p-2 rounded-lg bg-[#E32636]/10 border border-[#E32636]/30 hover:bg-[#E32636] text-[11px] font-mono text-[#FF3548] hover:text-white transition-colors"
+              >
+                <MessageSquare size={13} />
+                <span>AI Chat Assistant</span>
+              </button>
+
+              <button
+                onClick={() => startTour('overview')}
+                className="flex items-center justify-center gap-1.5 p-2 rounded-lg bg-[#121621] border border-[#272D3A] hover:border-[#75E5ED] text-[11px] font-mono text-[#C6CBD5] hover:text-[#75E5ED] transition-colors"
+              >
+                <Compass size={13} />
+                <span>Guided Tour</span>
+              </button>
+            </div>
+
+            {/* Replay Cinematic Intro Option */}
+            <div className="mt-2 text-center">
+              <button
+                onClick={() => {
+                  closePopup();
+                  triggerReplayIntro();
+                }}
+                className="inline-flex items-center gap-1 text-[10px] font-mono text-[#8D94A3] hover:text-white transition-colors"
+              >
+                <RotateCcw size={10} />
+                <span>Replay Cinematic Intro</span>
+              </button>
+            </div>
+
             {/* Footer Telemetry note */}
-            <div className="mt-5 pt-3 border-t border-[#272D3A]/60 flex items-center justify-between text-[10px] font-mono text-[#8D94A3]">
+            <div className="mt-3 pt-2 border-t border-[#272D3A]/60 flex items-center justify-between text-[10px] font-mono text-[#8D94A3]">
               <span className="flex items-center gap-1.5">
                 <Sparkles size={11} className="text-[#FF3548]" />
                 <span>Tiny Developer Mascot</span>

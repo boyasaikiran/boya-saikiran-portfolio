@@ -1,7 +1,13 @@
 import { useState, useEffect } from 'react';
 import { AnimatePresence } from 'framer-motion';
 import { MiniSaiProvider } from './context/MiniSaiContext';
-import { WebShoot, MiniSaiPopup } from './components/MiniSai';
+import { 
+  WebShoot, 
+  MiniSaiPopup, 
+  MiniSaiAssistant, 
+  MiniSaiGuidedTour, 
+  MiniSaiLauncher 
+} from './components/MiniSai';
 import { CinematicIntro } from './components/hero/CinematicIntro';
 import { Navbar } from './components/layout/Navbar';
 import { ScrollProgress } from './components/layout/ScrollProgress';
@@ -33,7 +39,7 @@ export function App() {
   };
 
   return (
-    <MiniSaiProvider>
+    <MiniSaiProvider onReplayIntro={() => setIntroFinished(false)}>
       <div className="relative min-h-screen bg-[#07080C] text-[#F5F6F8] selection:bg-[#E32636]/30 selection:text-[#FF3548]">
         
         {/* Subtle Cinematic Film Grain Overlay */}
@@ -47,6 +53,15 @@ export function App() {
 
         {/* Mini Sai Interactive Message Popup */}
         <MiniSaiPopup />
+
+        {/* Mini Sai Autonomous Chat & Voice Assistant Drawer */}
+        <MiniSaiAssistant />
+
+        {/* Mini Sai Guided Tour Overlay Banner */}
+        <MiniSaiGuidedTour />
+
+        {/* Mini Sai Floating Action Launcher */}
+        <MiniSaiLauncher />
 
         {/* Full-Screen Cinematic Awakening Intro */}
         <AnimatePresence>

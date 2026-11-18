@@ -1,221 +1,353 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Volume2, VolumeX, ArrowRight, FastForward, Sparkles } from 'lucide-react';
+import { Volume2, VolumeX, ArrowRight, FastForward, Play, Pause, RotateCcw, Sparkles, Terminal } from 'lucide-react';
 import { soundManager } from '../../audio/soundEffects';
+import { speechService, type SpeechCaption } from '../../services/speechService';
 
 interface CinematicIntroProps {
   onComplete: () => void;
 }
 
+const INTRO_SCRIPT = [
+  "Hey! Wait a second!",
+  "Welcome to The Web of Ideas!",
+  "I'm Mini Sai, your little guide.",
+  "And this world belongs to one curious developer — Boya Saikiran.",
+  "He's an Artificial Intelligence and Machine Learning student who loves building intelligent systems, exploring computer vision, and turning crazy ideas into real projects.",
+  "From AI experiments to computer vision missions, there's a lot waiting for you here.",
+  "So, are you ready to explore his world?",
+  "Hold tight... let's get connected!"
+];
+
 export const CinematicIntro: React.FC<CinematicIntroProps> = ({ onComplete }) => {
-  const [stage, setStage] = useState<number>(0);
-  const [isAudioMuted, setIsAudioMuted] = useState<boolean>(true);
+  const [swungIn, setSwungIn] = useState(false);
+  const [hasLanded, setHasLanded] = useState(false);
+  const [isWaving, setIsWaving] = useState(false);
+  const [speechActive, setSpeechActive] = useState(false);
+  const [isPaused, setIsPaused] = useState(false);
+  const [isAudioMuted, setIsAudioMuted] = useState(false);
+  const [currentCaption, setCurrentCaption] = useState<SpeechCaption>({
+    text: "Welcome to The Web of Ideas...",
+    index: 0,
+    total: INTRO_SCRIPT.length,
+  });
+  const [readyToEnter, setReadyToEnter] = useState(false);
+  const [webShotToButton, setWebShotToButton] = useState(false);
+
+  const enterButtonRef = useRef<HTMLButtonElement>(null);
+  const miniSaiRef = useRef<HTMLDivElement>(null);
 
   // Check prefers-reduced-motion
   useEffect(() => {
     const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
     if (mediaQuery.matches) {
-      // Fast track for reduced motion preferences
-      setStage(4);
+      setSwungIn(true);
+      setHasLanded(true);
+      setReadyToEnter(true);
     }
   }, []);
 
-  // Stage progression timer sequence
+  // Scene 1: Arrival Web-Swing sequence
   useEffect(() => {
-    const timers = [
-      setTimeout(() => setStage(1), 600),   // Small red light emergence
-      setTimeout(() => setStage(2), 1600),  // Geometric web structure awakens
-      setTimeout(() => setStage(3), 2600),  // Atmospheric particles & title reveals
-      setTimeout(() => setStage(4), 3600),  // Subtitle, roles & Enter button ready
-    ];
+    const t1 = setTimeout(() => {
+      setSwungIn(true);
+      soundManager.playChime(440, 'triangle', 0.2);
+    }, 400);
 
-    return () => timers.forEach(t => clearTimeout(t));
+    const t2 = setTimeout(() => {
+      setHasLanded(true);
+      soundManager.playChime(220, 'sine', 0.3);
+      setIsWaving(true);
+    }, 1400);
+
+    const t3 = setTimeout(() => {
+      setIsWaving(false);
+      startSpeechSequence();
+    }, 2400);
+
+    return () => {
+      clearTimeout(t1);
+      clearTimeout(t2);
+      clearTimeout(t3);
+      speechService.stop();
+    };
   }, []);
 
-  const handleToggleAudio = () => {
-    const newMuted = soundManager.toggleMute();
-    setIsAudioMuted(newMuted);
+  const startSpeechSequence = (unmuteFirst = false) => {
+    if (unmuteFirst) {
+      setIsAudioMuted(false);
+      speechService.setMuted(false);
+    }
+    setSpeechActive(true);
+    setIsPaused(false);
+
+    speechService.speakScript(
+      INTRO_SCRIPT,
+      (caption) => {
+        setCurrentCaption(caption);
+        // Play subtle futuristic syllable hum
+        soundManager.playChime(320 + caption.index * 25, 'sine', 0.05);
+      },
+      () => {
+        // Speech concluded: Mini Sai prepares web shoot to Enter button
+        setReadyToEnter(true);
+        triggerWebShotToButton();
+      }
+    );
+  };
+
+  const triggerWebShotToButton = () => {
+    setTimeout(() => {
+      setWebShotToButton(true);
+      soundManager.playClick();
+      soundManager.playChime(880, 'sine', 0.4);
+    }, 300);
+  };
+
+  const handleToggleSound = () => {
+    const nextMuted = !isAudioMuted;
+    setIsAudioMuted(nextMuted);
+    speechService.setMuted(nextMuted);
+  };
+
+  const handleTogglePause = () => {
+    if (isPaused) {
+      speechService.resume();
+      setIsPaused(false);
+    } else {
+      speechService.pause();
+      setIsPaused(true);
+    }
+  };
+
+  const handleReplaySpeech = () => {
+    soundManager.playClick();
+    speechService.stop();
+    setReadyToEnter(false);
+    setWebShotToButton(false);
+    startSpeechSequence();
   };
 
   const handleEnterWorld = () => {
+    speechService.stop();
     soundManager.playClick();
     soundManager.playChime(660, 'sine', 0.4);
     onComplete();
   };
 
   const handleSkip = () => {
+    speechService.stop();
     soundManager.playClick();
     onComplete();
   };
 
   return (
     <motion.div
-      className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-[#07080C] overflow-hidden select-none"
+      className="fixed inset-0 z-50 flex flex-col items-center justify-between bg-[#07080C] px-4 py-6 sm:py-10 overflow-hidden select-none"
       initial={{ opacity: 1 }}
       exit={{ 
         opacity: 0, 
-        scale: 1.08,
+        scale: 1.05,
         filter: 'blur(10px)',
-        transition: { duration: 0.9, ease: [0.16, 1, 0.3, 1] } 
+        transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } 
       }}
     >
-      {/* Top Floating Controls Bar */}
-      <div className="absolute top-6 left-6 right-6 flex items-center justify-between z-20">
-        <button
-          onClick={handleToggleAudio}
-          className="flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-mono uppercase tracking-wider text-[#C6CBD5] bg-[#121621]/80 border border-[#272D3A] hover:border-[#E32636] transition-all"
-          aria-label={isAudioMuted ? "Enable ambient audio" : "Mute audio"}
-        >
-          {isAudioMuted ? <VolumeX size={14} className="text-[#8D94A3]" /> : <Volume2 size={14} className="text-[#FF3548] animate-pulse" />}
-          <span>{isAudioMuted ? "Sound: Off" : "Ambient: Live"}</span>
-        </button>
+      {/* Background Web Geometry & Atmospheric Glow */}
+      <div className="absolute inset-0 pointer-events-none flex items-center justify-center">
+        <div className="w-[800px] h-[800px] rounded-full bg-[#E32636]/10 blur-[180px]" />
+        
+        {/* Subtle SVG Spider-Web Overlay */}
+        <svg className="w-full h-full opacity-20" viewBox="0 0 1000 1000">
+          <circle cx="500" cy="500" r="150" fill="none" stroke="#FF3548" strokeWidth="1" strokeDasharray="4 6" />
+          <circle cx="500" cy="500" r="280" fill="none" stroke="#FF3548" strokeWidth="1" strokeDasharray="6 8" />
+          <circle cx="500" cy="500" r="420" fill="none" stroke="#FF3548" strokeWidth="1" strokeDasharray="8 12" />
+          {[0, 30, 60, 90, 120, 150, 180, 210, 240, 270, 300, 330].map(deg => (
+            <line
+              key={deg}
+              x1="500"
+              y1="500"
+              x2={500 + 480 * Math.cos((deg * Math.PI) / 180)}
+              y2={500 + 480 * Math.sin((deg * Math.PI) / 180)}
+              stroke="#272D3A"
+              strokeWidth="1"
+            />
+          ))}
+        </svg>
+      </div>
 
+      {/* Top Floating Controls Bar */}
+      <div className="relative z-30 w-full max-w-5xl mx-auto flex items-center justify-between">
+        <div className="flex items-center gap-2">
+          {/* Audio Mute/Unmute */}
+          <button
+            onClick={handleToggleSound}
+            className="flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-mono uppercase tracking-wider text-[#C6CBD5] bg-[#121621] border border-[#272D3A] hover:border-[#FF3548] transition-all"
+            aria-label={isAudioMuted ? "Enable Voice Audio" : "Mute Voice Audio"}
+          >
+            {isAudioMuted ? <VolumeX size={14} className="text-[#8D94A3]" /> : <Volume2 size={14} className="text-[#FF3548] animate-pulse" />}
+            <span>{isAudioMuted ? "Sound: Off" : "Voice: Live"}</span>
+          </button>
+
+          {/* Pause / Resume Speech */}
+          {speechActive && (
+            <button
+              onClick={handleTogglePause}
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-mono text-[#C6CBD5] bg-[#121621] border border-[#272D3A] hover:border-[#75E5ED] transition-all"
+            >
+              {isPaused ? <Play size={12} className="text-[#75E5ED]" /> : <Pause size={12} />}
+              <span>{isPaused ? "Resume" : "Pause"}</span>
+            </button>
+          )}
+
+          {/* Replay Speech */}
+          <button
+            onClick={handleReplaySpeech}
+            className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-mono text-[#8D94A3] hover:text-white bg-[#121621] border border-[#272D3A] hover:border-[#8D94A3] transition-all"
+          >
+            <RotateCcw size={12} />
+            <span>Replay</span>
+          </button>
+        </div>
+
+        {/* Skip Intro */}
         <button
           onClick={handleSkip}
-          className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-mono text-[#8D94A3] hover:text-[#F5F6F8] bg-[#121621]/40 border border-[#272D3A]/60 hover:border-[#8D94A3] transition-all"
+          className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-mono text-[#8D94A3] hover:text-[#F5F6F8] bg-[#121621] border border-[#272D3A] hover:border-[#FF3548] transition-all"
         >
           <span>Skip Intro</span>
           <FastForward size={13} />
         </button>
       </div>
 
-      {/* Stage 1: The Emergent Red Spark Core */}
-      <AnimatePresence>
-        {stage >= 1 && (
+      {/* Main Center Stage: Mini Sai Arrival & Web Swing */}
+      <div className="relative z-20 flex-1 flex flex-col items-center justify-center max-w-4xl w-full my-auto">
+        
+        {/* Animated Red Web Filament From Top (Scene 1) */}
+        {!hasLanded && (
           <motion.div
-            className="absolute pointer-events-none"
-            initial={{ scale: 0, opacity: 0 }}
-            animate={{ scale: [0, 1.4, 1], opacity: 1 }}
-            transition={{ duration: 1.2, ease: "easeOut" }}
-          >
-            <div className="w-4 h-4 rounded-full bg-[#FF3548] shadow-[0_0_60px_20px_#E32636]" />
-          </motion.div>
+            className="absolute top-0 w-[2px] bg-gradient-to-b from-[#FF3548] to-[#FFFFFF] shadow-[0_0_12px_#FF3548]"
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: '45vh', opacity: 0.9 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+          />
         )}
-      </AnimatePresence>
 
-      {/* Stage 2: Geometric Web Structure SVG Canvas */}
-      {stage >= 2 && (
+        {/* Mini Sai Hero Character with Web Swing Transition */}
         <motion.div
-          className="absolute inset-0 flex items-center justify-center pointer-events-none"
-          initial={{ opacity: 0, scale: 0.85 }}
-          animate={{ opacity: 0.65, scale: 1 }}
-          transition={{ duration: 1.6, ease: [0.16, 1, 0.3, 1] }}
+          ref={miniSaiRef}
+          className="relative flex flex-col items-center select-none"
+          initial={{ y: -400, rotate: -25, scale: 0.7, opacity: 0 }}
+          animate={
+            swungIn
+              ? hasLanded
+                ? { y: 0, rotate: 0, scale: 1, opacity: 1 }
+                : { y: 80, rotate: 10, scale: 0.92, opacity: 1 }
+              : { y: -400, rotate: -25, scale: 0.7, opacity: 0 }
+          }
+          transition={{
+            type: "spring",
+            damping: 14,
+            stiffness: 90,
+            mass: 1.1,
+          }}
         >
-          <svg className="w-[850px] h-[850px] max-w-[90vw] max-h-[90vh]" viewBox="0 0 400 400" fill="none">
-            {/* Concentric Polygonal Web Rings */}
-            {[40, 75, 115, 155, 190].map((r, i) => (
-              <polygon
-                key={i}
-                points={`
-                  ${200 + r * Math.cos(0)},${200 + r * Math.sin(0)}
-                  ${200 + r * Math.cos(Math.PI/4)},${200 + r * Math.sin(Math.PI/4)}
-                  ${200 + r * Math.cos(Math.PI/2)},${200 + r * Math.sin(Math.PI/2)}
-                  ${200 + r * Math.cos(3*Math.PI/4)},${200 + r * Math.sin(3*Math.PI/4)}
-                  ${200 + r * Math.cos(Math.PI)},${200 + r * Math.sin(Math.PI)}
-                  ${200 + r * Math.cos(5*Math.PI/4)},${200 + r * Math.sin(5*Math.PI/4)}
-                  ${200 + r * Math.cos(3*Math.PI/2)},${200 + r * Math.sin(3*Math.PI/2)}
-                  ${200 + r * Math.cos(7*Math.PI/4)},${200 + r * Math.sin(7*Math.PI/4)}
-                `}
-                stroke={i % 2 === 0 ? "#E32636" : "#272D3A"}
-                strokeWidth={i === 0 ? "1.5" : "1"}
-                strokeOpacity={i % 2 === 0 ? 0.45 : 0.3}
-                strokeDasharray={i % 2 === 1 ? "4 4" : "none"}
-              />
-            ))}
-            {/* Radial Web Rays */}
-            {[0, 1, 2, 3, 4, 5, 6, 7].map((idx) => {
-              const angle = (idx * Math.PI) / 4;
-              return (
-                <line
-                  key={idx}
-                  x1="200"
-                  y1="200"
-                  x2={200 + 195 * Math.cos(angle)}
-                  y2={200 + 195 * Math.sin(angle)}
-                  stroke="#FF3548"
-                  strokeWidth="1.2"
-                  strokeOpacity="0.4"
-                />
-              );
-            })}
-          </svg>
+          {/* Landing Impact Ring */}
+          {hasLanded && (
+            <motion.div
+              initial={{ scale: 0, opacity: 1 }}
+              animate={{ scale: 2.2, opacity: 0 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              className="absolute -bottom-4 w-36 h-8 rounded-full border border-[#FF3548] pointer-events-none"
+            />
+          )}
+
+          {/* Mini Sai Character Asset */}
+          <div className="relative w-44 sm:w-56 h-auto">
+            <img
+              src="/mini-sai.png"
+              alt="Mini Sai - 3D Cartoon Interactive Developer Mascot"
+              className={`w-full h-auto object-contain filter drop-shadow-[0_10px_35px_rgba(255,53,72,0.35)] transition-transform duration-300 ${
+                isWaving ? 'animate-bounce' : 'hover:scale-105'
+              }`}
+              draggable={false}
+            />
+
+            {/* Glowing Hand Energy Flare when Shooting Web */}
+            {webShotToButton && (
+              <div className="absolute top-[48%] right-[22%] w-5 h-5 rounded-full bg-[#FFFFFF] shadow-[0_0_20px_6px_#FF3548] animate-ping" />
+            )}
+          </div>
+
+          {/* Futuristic Cyber-Pedestal Ledge */}
+          <div className="relative -mt-2 w-48 sm:w-60 h-3 rounded-full bg-[#121621] border border-[#272D3A] shadow-lg flex items-center justify-center">
+            <span className="w-28 h-[2px] bg-[#FF3548] shadow-[0_0_8px_#FF3548]" />
+          </div>
         </motion.div>
-      )}
 
-      {/* Stage 3 & 4: Typography and Call to Action */}
-      <div className="relative z-10 flex flex-col items-center text-center px-6 max-w-3xl">
-        {stage >= 2 && (
-          <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="flex items-center gap-2 mb-4 px-3 py-1 rounded-full bg-[#E32636]/10 border border-[#E32636]/30 text-[#FF3548] text-xs font-mono tracking-widest uppercase"
-          >
-            <Sparkles size={12} />
-            <span>Interactive Space Initialized</span>
-          </motion.div>
-        )}
-
-        {stage >= 3 && (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-          >
-            <h2 className="text-xs md:text-sm font-mono tracking-[0.35em] text-[#8D94A3] uppercase mb-2">
-              System Online
-            </h2>
-            <h1 className="text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight text-white mb-3">
-              THE WEB OF <span className="text-[#FF3548]">IDEAS</span>
-            </h1>
-            <div className="w-16 h-0.5 bg-gradient-to-r from-transparent via-[#FF3548] to-transparent mx-auto mb-4" />
-            <h3 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-wider text-[#C6CBD5] mb-6">
-              BOYA SAIKIRAN
-            </h3>
-          </motion.div>
-        )}
-
-        {stage >= 4 && (
-          <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.1 }}
-            className="flex flex-col items-center"
-          >
-            <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-4 text-xs sm:text-sm font-mono tracking-wider text-[#8D94A3] mb-8">
-              <span className="text-[#C6CBD5]">AI / ML ENGINEER IN PROGRESS</span>
-              <span className="text-[#E32636]">•</span>
-              <span className="text-[#C6CBD5]">COMPUTER VISION ENTHUSIAST</span>
-              <span className="text-[#E32636]">•</span>
-              <span className="text-[#C6CBD5]">SOFTWARE DEVELOPER</span>
-            </div>
-
-            <p className="text-sm italic text-[#8D94A3] max-w-md mb-8">
-              &ldquo;Every idea connects. Every connection builds something extraordinary.&rdquo;
-            </p>
-
-            <motion.button
-              onClick={handleEnterWorld}
-              whileHover={{ scale: 1.04 }}
-              whileTap={{ scale: 0.96 }}
-              className="group relative flex items-center gap-3 px-8 py-3.5 rounded-full bg-[#E32636] hover:bg-[#FF3548] text-white font-medium text-sm tracking-wider uppercase transition-all shadow-[0_0_30px_-5px_#E32636]"
-              aria-label="Enter Boya Saikiran's World"
+        {/* Live Synchronized Speech Captions Card (Scene 3 & 4) */}
+        <AnimatePresence mode="wait">
+          {hasLanded && (
+            <motion.div
+              key={currentCaption.index}
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.25 }}
+              className="mt-6 max-w-xl mx-auto px-6 py-4 rounded-2xl bg-[#121621]/90 border border-[#272D3A] backdrop-blur-md shadow-[0_10px_30px_rgba(0,0,0,0.6)] text-center relative"
             >
-              <span>ENTER MY WORLD</span>
-              <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
-              
-              {/* Outer pulsing ring */}
-              <span className="absolute -inset-1 rounded-full border border-[#FF3548] opacity-40 animate-ping pointer-events-none" />
-            </motion.button>
-          </motion.div>
-        )}
+              {/* Speaker Indicator Badge */}
+              <div className="inline-flex items-center gap-2 px-2.5 py-0.5 rounded-full bg-[#07080C] border border-[#272D3A] text-[10px] font-mono text-[#FF3548] uppercase tracking-wider mb-2">
+                <Terminal size={10} />
+                <span>MINI SAI // GUIDE [{currentCaption.index + 1} / {currentCaption.total}]</span>
+              </div>
+
+              {/* Caption Text */}
+              <p className="text-sm sm:text-base font-medium text-[#F5F6F8] leading-relaxed">
+                &ldquo;{currentCaption.text}&rdquo;
+              </p>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
 
-      {/* Bottom Coordinates & System Metadata */}
-      <div className="absolute bottom-6 left-6 right-6 flex items-center justify-between text-[11px] font-mono text-[#8D94A3]/60 z-20">
-        <div>SYS: KITS // 2023-2027</div>
-        <div className="hidden sm:block">STATUS: READY FOR CONNECTIONS</div>
-        <div>LAT: 10.9352° N // 76.7441° E</div>
+      {/* Bottom Controls & Enter My World Call to Action (Scene 5) */}
+      <div className="relative z-30 w-full max-w-md mx-auto flex flex-col items-center gap-3">
+        {/* SVG Web Strand from Mini Sai to Enter Button */}
+        {webShotToButton && (
+          <svg className="absolute -top-16 inset-x-0 w-full h-20 pointer-events-none z-10" overflow="visible">
+            <path
+              d="M 220 0 Q 230 40 220 70"
+              fill="none"
+              stroke="#FF3548"
+              strokeWidth="2.5"
+              className="animate-pulse"
+              filter="drop-shadow(0 0 6px #FF3548)"
+            />
+          </svg>
+        )}
+
+        <button
+          ref={enterButtonRef}
+          onClick={handleEnterWorld}
+          className={`group relative flex items-center justify-center gap-3 w-full py-3.5 px-8 rounded-full font-mono text-xs sm:text-sm tracking-widest uppercase transition-all duration-300 shadow-[0_0_30px_rgba(227,38,54,0.4)] ${
+            readyToEnter
+              ? 'bg-[#E32636] hover:bg-[#FF3548] text-white ring-2 ring-[#FF3548] ring-offset-2 ring-offset-[#07080C] scale-105'
+              : 'bg-[#121621] hover:bg-[#E32636] text-[#C6CBD5] hover:text-white border border-[#272D3A] hover:border-[#FF3548]'
+          }`}
+        >
+          <Sparkles size={16} className="text-[#75E5ED] group-hover:rotate-45 transition-transform" />
+          <span className="font-bold">ENTER MY WORLD</span>
+          <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+        </button>
+
+        {isAudioMuted && (
+          <button
+            onClick={() => startSpeechSequence(true)}
+            className="text-[11px] font-mono text-[#75E5ED] hover:underline"
+          >
+            🔊 Click to enable sound and hear Mini Sai speak
+          </button>
+        )}
       </div>
     </motion.div>
   );
