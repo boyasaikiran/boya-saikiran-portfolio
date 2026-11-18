@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import { AnimatePresence } from 'framer-motion';
+import { MiniSaiProvider } from './context/MiniSaiContext';
+import { WebShoot, MiniSaiPopup } from './components/MiniSai';
 import { CinematicIntro } from './components/hero/CinematicIntro';
 import { Navbar } from './components/layout/Navbar';
 import { ScrollProgress } from './components/layout/ScrollProgress';
@@ -31,57 +33,65 @@ export function App() {
   };
 
   return (
-    <div className="relative min-h-screen bg-[#07080C] text-[#F5F6F8] selection:bg-[#E32636]/30 selection:text-[#FF3548]">
-      
-      {/* Subtle Cinematic Film Grain Overlay */}
-      <div className="film-grain pointer-events-none" />
+    <MiniSaiProvider>
+      <div className="relative min-h-screen bg-[#07080C] text-[#F5F6F8] selection:bg-[#E32636]/30 selection:text-[#FF3548]">
+        
+        {/* Subtle Cinematic Film Grain Overlay */}
+        <div className="film-grain pointer-events-none" />
 
-      {/* Custom Precision Spider-Reticle Cursor for Desktop */}
-      <CustomCursor />
+        {/* Custom Precision Spider-Reticle Cursor for Desktop */}
+        <CustomCursor />
 
-      {/* Full-Screen Cinematic Awakening Intro */}
-      <AnimatePresence>
-        {!introFinished && (
-          <CinematicIntro onComplete={handleCompleteIntro} />
-        )}
-      </AnimatePresence>
+        {/* Mini Sai Fullscreen Web-Shoot Laser & Arc System */}
+        <WebShoot />
 
-      {/* Top Scroll Progress Indicator */}
-      <ScrollProgress />
+        {/* Mini Sai Interactive Message Popup */}
+        <MiniSaiPopup />
 
-      {/* Floating Main Navigation Bar */}
-      <Navbar />
+        {/* Full-Screen Cinematic Awakening Intro */}
+        <AnimatePresence>
+          {!introFinished && (
+            <CinematicIntro onComplete={handleCompleteIntro} />
+          )}
+        </AnimatePresence>
 
-      {/* Main Experience Flow */}
-      <main id="main-content" className="relative z-10 flex flex-col">
-        {/* Sector 01: Hero & 3D Interactive Web Scene */}
-        <HeroSection />
+        {/* Top Scroll Progress Indicator */}
+        <ScrollProgress />
 
-        {/* Sector 02: Origin Story & Trajectory */}
-        <OriginSection />
+        {/* Floating Main Navigation Bar */}
+        <Navbar />
 
-        {/* Sector 03: The Arsenal Knowledge Constellation */}
-        <ArsenalSection />
+        {/* Main Experience Flow */}
+        <main id="main-content" className="relative z-10 flex flex-col">
+          {/* Sector 01: Hero & 3D Interactive Web Scene */}
+          <HeroSection />
 
-        {/* Sector 04: Project Missions & Interactive Simulators */}
-        <MissionsSection />
+          {/* Sector 02: Origin Story & Trajectory */}
+          <OriginSection />
 
-        {/* Sector 05: Journey Timeline */}
-        <JourneySection />
+          {/* Sector 03: The Arsenal Knowledge Constellation */}
+          <ArsenalSection />
 
-        {/* Sector 06: Verified Credentials & Certifications */}
-        <AchievementsSection />
+          {/* Sector 04: Project Missions & Interactive Simulators */}
+          <MissionsSection />
 
-        {/* Sector 07: Developer Activity & Repositories */}
-        <DeveloperActivitySection />
+          {/* Sector 05: Journey Timeline */}
+          <JourneySection />
 
-        {/* Sector 08: Contact & Next Chapter */}
-        <ContactSection />
-      </main>
+          {/* Sector 06: Verified Credentials & Certifications */}
+          <AchievementsSection />
 
-      {/* Universe Baseline Footer */}
-      <Footer />
-    </div>
+          {/* Sector 07: Developer Activity & Repositories */}
+          <DeveloperActivitySection />
+
+          {/* Sector 08: Contact & Next Chapter */}
+          <ContactSection />
+        </main>
+
+        {/* Universe Baseline Footer */}
+        <Footer />
+      </div>
+    </MiniSaiProvider>
   );
 }
 
