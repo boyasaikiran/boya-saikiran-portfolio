@@ -4,10 +4,11 @@ import * as THREE from 'three';
 
 interface WebMeshProps {
   mousePos: { x: number; y: number };
+  offset?: [number, number, number];
 }
 
 // Custom 3D Geometric Web Structure
-function SpiderWebLattice({ mousePos }: WebMeshProps) {
+function SpiderWebLattice({ mousePos, offset = [-0.8, 0, 0] }: WebMeshProps) {
   const groupRef = useRef<THREE.Group>(null);
   const ringCount = 7;
   const spokesCount = 14;
@@ -88,7 +89,7 @@ function SpiderWebLattice({ mousePos }: WebMeshProps) {
   });
 
   return (
-    <group ref={groupRef} position={[0, 0, 0]}>
+    <group ref={groupRef} position={offset}>
       {/* Spider-Web Radial & Polygonal Strands */}
       <lineSegments geometry={linesGeometry}>
         <lineBasicMaterial
@@ -176,11 +177,13 @@ function DustParticles() {
 interface ThreeWebSceneProps {
   className?: string;
   mousePos?: { x: number; y: number };
+  offset?: [number, number, number];
 }
 
 export const ThreeWebScene: React.FC<ThreeWebSceneProps> = ({ 
   className = '', 
-  mousePos = { x: 0, y: 0 } 
+  mousePos = { x: 0, y: 0 },
+  offset = [-0.8, 0, 0]
 }) => {
   return (
     <div className={`relative w-full h-full pointer-events-none select-none ${className}`}>
@@ -193,7 +196,7 @@ export const ThreeWebScene: React.FC<ThreeWebSceneProps> = ({
         <pointLight position={[0, 0, 4]} intensity={2.5} color="#FF3548" distance={10} />
         <pointLight position={[-4, 3, 2]} intensity={1.5} color="#75E5ED" distance={10} />
         
-        <SpiderWebLattice mousePos={mousePos} />
+        <SpiderWebLattice mousePos={mousePos} offset={offset} />
         <DustParticles />
       </Canvas>
     </div>

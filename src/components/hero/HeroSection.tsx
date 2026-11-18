@@ -33,33 +33,44 @@ export const HeroSection: React.FC = () => {
   return (
     <section id="hero" className="relative min-h-screen flex flex-col justify-between pt-28 pb-12 overflow-hidden bg-[#07080C] bg-web-lattice">
       
-      {/* 3D Interactive Web Canvas Background (Code-split with Suspense fallback) */}
-      <div className="absolute inset-0 z-0">
+      {/* 1. Deep 3D Interactive Web Canvas Background (Placed behind portrait so zero lines cross face!) */}
+      <div className="absolute inset-0 z-0 pointer-events-none opacity-40 lg:opacity-50">
         <Suspense fallback={
           <div className="w-full h-full flex items-center justify-center opacity-30">
             <div className="w-96 h-96 rounded-full border border-[#FF3548]/30 animate-pulse" />
           </div>
         }>
-          <ThreeWebScene mousePos={mousePos} />
+          <ThreeWebScene mousePos={mousePos} offset={[-0.9, 0, 0]} />
         </Suspense>
       </div>
 
-      {/* Layered Lighting Effects */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#E32636]/10 rounded-full blur-[140px] pointer-events-none" />
-      <div className="absolute bottom-10 right-10 w-[400px] h-[400px] bg-[#75E5ED]/5 rounded-full blur-[120px] pointer-events-none" />
+      {/* 2. Cyber Ambient Lighting Effects */}
+      <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-[#E32636]/10 rounded-full blur-[140px] pointer-events-none z-[1]" />
+      <div className="absolute bottom-10 right-10 w-[450px] h-[450px] bg-[#FF3548]/12 rounded-full blur-[130px] pointer-events-none z-[1]" />
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#E32636]/[0.015] to-transparent pointer-events-none animate-scanline z-[1]" />
 
-      {/* Subtle Scanline Effect */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#E32636]/[0.015] to-transparent pointer-events-none animate-scanline" />
+      {/* 3. Real Developer Portrait: Boya Saikiran (In FRONT of 3D Web Canvas - crystal-clear face & suit!) */}
+      <div className="absolute right-0 bottom-0 top-16 md:top-20 w-full sm:w-[520px] md:w-[640px] lg:w-[740px] xl:w-[860px] h-[calc(100%-4rem)] pointer-events-none z-[2] flex items-end justify-end overflow-hidden">
+        <div className="relative w-full h-full flex items-end justify-end">
+          <img
+            src="/hero-portrait-clean.png"
+            alt="Boya Saikiran - Cyber Developer Portrait"
+            className="w-full h-full object-cover sm:object-contain object-bottom-right lg:scale-105 xl:scale-110 origin-bottom-right filter contrast-[1.05] brightness-[1.02] drop-shadow-[0_10px_40px_rgba(255,53,72,0.2)] transition-transform duration-700"
+          />
+          {/* Subtle cyber red energetic aura around styled hair and shoulders */}
+          <div className="absolute top-1/4 right-1/4 w-72 h-72 bg-[#FF3548]/20 rounded-full blur-[90px] pointer-events-none mix-blend-screen" />
+        </div>
+      </div>
 
       {/* Main Content Area */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex-1 flex flex-col justify-center items-center text-center my-auto">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex-1 flex flex-col justify-center items-center text-center lg:items-start lg:text-left my-auto w-full">
         
         {/* Status Pill */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#121621]/90 border border-[#272D3A] text-xs font-mono text-[#C6CBD5] mb-6 shadow-[0_0_20px_rgba(0,0,0,0.4)]"
+          className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#121621]/90 border border-[#272D3A] text-xs font-mono text-[#C6CBD5] mb-6 shadow-[0_0_20px_rgba(0,0,0,0.4)] backdrop-blur-sm"
         >
           <span className="w-2 h-2 rounded-full bg-[#FF3548] animate-pulse" />
           <span className="text-[#8D94A3]">KARUNYA CSE (AI &amp; ML)</span>
@@ -72,15 +83,15 @@ export const HeroSection: React.FC = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.1 }}
-          className="max-w-4xl"
+          className="max-w-2xl lg:max-w-3xl"
         >
-          <div className="text-xs sm:text-sm font-mono tracking-[0.4em] text-[#8D94A3] uppercase mb-3 flex items-center justify-center gap-3">
+          <div className="text-xs sm:text-sm font-mono tracking-[0.4em] text-[#8D94A3] uppercase mb-3 flex items-center justify-center lg:justify-start gap-3">
             <span className="w-8 h-[1px] bg-[#272D3A]" />
             <span>Interactive Developer Portfolio</span>
-            <span className="w-8 h-[1px] bg-[#272D3A]" />
+            <span className="w-8 h-[1px] bg-[#272D3A] lg:hidden" />
           </div>
 
-          <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight text-white mb-4">
+          <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-7xl xl:text-8xl font-bold tracking-tight text-white mb-4">
             THE WEB OF <span className="text-[#FF3548] inline-block hover:scale-105 transition-transform duration-300">IDEAS</span>
           </h1>
 
@@ -88,7 +99,7 @@ export const HeroSection: React.FC = () => {
             BOYA SAIKIRAN
           </div>
 
-          <p className="text-base sm:text-lg md:text-xl text-[#8D94A3] max-w-2xl mx-auto mb-8 font-light leading-relaxed">
+          <p className="text-base sm:text-lg md:text-xl text-[#8D94A3] max-w-2xl mx-auto lg:mx-0 mb-8 font-light leading-relaxed">
             &ldquo;Every idea connects. Every connection builds something extraordinary.&rdquo;
           </p>
         </motion.div>
@@ -98,19 +109,19 @@ export const HeroSection: React.FC = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.25 }}
-          className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-10 text-xs font-mono"
+          className="flex flex-wrap items-center justify-center lg:justify-start gap-2 sm:gap-3 mb-10 text-xs font-mono"
         >
-          <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-[#121621] border border-[#272D3A] text-[#F5F6F8]">
+          <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-[#121621]/90 border border-[#272D3A] text-[#F5F6F8] backdrop-blur-sm">
             <Cpu size={14} className="text-[#FF3548]" />
             <span>AI / ML Engineer in Progress</span>
           </div>
 
-          <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-[#121621] border border-[#272D3A] text-[#F5F6F8]">
+          <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-[#121621]/90 border border-[#272D3A] text-[#F5F6F8] backdrop-blur-sm">
             <Layers size={14} className="text-[#75E5ED]" />
             <span>Computer Vision Enthusiast</span>
           </div>
 
-          <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-[#121621] border border-[#272D3A] text-[#F5F6F8]">
+          <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-[#121621]/90 border border-[#272D3A] text-[#F5F6F8] backdrop-blur-sm">
             <Terminal size={14} className="text-[#C6CBD5]" />
             <span>Software Developer</span>
           </div>
@@ -121,7 +132,7 @@ export const HeroSection: React.FC = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.35 }}
-          className="flex flex-wrap items-center justify-center gap-4"
+          className="flex flex-wrap items-center justify-center lg:justify-start gap-4"
         >
           <button
             onClick={() => scrollToSection('missions')}
@@ -133,7 +144,7 @@ export const HeroSection: React.FC = () => {
 
           <button
             onClick={() => scrollToSection('arsenal')}
-            className="flex items-center gap-2 px-6 py-3 rounded-full bg-[#121621] hover:bg-[#1A2030] text-[#C6CBD5] hover:text-white border border-[#272D3A] hover:border-[#8D94A3] text-xs sm:text-sm font-mono tracking-wider uppercase transition-all duration-300"
+            className="flex items-center gap-2 px-6 py-3 rounded-full bg-[#121621]/90 hover:bg-[#1A2030] text-[#C6CBD5] hover:text-white border border-[#272D3A] hover:border-[#8D94A3] text-xs sm:text-sm font-mono tracking-wider uppercase transition-all duration-300 backdrop-blur-sm"
           >
             <Sparkles size={15} className="text-[#75E5ED]" />
             <span>SKILL ARSENAL</span>
