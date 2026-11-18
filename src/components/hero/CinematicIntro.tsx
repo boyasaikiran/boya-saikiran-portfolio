@@ -251,22 +251,28 @@ export const CinematicIntro: React.FC<CinematicIntroProps> = ({ onComplete }) =>
             mass: 1.1,
           }}
         >
-          {/* Landing Impact Ring */}
-          {hasLanded && (
-            <motion.div
-              initial={{ scale: 0, opacity: 1 }}
-              animate={{ scale: 2.2, opacity: 0 }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
-              className="absolute -bottom-4 w-36 h-8 rounded-full border border-[#FF3548] pointer-events-none"
-            />
-          )}
+          {/* Mini Sai Character Asset Container */}
+          <div className="relative w-48 sm:w-56 h-auto">
+            {/* Cyber Ledge Perch: positioned exactly where his hips sit (~59% from top) */}
+            <div className="absolute top-[59%] left-1/2 -translate-x-1/2 w-56 sm:w-64 h-3.5 rounded-full bg-[#121621] border border-[#272D3A] shadow-[0_10px_25px_rgba(0,0,0,0.8)] flex items-center justify-center z-0">
+              <span className="w-40 sm:w-48 h-[2px] bg-gradient-to-r from-transparent via-[#FF3548] to-transparent shadow-[0_0_10px_#FF3548]" />
+            </div>
 
-          {/* Mini Sai Character Asset */}
-          <div className="relative w-44 sm:w-56 h-auto">
+            {/* Landing Impact Ring at seating level */}
+            {hasLanded && (
+              <motion.div
+                initial={{ scale: 0, opacity: 1 }}
+                animate={{ scale: 2.2, opacity: 0 }}
+                transition={{ duration: 0.8, ease: "easeOut" }}
+                className="absolute top-[56%] left-1/2 -translate-x-1/2 w-48 h-8 rounded-full border border-[#FF3548] pointer-events-none z-0"
+              />
+            )}
+
+            {/* Mini Sai Character Image (z-10 so his legs dangle naturally IN FRONT of the ledge) */}
             <img
               src="/mini-sai.png"
               alt="Mini Sai - 3D Cartoon Interactive Developer Mascot"
-              className={`w-full h-auto object-contain filter drop-shadow-[0_10px_35px_rgba(255,53,72,0.35)] transition-transform duration-300 ${
+              className={`relative z-10 w-full h-auto object-contain filter drop-shadow-[0_10px_35px_rgba(255,53,72,0.35)] transition-transform duration-300 ${
                 isWaving ? 'animate-bounce' : 'hover:scale-105'
               }`}
               draggable={false}
@@ -274,13 +280,8 @@ export const CinematicIntro: React.FC<CinematicIntroProps> = ({ onComplete }) =>
 
             {/* Glowing Hand Energy Flare when Shooting Web */}
             {webShotToButton && (
-              <div className="absolute top-[48%] right-[22%] w-5 h-5 rounded-full bg-[#FFFFFF] shadow-[0_0_20px_6px_#FF3548] animate-ping" />
+              <div className="absolute top-[48%] right-[22%] w-5 h-5 rounded-full bg-[#FFFFFF] shadow-[0_0_20px_6px_#FF3548] animate-ping z-20" />
             )}
-          </div>
-
-          {/* Futuristic Cyber-Pedestal Ledge */}
-          <div className="relative -mt-2 w-48 sm:w-60 h-3 rounded-full bg-[#121621] border border-[#272D3A] shadow-lg flex items-center justify-center">
-            <span className="w-28 h-[2px] bg-[#FF3548] shadow-[0_0_8px_#FF3548]" />
           </div>
         </motion.div>
 

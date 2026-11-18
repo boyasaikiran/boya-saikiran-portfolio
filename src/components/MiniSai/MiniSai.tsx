@@ -50,9 +50,9 @@ export const MiniSai: React.FC<MiniSaiProps> = ({ className = '' }) => {
         <span>Click Me!</span>
       </div>
 
-      {/* Cyber Ledge Perch Accent */}
-      <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-14 h-1.5 rounded-full bg-[#121621] border border-[#272D3A] shadow-md pointer-events-none">
-        <span className="absolute top-0 left-2 right-2 h-[1px] bg-[#FF3548]/70" />
+      {/* Cyber Ledge Perch Accent behind dangling legs */}
+      <div className="absolute top-[58%] left-1/2 -translate-x-1/2 w-14 h-1 rounded-full bg-[#121621] border border-[#272D3A] shadow-md pointer-events-none z-0">
+        <span className="absolute top-0 left-1 right-1 h-[1px] bg-[#FF3548]/70" />
       </div>
 
       {/* Character Graphic */}
