@@ -71,7 +71,7 @@ export const CinematicIntro: React.FC<CinematicIntroProps> = ({ onComplete }) =>
       }}
     >
       {/* Top Floating Controls Bar */}
-      <div className="absolute top-5 sm:top-6 left-5 sm:left-6 right-5 sm:right-6 flex items-center justify-between z-30">
+      <div className="absolute top-4 sm:top-6 left-4 sm:left-6 right-4 sm:right-6 flex items-center justify-between z-30">
         <button
           onClick={handleToggleAudio}
           className="flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-mono uppercase tracking-wider text-[#C6CBD5] bg-[#121621]/80 border border-[#272D3A] hover:border-[#FF3047] transition-all shadow-[0_0_15px_rgba(0,0,0,0.5)] backdrop-blur-sm"
@@ -104,7 +104,7 @@ export const CinematicIntro: React.FC<CinematicIntroProps> = ({ onComplete }) =>
         )}
       </AnimatePresence>
 
-      {/* Stage 2: Interactive Spider-Web Network with Parallax & Flowing Particles */}
+      {/* Stage 2: Scaled Geometric Spider-Web Network with Flowing Energy Particles */}
       {stage >= 2 && (
         <motion.div
           className="absolute inset-0 flex items-center justify-center pointer-events-none z-0"
@@ -116,9 +116,9 @@ export const CinematicIntro: React.FC<CinematicIntroProps> = ({ onComplete }) =>
             transition: 'transform 0.15s ease-out',
           }}
         >
-          <svg className="w-[900px] h-[900px] max-w-[95vw] max-h-[95vh]" viewBox="0 0 400 400" fill="none">
-            {/* Concentric Polygonal Web Rings */}
-            {[40, 75, 115, 155, 195].map((r, i) => (
+          <svg className="w-[950px] h-[950px] max-w-[98vw] max-h-[98vh]" viewBox="0 0 400 400" fill="none">
+            {/* Concentric Polygonal Web Rings - Scaled outward (radii 75 to 220) so the central network surrounds the enlarged portrait without intersecting face */}
+            {[75, 110, 145, 180, 215].map((r, i) => (
               <polygon
                 key={i}
                 points={`
@@ -152,7 +152,7 @@ export const CinematicIntro: React.FC<CinematicIntroProps> = ({ onComplete }) =>
                     y2={y2}
                     stroke="#FF3047"
                     strokeWidth="1.2"
-                    strokeOpacity="0.4"
+                    strokeOpacity="0.35"
                   />
                   {/* Invisible guide path for particle animation */}
                   <path
@@ -177,7 +177,7 @@ export const CinematicIntro: React.FC<CinematicIntroProps> = ({ onComplete }) =>
             {/* Animated Connection Nodes on Middle Polygon Ring */}
             {[0, 1, 2, 3, 4, 5, 6, 7].map((idx) => {
               const angle = (idx * Math.PI) / 4;
-              const r = 115;
+              const r = 145;
               const cx = 200 + r * Math.cos(angle);
               const cy = 200 + r * Math.sin(angle);
               return (
@@ -197,67 +197,67 @@ export const CinematicIntro: React.FC<CinematicIntroProps> = ({ onComplete }) =>
       {/* Reduced Background Opacity Layer Behind Important Content */}
       <div className="absolute inset-0 bg-radial-gradient from-[#07080C]/90 via-[#07080C]/65 to-transparent pointer-events-none z-10" />
 
-      {/* Main Content Area */}
-      <div className="relative z-20 flex flex-col items-center text-center px-4 sm:px-6 max-w-4xl my-auto">
+      {/* Main Content Area: Vertically Reorganized & Perfectly Balanced */}
+      <div className="relative z-20 flex flex-col items-center text-center px-4 sm:px-6 max-w-4xl my-auto w-full">
         
         {/* Stage 2+: System Initialization Pill */}
         {stage >= 2 && (
           <motion.div
-            initial={{ opacity: 0, y: -10 }}
+            initial={{ opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7 }}
-            className="flex items-center gap-2 mb-2 sm:mb-3 px-3.5 py-1 rounded-full bg-[#FF3047]/10 border border-[#FF3047]/30 text-[#FF3047] text-xs font-mono tracking-widest uppercase shadow-[0_0_15px_rgba(255,48,71,0.2)]"
+            transition={{ duration: 0.6 }}
+            className="flex items-center gap-2 mb-1.5 sm:mb-2 px-3 py-0.5 rounded-full bg-[#FF3047]/10 border border-[#FF3047]/30 text-[#FF3047] text-[11px] font-mono tracking-widest uppercase shadow-[0_0_15px_rgba(255,48,71,0.2)]"
           >
-            <Sparkles size={12} className="animate-spin-slow" />
+            <Sparkles size={11} className="animate-spin-slow" />
             <span>Interactive Space Initialized</span>
           </motion.div>
         )}
 
-        {/* Stage 3+: System Online & THE WEB OF IDEAS Headline */}
+        {/* Stage 3+: System Online & THE WEB OF IDEAS Headline (Kept cleanly above portrait) */}
         {stage >= 3 && (
           <motion.div
-            initial={{ opacity: 0, y: 18 }}
+            initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
             className="flex flex-col items-center"
           >
-            <h2 className="text-[11px] sm:text-xs font-mono tracking-[0.35em] text-[#8D94A3] uppercase mb-1">
+            <h2 className="text-[10px] sm:text-xs font-mono tracking-[0.35em] text-[#8D94A3] uppercase mb-0.5">
               System Online
             </h2>
-            <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-white mb-2 sm:mb-3 leading-tight">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white mb-2 leading-tight">
               THE WEB OF <span className="text-[#FF3047] inline-block hover:scale-105 transition-transform duration-300">IDEAS</span>
             </h1>
           </motion.div>
         )}
 
-        {/* Stage 4+: Prominent 20-25% Larger Hexagonal Profile Portrait & Identity Verified */}
+        {/* Stage 4+: Significantly Increased Hexagonal Profile Portrait (220-240px wide) & Identity Verified */}
         {stage >= 4 && (
           <motion.div
-            initial={{ opacity: 0, scale: 0.85 }}
+            initial={{ opacity: 0, scale: 0.88 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="my-2 sm:my-3.5"
+            className="my-1 sm:my-2"
           >
             <FuturisticHexProfile mousePos={mousePos} />
           </motion.div>
         )}
 
-        {/* Stage 5+: Name, Roles, Quote & Enter Button */}
+        {/* Stage 5+: Name, Roles, Quote & Enter Button (Positioned below Identity Verified) */}
         {stage >= 5 && (
           <motion.div
-            initial={{ opacity: 0, y: 15 }}
+            initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.05 }}
+            transition={{ duration: 0.7, delay: 0.05 }}
             className="flex flex-col items-center"
           >
-            <div className="w-20 h-0.5 bg-gradient-to-r from-transparent via-[#FF3047] to-transparent mx-auto mb-2.5" />
+            <div className="w-16 h-0.5 bg-gradient-to-r from-transparent via-[#FF3047] to-transparent mx-auto mb-2" />
             
-            <h3 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-wider text-[#C6CBD5] mb-2 sm:mb-3">
+            <h3 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-wider text-[#C6CBD5] mb-1.5 sm:mb-2">
               BOYA SAIKIRAN
             </h3>
 
             {/* Specialization Badges */}
-            <div className="flex flex-wrap items-center justify-center gap-1.5 sm:gap-3 text-[11px] sm:text-xs font-mono tracking-wider text-[#8D94A3] mb-4 sm:mb-6 max-w-xl">
+            <div className="flex flex-wrap items-center justify-center gap-1.5 sm:gap-2.5 text-[10px] sm:text-xs font-mono tracking-wider text-[#8D94A3] mb-3 sm:mb-4 max-w-xl">
               <span className="text-[#C6CBD5]">AI / ML ENGINEER IN PROGRESS</span>
               <span className="text-[#FF3047]">•</span>
               <span className="text-[#C6CBD5]">COMPUTER VISION ENTHUSIAST</span>
@@ -265,7 +265,7 @@ export const CinematicIntro: React.FC<CinematicIntroProps> = ({ onComplete }) =>
               <span className="text-[#C6CBD5]">SOFTWARE DEVELOPER</span>
             </div>
 
-            <p className="text-xs sm:text-sm italic text-[#8D94A3] max-w-md mb-6 leading-relaxed hidden xs:block">
+            <p className="text-xs sm:text-sm italic text-[#8D94A3] max-w-md mb-4 leading-relaxed hidden sm:block">
               &ldquo;Every idea connects. Every connection builds something extraordinary.&rdquo;
             </p>
 
@@ -274,11 +274,11 @@ export const CinematicIntro: React.FC<CinematicIntroProps> = ({ onComplete }) =>
               onClick={handleEnterWorld}
               whileHover={{ scale: 1.04, y: -2 }}
               whileTap={{ scale: 0.96 }}
-              className="group relative flex items-center gap-3 px-8 sm:px-9 py-3 sm:py-3.5 rounded-full bg-[#E32636] hover:bg-[#FF3047] text-white font-medium text-xs sm:text-sm font-mono tracking-wider uppercase transition-all shadow-[0_0_35px_-5px_#FF3047] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF3047]"
+              className="group relative flex items-center gap-2.5 px-8 sm:px-9 py-2.5 sm:py-3 rounded-full bg-[#E32636] hover:bg-[#FF3047] text-white font-medium text-xs sm:text-sm font-mono tracking-wider uppercase transition-all shadow-[0_0_35px_-5px_#FF3047] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF3047]"
               aria-label="Enter Boya Saikiran's World"
             >
               <span>ENTER MY WORLD</span>
-              <ArrowRight size={16} className="group-hover:translate-x-1.5 transition-transform duration-300" />
+              <ArrowRight size={15} className="group-hover:translate-x-1.5 transition-transform duration-300" />
               
               {/* Outer Pulsing Glow Beacon */}
               <span className="absolute -inset-1 rounded-full border border-[#FF3047] opacity-40 animate-ping pointer-events-none" />
@@ -288,7 +288,7 @@ export const CinematicIntro: React.FC<CinematicIntroProps> = ({ onComplete }) =>
       </div>
 
       {/* Bottom Coordinates & System Telemetry Metadata */}
-      <div className="absolute bottom-4 sm:bottom-6 left-5 sm:left-6 right-5 sm:right-6 flex items-center justify-between text-[10px] sm:text-[11px] font-mono text-[#8D94A3]/60 z-30">
+      <div className="absolute bottom-3 sm:bottom-5 left-4 sm:left-6 right-4 sm:right-6 flex items-center justify-between text-[10px] sm:text-[11px] font-mono text-[#8D94A3]/60 z-30">
         <div>SYS: KITS // 2023-2027</div>
         <div className="hidden sm:block">STATUS: READY FOR CONNECTIONS</div>
         <div>LAT: 10.9352° N // 76.7441° E</div>
