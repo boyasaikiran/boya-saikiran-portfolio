@@ -13,7 +13,7 @@ export const CinematicIntro: React.FC<CinematicIntroProps> = ({ onComplete }) =>
   const [isAudioMuted, setIsAudioMuted] = useState<boolean>(true);
   const [mousePos, setMousePos] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
 
-  // Handle subtle mouse parallax
+  // Handle subtle mouse parallax (gentle atmospheric shift)
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const { innerWidth, innerHeight } = window;
     const x = (e.clientX / innerWidth) * 2 - 1;
@@ -33,10 +33,10 @@ export const CinematicIntro: React.FC<CinematicIntroProps> = ({ onComplete }) =>
   useEffect(() => {
     const timers = [
       setTimeout(() => setStage(1), 500),   // Stage 1: Emergent Crimson Core
-      setTimeout(() => setStage(2), 1400),  // Stage 2: Geometric Web Network & Particles Awaken
-      setTimeout(() => setStage(3), 2400),  // Stage 3: System Online & THE WEB OF IDEAS Title
-      setTimeout(() => setStage(4), 3200),  // Stage 4: Prominent Hexagonal Portrait & Identity Verified
-      setTimeout(() => setStage(5), 4100),  // Stage 5: Boya Saikiran, Roles & Enter Button Ready
+      setTimeout(() => setStage(2), 1400),  // Stage 2: Symmetrical Web Network Awakens
+      setTimeout(() => setStage(3), 2300),  // Stage 3: System Online & THE WEB OF IDEAS Title
+      setTimeout(() => setStage(4), 3100),  // Stage 4: Hexagonal Portrait & Identity Verified
+      setTimeout(() => setStage(5), 4000),  // Stage 5: Boya Saikiran, Roles, Tagline & Enter Button
     ];
 
     return () => timers.forEach(t => clearTimeout(t));
@@ -61,7 +61,7 @@ export const CinematicIntro: React.FC<CinematicIntroProps> = ({ onComplete }) =>
   return (
     <motion.div
       onMouseMove={handleMouseMove}
-      className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-[#07080C] overflow-hidden select-none"
+      className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-[#08090D] overflow-hidden select-none"
       initial={{ opacity: 1 }}
       exit={{ 
         opacity: 0, 
@@ -70,6 +70,10 @@ export const CinematicIntro: React.FC<CinematicIntroProps> = ({ onComplete }) =>
         transition: { duration: 0.9, ease: [0.16, 1, 0.3, 1] } 
       }}
     >
+      {/* Subtle Atmospheric Ambient Lighting */}
+      <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-[#FF3047]/[0.05] rounded-full blur-[140px] pointer-events-none z-0" />
+      <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-[#FF3047]/[0.05] rounded-full blur-[140px] pointer-events-none z-0" />
+
       {/* Top Floating Controls Bar */}
       <div className="absolute top-4 sm:top-6 left-4 sm:left-6 right-4 sm:right-6 flex items-center justify-between z-30">
         <button
@@ -96,167 +100,163 @@ export const CinematicIntro: React.FC<CinematicIntroProps> = ({ onComplete }) =>
           <motion.div
             className="absolute pointer-events-none z-10"
             initial={{ scale: 0, opacity: 0 }}
-            animate={{ scale: [0, 1.5, 1], opacity: 1 }}
+            animate={{ scale: [0, 1.4, 1], opacity: 1 }}
             transition={{ duration: 1.1, ease: "easeOut" }}
           >
-            <div className="w-4 h-4 rounded-full bg-[#FF3047] shadow-[0_0_80px_25px_#FF3047]" />
+            <div className="w-3.5 h-3.5 rounded-full bg-[#FF3047] shadow-[0_0_60px_20px_#FF3047]" />
           </motion.div>
         )}
       </AnimatePresence>
 
-      {/* Stage 2: Scaled Geometric Spider-Web Network with Flowing Energy Particles */}
+      {/* Stage 2: Symmetrical, Atmospheric Geometric Spider-Web Network */}
       {stage >= 2 && (
         <motion.div
           className="absolute inset-0 flex items-center justify-center pointer-events-none z-0"
-          initial={{ opacity: 0, scale: 0.85 }}
-          animate={{ opacity: 0.7, scale: 1 }}
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 0.6, scale: 1 }}
           transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
           style={{
-            transform: `translate3d(${mousePos.x * 18}px, ${mousePos.y * 18}px, 0)`,
-            transition: 'transform 0.15s ease-out',
+            transform: `translate3d(${mousePos.x * 12}px, ${mousePos.y * 12}px, 0)`,
+            transition: 'transform 0.2s ease-out',
           }}
         >
-          <svg className="w-[950px] h-[950px] max-w-[98vw] max-h-[98vh]" viewBox="0 0 400 400" fill="none">
-            {/* Concentric Polygonal Web Rings - Scaled outward (radii 75 to 220) so the central network surrounds the enlarged portrait without intersecting face */}
-            {[75, 110, 145, 180, 215].map((r, i) => (
-              <polygon
-                key={i}
-                points={`
-                  ${200 + r * Math.cos(0)},${200 + r * Math.sin(0)}
-                  ${200 + r * Math.cos(Math.PI/4)},${200 + r * Math.sin(Math.PI/4)}
-                  ${200 + r * Math.cos(Math.PI/2)},${200 + r * Math.sin(Math.PI/2)}
-                  ${200 + r * Math.cos(3*Math.PI/4)},${200 + r * Math.sin(3*Math.PI/4)}
-                  ${200 + r * Math.cos(Math.PI)},${200 + r * Math.sin(Math.PI)}
-                  ${200 + r * Math.cos(5*Math.PI/4)},${200 + r * Math.sin(5*Math.PI/4)}
-                  ${200 + r * Math.cos(3*Math.PI/2)},${200 + r * Math.sin(3*Math.PI/2)}
-                  ${200 + r * Math.cos(7*Math.PI/4)},${200 + r * Math.sin(7*Math.PI/4)}
-                `}
-                stroke={i % 2 === 0 ? "#FF3047" : "#272D3A"}
-                strokeWidth={i === 0 ? "1.5" : "1"}
-                strokeOpacity={i % 2 === 0 ? 0.45 : 0.3}
-                strokeDasharray={i % 2 === 1 ? "4 4" : "none"}
-              />
-            ))}
+          <svg className="w-[850px] h-[850px] max-w-[92vw] max-h-[92vh]" viewBox="0 0 400 400" fill="none">
+            <defs>
+              {/* Radial gradient mask that fades out web lines behind the central content (radius 115px) */}
+              <mask id="web-center-mask">
+                <rect x="0" y="0" width="400" height="400" fill="white" />
+                <circle cx="200" cy="200" r="105" fill="black" />
+              </mask>
+            </defs>
 
-            {/* Radial Web Rays with Defined Path IDs for Particle Flow */}
-            {[0, 1, 2, 3, 4, 5, 6, 7].map((idx) => {
-              const angle = (idx * Math.PI) / 4;
-              const x2 = 200 + 195 * Math.cos(angle);
-              const y2 = 200 + 195 * Math.sin(angle);
-              return (
-                <g key={idx}>
+            {/* Symmetrical Geometric Web Network masked so zero lines cross central portrait or text */}
+            <g mask="url(#web-center-mask)">
+              {/* Concentric Polygonal Web Rings */}
+              {[45, 80, 115, 150, 185].map((r, i) => (
+                <polygon
+                  key={i}
+                  points={`
+                    ${200 + r * Math.cos(0)},${200 + r * Math.sin(0)}
+                    ${200 + r * Math.cos(Math.PI/4)},${200 + r * Math.sin(Math.PI/4)}
+                    ${200 + r * Math.cos(Math.PI/2)},${200 + r * Math.sin(Math.PI/2)}
+                    ${200 + r * Math.cos(3*Math.PI/4)},${200 + r * Math.sin(3*Math.PI/4)}
+                    ${200 + r * Math.cos(Math.PI)},${200 + r * Math.sin(Math.PI)}
+                    ${200 + r * Math.cos(5*Math.PI/4)},${200 + r * Math.sin(5*Math.PI/4)}
+                    ${200 + r * Math.cos(3*Math.PI/2)},${200 + r * Math.sin(3*Math.PI/2)}
+                    ${200 + r * Math.cos(7*Math.PI/4)},${200 + r * Math.sin(7*Math.PI/4)}
+                  `}
+                  stroke={i % 2 === 0 ? "#FF3047" : "#272D3A"}
+                  strokeWidth="1"
+                  strokeOpacity={i % 2 === 0 ? 0.35 : 0.2}
+                  strokeDasharray={i % 2 === 1 ? "4 4" : "none"}
+                />
+              ))}
+
+              {/* Radial Symmetrical Web Rays */}
+              {[0, 1, 2, 3, 4, 5, 6, 7].map((idx) => {
+                const angle = (idx * Math.PI) / 4;
+                const x2 = 200 + 190 * Math.cos(angle);
+                const y2 = 200 + 190 * Math.sin(angle);
+                return (
                   <line
+                    key={idx}
                     x1="200"
                     y1="200"
                     x2={x2}
                     y2={y2}
                     stroke="#FF3047"
-                    strokeWidth="1.2"
-                    strokeOpacity="0.35"
+                    strokeWidth="1"
+                    strokeOpacity="0.25"
                   />
-                  {/* Invisible guide path for particle animation */}
-                  <path
-                    id={`ray-${idx}`}
-                    d={`M 200 200 L ${x2} ${y2}`}
-                    fill="none"
-                  />
-                  {/* Small Glowing Energy Data Particles Travelling Outward */}
-                  <circle r="1.8" fill="#FF3047">
-                    <animateMotion
-                      dur={`${2.2 + (idx % 3) * 0.5}s`}
-                      repeatCount="indefinite"
-                      begin={`${idx * 0.3}s`}
-                    >
-                      <mpath href={`#ray-${idx}`} />
-                    </animateMotion>
-                  </circle>
-                </g>
-              );
-            })}
+                );
+              })}
 
-            {/* Animated Connection Nodes on Middle Polygon Ring */}
-            {[0, 1, 2, 3, 4, 5, 6, 7].map((idx) => {
-              const angle = (idx * Math.PI) / 4;
-              const r = 145;
-              const cx = 200 + r * Math.cos(angle);
-              const cy = 200 + r * Math.sin(angle);
-              return (
-                <g key={`node-${idx}`}>
-                  <circle cx={cx} cy={cy} r="2.5" fill="#FF3047" opacity="0.8">
-                    <animate attributeName="r" values="2;3.5;2" dur={`${2 + (idx % 2)}s`} repeatCount="indefinite" />
-                    <animate attributeName="opacity" values="0.4;1;0.4" dur={`${2 + (idx % 2)}s`} repeatCount="indefinite" />
-                  </circle>
-                  <circle cx={cx} cy={cy} r="1.2" fill="#FFFFFF" />
-                </g>
-              );
-            })}
+              {/* Subtle Atmospheric Connection Nodes on Outer Ring (r=150) */}
+              {[0, 1, 2, 3, 4, 5, 6, 7].map((idx) => {
+                const angle = (idx * Math.PI) / 4;
+                const r = 150;
+                const cx = 200 + r * Math.cos(angle);
+                const cy = 200 + r * Math.sin(angle);
+                return (
+                  <g key={`node-${idx}`}>
+                    <circle cx={cx} cy={cy} r="2" fill="#FF3047" opacity="0.6">
+                      <animate attributeName="opacity" values="0.3;0.7;0.3" dur={`${2.5 + (idx % 2)}s`} repeatCount="indefinite" />
+                    </circle>
+                  </g>
+                );
+              })}
+            </g>
           </svg>
         </motion.div>
       )}
 
-      {/* Reduced Background Opacity Layer Behind Important Content */}
-      <div className="absolute inset-0 bg-radial-gradient from-[#07080C]/90 via-[#07080C]/65 to-transparent pointer-events-none z-10" />
+      {/* Atmospheric Soft Gradient Backdrop */}
+      <div className="absolute inset-0 bg-radial-gradient from-[#08090D]/90 via-[#08090D]/70 to-transparent pointer-events-none z-10" />
 
-      {/* Main Content Area: Vertically Reorganized & Perfectly Balanced */}
-      <div className="relative z-20 flex flex-col items-center text-center px-4 sm:px-6 max-w-4xl my-auto w-full">
+      {/* Main Content Area: Exact Visual Hierarchy & Balanced Spacing */}
+      <div className="relative z-20 flex flex-col items-center text-center px-4 sm:px-6 max-w-3xl my-auto w-full">
         
-        {/* Stage 2+: System Initialization Pill */}
+        {/* 1. INTERACTIVE SPACE INITIALIZED */}
         {stage >= 2 && (
           <motion.div
-            initial={{ opacity: 0, y: -8 }}
+            initial={{ opacity: 0, y: -6 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="flex items-center gap-2 mb-1.5 sm:mb-2 px-3 py-0.5 rounded-full bg-[#FF3047]/10 border border-[#FF3047]/30 text-[#FF3047] text-[11px] font-mono tracking-widest uppercase shadow-[0_0_15px_rgba(255,48,71,0.2)]"
+            transition={{ duration: 0.5 }}
+            className="flex items-center gap-2 mb-2 sm:mb-2.5 px-3 py-1 rounded-full bg-[#FF3047]/10 border border-[#FF3047]/30 text-[#FF3047] text-[11px] font-mono tracking-widest uppercase shadow-[0_0_12px_rgba(255,48,71,0.2)]"
           >
-            <Sparkles size={11} className="animate-spin-slow" />
+            <Sparkles size={11} />
             <span>Interactive Space Initialized</span>
           </motion.div>
         )}
 
-        {/* Stage 3+: System Online & THE WEB OF IDEAS Headline (Kept cleanly above portrait) */}
+        {/* 2. SYSTEM ONLINE & 3. THE WEB OF IDEAS */}
         {stage >= 3 && (
           <motion.div
-            initial={{ opacity: 0, y: 15 }}
+            initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-            className="flex flex-col items-center"
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+            className="flex flex-col items-center mb-3 sm:mb-4"
           >
-            <h2 className="text-[10px] sm:text-xs font-mono tracking-[0.35em] text-[#8D94A3] uppercase mb-0.5">
+            {/* 2. SYSTEM ONLINE */}
+            <h2 className="text-[10px] sm:text-xs font-mono tracking-[0.35em] text-[#8D94A3] uppercase mb-1">
               System Online
             </h2>
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white mb-2 leading-tight">
+            {/* 3. THE WEB OF IDEAS */}
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-tight">
               THE WEB OF <span className="text-[#FF3047] inline-block hover:scale-105 transition-transform duration-300">IDEAS</span>
             </h1>
           </motion.div>
         )}
 
-        {/* Stage 4+: Significantly Increased Hexagonal Profile Portrait (220-240px wide) & Identity Verified */}
+        {/* 4. Hexagonal Portrait (~200px wide) & 5. IDENTITY VERIFIED */}
         {stage >= 4 && (
           <motion.div
-            initial={{ opacity: 0, scale: 0.88 }}
+            initial={{ opacity: 0, scale: 0.92 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="my-1 sm:my-2"
+            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+            className="mb-3 sm:mb-4"
           >
             <FuturisticHexProfile mousePos={mousePos} />
           </motion.div>
         )}
 
-        {/* Stage 5+: Name, Roles, Quote & Enter Button (Positioned below Identity Verified) */}
+        {/* 6. BOYA SAIKIRAN, 7. Professional Roles, 8. Personal Tagline, 9. ENTER MY WORLD */}
         {stage >= 5 && (
           <motion.div
-            initial={{ opacity: 0, y: 12 }}
+            initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.05 }}
+            transition={{ duration: 0.6, delay: 0.05 }}
             className="flex flex-col items-center"
           >
-            <div className="w-16 h-0.5 bg-gradient-to-r from-transparent via-[#FF3047] to-transparent mx-auto mb-2" />
+            {/* Clean red accent line */}
+            <div className="w-16 h-0.5 bg-gradient-to-r from-transparent via-[#FF3047]/60 to-transparent mx-auto mb-2" />
             
-            <h3 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-wider text-[#C6CBD5] mb-1.5 sm:mb-2">
+            {/* 6. BOYA SAIKIRAN */}
+            <h3 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-wider text-[#FFFFFF] mb-2 sm:mb-2.5">
               BOYA SAIKIRAN
             </h3>
 
-            {/* Specialization Badges */}
+            {/* 7. Professional Roles */}
             <div className="flex flex-wrap items-center justify-center gap-1.5 sm:gap-2.5 text-[10px] sm:text-xs font-mono tracking-wider text-[#8D94A3] mb-3 sm:mb-4 max-w-xl">
               <span className="text-[#C6CBD5]">AI / ML ENGINEER IN PROGRESS</span>
               <span className="text-[#FF3047]">•</span>
@@ -265,22 +265,21 @@ export const CinematicIntro: React.FC<CinematicIntroProps> = ({ onComplete }) =>
               <span className="text-[#C6CBD5]">SOFTWARE DEVELOPER</span>
             </div>
 
-            <p className="text-xs sm:text-sm italic text-[#8D94A3] max-w-md mb-4 leading-relaxed hidden sm:block">
+            {/* 8. Personal Tagline */}
+            <p className="text-xs sm:text-sm italic text-[#8D94A3] max-w-md mb-4 sm:mb-5 leading-relaxed hidden sm:block">
               &ldquo;Every idea connects. Every connection builds something extraordinary.&rdquo;
             </p>
 
-            {/* Futuristic "ENTER MY WORLD" Call to Action Button */}
+            {/* 9. ENTER MY WORLD Button */}
             <motion.button
               onClick={handleEnterWorld}
               whileHover={{ scale: 1.04, y: -2 }}
               whileTap={{ scale: 0.96 }}
-              className="group relative flex items-center gap-2.5 px-8 sm:px-9 py-2.5 sm:py-3 rounded-full bg-[#E32636] hover:bg-[#FF3047] text-white font-medium text-xs sm:text-sm font-mono tracking-wider uppercase transition-all shadow-[0_0_35px_-5px_#FF3047] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF3047]"
+              className="group relative flex items-center gap-2.5 px-8 sm:px-9 py-2.5 sm:py-3 rounded-full bg-[#E32636] hover:bg-[#FF3047] text-white font-medium text-xs sm:text-sm font-mono tracking-wider uppercase transition-all shadow-[0_0_25px_-5px_#FF3047] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF3047]"
               aria-label="Enter Boya Saikiran's World"
             >
               <span>ENTER MY WORLD</span>
-              <ArrowRight size={15} className="group-hover:translate-x-1.5 transition-transform duration-300" />
-              
-              {/* Outer Pulsing Glow Beacon */}
+              <ArrowRight size={15} className="group-hover:translate-x-1 transition-transform duration-300" />
               <span className="absolute -inset-1 rounded-full border border-[#FF3047] opacity-40 animate-ping pointer-events-none" />
             </motion.button>
           </motion.div>
