@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Volume2, VolumeX, ArrowRight, FastForward, Sparkles } from 'lucide-react';
 import { soundManager } from '../../audio/soundEffects';
+import { FuturisticHexProfile } from './FuturisticHexProfile';
 
 interface CinematicIntroProps {
   onComplete: () => void;
@@ -165,11 +166,15 @@ export const CinematicIntro: React.FC<CinematicIntroProps> = ({ onComplete }) =>
             <h2 className="text-xs md:text-sm font-mono tracking-[0.35em] text-[#8D94A3] uppercase mb-2">
               System Online
             </h2>
-            <h1 className="text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight text-white mb-3">
+            <h1 className="text-3xl sm:text-5xl md:text-6xl font-bold tracking-tight text-white mb-2 sm:mb-3">
               THE WEB OF <span className="text-[#FF3548]">IDEAS</span>
             </h1>
-            <div className="w-16 h-0.5 bg-gradient-to-r from-transparent via-[#FF3548] to-transparent mx-auto mb-4" />
-            <h3 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-wider text-[#C6CBD5] mb-6">
+
+            {/* Futuristic Hexagonal Profile Portrait */}
+            <FuturisticHexProfile className="my-2.5 sm:my-3.5" />
+
+            <div className="w-16 h-0.5 bg-gradient-to-r from-transparent via-[#FF3047] to-transparent mx-auto mb-2.5" />
+            <h3 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-wider text-[#C6CBD5] mb-4 sm:mb-5">
               BOYA SAIKIRAN
             </h3>
           </motion.div>
