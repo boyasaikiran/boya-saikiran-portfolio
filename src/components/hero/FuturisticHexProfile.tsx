@@ -13,7 +13,7 @@ export const FuturisticHexProfile: React.FC<FuturisticHexProfileProps> = ({
 }) => {
   const [isHovered, setIsHovered] = useState(false);
 
-  // Smooth, subtle spring physics for gentle 3D tilt (max ~6-7 degrees)
+  // Smooth, subtle spring physics for gentle 3D tilt (max ~6 degrees)
   const springConfig = { stiffness: 180, damping: 25 };
   const rotateX = useSpring(0, springConfig);
   const rotateY = useSpring(0, springConfig);
@@ -29,8 +29,8 @@ export const FuturisticHexProfile: React.FC<FuturisticHexProfileProps> = ({
     const rect = e.currentTarget.getBoundingClientRect();
     const x = e.clientX - rect.left - rect.width / 2;
     const y = e.clientY - rect.top - rect.height / 2;
-    rotateX.set(-(y / (rect.height / 2)) * 7);
-    rotateY.set((x / (rect.width / 2)) * 7);
+    rotateX.set(-(y / (rect.height / 2)) * 6.5);
+    rotateY.set((x / (rect.width / 2)) * 6.5);
   };
 
   const handleMouseLeave = () => {
@@ -55,17 +55,17 @@ export const FuturisticHexProfile: React.FC<FuturisticHexProfileProps> = ({
         whileHover={{ scale: 1.02 }}
         className="relative cursor-pointer group flex items-center justify-center"
       >
-        {/* Subtle, soft radial red glow behind the hexagon (NO solid circular background) */}
-        <div className="absolute -inset-4 sm:-inset-6 rounded-full bg-[#FF3047]/15 blur-2xl opacity-70 group-hover:opacity-90 transition-opacity duration-500 pointer-events-none" />
+        {/* Soft, subtle radial red glow behind the hexagon (NO solid circular background) */}
+        <div className="absolute -inset-6 sm:-inset-8 rounded-full bg-[#FF3047]/15 blur-2xl opacity-75 group-hover:opacity-95 transition-opacity duration-500 pointer-events-none" />
 
-        {/* Clean Hexagonal Portrait Frame
-            Desktop: ~200px wide, ~180px height (within 195-205px target)
-            Tablet: ~180px wide, ~162px height
-            Mobile: ~155px wide, ~140px height
+        {/* Clean Hexagonal Portrait Frame (Target: 220–230px wide on desktop)
+            Desktop: 226px wide, 204px height (within 220–230px target, ~15% larger than 197px)
+            Tablet: 195px wide, 176px height
+            Mobile: 170px wide, 154px height
         */}
-        <div className="relative w-[155px] h-[140px] sm:w-[180px] sm:h-[162px] md:w-[200px] md:h-[180px] p-[1.5px] transition-all duration-300">
+        <div className="relative w-[170px] h-[154px] sm:w-[195px] sm:h-[176px] md:w-[226px] md:h-[204px] p-[1.5px] transition-all duration-300">
           
-          {/* Inner Clean Hexagonal Image Crop (Pure hexagon, no dark outer disks) */}
+          {/* Inner Clean Hexagonal Image Crop (Pure hexagon, zero dark outer disks) */}
           <div
             className="relative w-full h-full overflow-hidden bg-[#08090D]"
             style={{
@@ -85,7 +85,7 @@ export const FuturisticHexProfile: React.FC<FuturisticHexProfileProps> = ({
             />
 
             {/* Subtle atmospheric vignette */}
-            <div className="absolute inset-0 bg-gradient-to-b from-[#FF3047]/[0.08] via-transparent to-[#08090D]/40 pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-b from-[#FF3047]/[0.07] via-transparent to-[#08090D]/35 pointer-events-none" />
 
             {/* Slow, elegant laser scanning beam */}
             <motion.div
@@ -95,7 +95,7 @@ export const FuturisticHexProfile: React.FC<FuturisticHexProfileProps> = ({
                 opacity: [0, 0.9, 0.9, 0],
               }}
               transition={{
-                duration: 3.6,
+                duration: 3.8,
                 repeat: Infinity,
                 ease: 'easeInOut',
               }}
@@ -159,7 +159,7 @@ export const FuturisticHexProfile: React.FC<FuturisticHexProfileProps> = ({
         initial={{ opacity: 0, y: 5 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.2, duration: 0.5 }}
-        className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-[#121621]/90 border border-[#FF3047]/40 text-[10px] font-mono tracking-widest text-[#FF3047] shadow-[0_0_12px_rgba(255,48,71,0.25)] uppercase mt-2.5 backdrop-blur-sm"
+        className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-[#121621]/90 border border-[#FF3047]/40 text-[10px] font-mono tracking-widest text-[#FF3047] shadow-[0_0_12px_rgba(255,48,71,0.25)] uppercase mt-3 backdrop-blur-sm"
       >
         <span className="relative flex h-1.5 w-1.5">
           <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#FF3047] opacity-75" />

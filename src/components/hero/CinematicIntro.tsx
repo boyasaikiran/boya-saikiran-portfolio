@@ -13,7 +13,7 @@ export const CinematicIntro: React.FC<CinematicIntroProps> = ({ onComplete }) =>
   const [isAudioMuted, setIsAudioMuted] = useState<boolean>(true);
   const [mousePos, setMousePos] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
 
-  // Handle subtle mouse parallax (gentle atmospheric shift)
+  // Handle subtle mouse parallax (gentle interactive response to background network)
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const { innerWidth, innerHeight } = window;
     const x = (e.clientX / innerWidth) * 2 - 1;
@@ -108,31 +108,31 @@ export const CinematicIntro: React.FC<CinematicIntroProps> = ({ onComplete }) =>
         )}
       </AnimatePresence>
 
-      {/* Stage 2: Symmetrical, Atmospheric Geometric Spider-Web Network */}
+      {/* Stage 2: Symmetrical, Slightly Enlarged Spider-Web Network with Gentle Mouse Parallax */}
       {stage >= 2 && (
         <motion.div
           className="absolute inset-0 flex items-center justify-center pointer-events-none z-0"
           initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 0.6, scale: 1 }}
+          animate={{ opacity: 0.62, scale: 1 }}
           transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
           style={{
             transform: `translate3d(${mousePos.x * 12}px, ${mousePos.y * 12}px, 0)`,
             transition: 'transform 0.2s ease-out',
           }}
         >
-          <svg className="w-[850px] h-[850px] max-w-[92vw] max-h-[92vh]" viewBox="0 0 400 400" fill="none">
+          <svg className="w-[920px] h-[920px] max-w-[95vw] max-h-[95vh]" viewBox="0 0 400 400" fill="none">
             <defs>
-              {/* Radial gradient mask that fades out web lines behind the central content (radius 115px) */}
+              {/* Radial gradient mask preventing lines from crossing the central portrait, heading or name (radius 120px) */}
               <mask id="web-center-mask">
                 <rect x="0" y="0" width="400" height="400" fill="white" />
-                <circle cx="200" cy="200" r="105" fill="black" />
+                <circle cx="200" cy="200" r="120" fill="black" />
               </mask>
             </defs>
 
-            {/* Symmetrical Geometric Web Network masked so zero lines cross central portrait or text */}
+            {/* Symmetrical Geometric Web Network masked so zero lines cross central portrait or typography */}
             <g mask="url(#web-center-mask)">
-              {/* Concentric Polygonal Web Rings */}
-              {[45, 80, 115, 150, 185].map((r, i) => (
+              {/* Concentric Polygonal Web Rings (radii 50 to 205) */}
+              {[50, 90, 130, 170, 205].map((r, i) => (
                 <polygon
                   key={i}
                   points={`
@@ -155,8 +155,8 @@ export const CinematicIntro: React.FC<CinematicIntroProps> = ({ onComplete }) =>
               {/* Radial Symmetrical Web Rays */}
               {[0, 1, 2, 3, 4, 5, 6, 7].map((idx) => {
                 const angle = (idx * Math.PI) / 4;
-                const x2 = 200 + 190 * Math.cos(angle);
-                const y2 = 200 + 190 * Math.sin(angle);
+                const x2 = 200 + 195 * Math.cos(angle);
+                const y2 = 200 + 195 * Math.sin(angle);
                 return (
                   <line
                     key={idx}
@@ -171,10 +171,10 @@ export const CinematicIntro: React.FC<CinematicIntroProps> = ({ onComplete }) =>
                 );
               })}
 
-              {/* Subtle Atmospheric Connection Nodes on Outer Ring (r=150) */}
+              {/* Subtle Atmospheric Connection Nodes on Outer Ring (r=170) */}
               {[0, 1, 2, 3, 4, 5, 6, 7].map((idx) => {
                 const angle = (idx * Math.PI) / 4;
-                const r = 150;
+                const r = 170;
                 const cx = 200 + r * Math.cos(angle);
                 const cy = 200 + r * Math.sin(angle);
                 return (
@@ -193,7 +193,7 @@ export const CinematicIntro: React.FC<CinematicIntroProps> = ({ onComplete }) =>
       {/* Atmospheric Soft Gradient Backdrop */}
       <div className="absolute inset-0 bg-radial-gradient from-[#08090D]/90 via-[#08090D]/70 to-transparent pointer-events-none z-10" />
 
-      {/* Main Content Area: Exact Visual Hierarchy & Balanced Spacing */}
+      {/* Main Content Area: Exact Visual Hierarchy & Generous Spacing */}
       <div className="relative z-20 flex flex-col items-center text-center px-4 sm:px-6 max-w-3xl my-auto w-full">
         
         {/* 1. INTERACTIVE SPACE INITIALIZED */}
@@ -209,32 +209,32 @@ export const CinematicIntro: React.FC<CinematicIntroProps> = ({ onComplete }) =>
           </motion.div>
         )}
 
-        {/* 2. SYSTEM ONLINE & 3. THE WEB OF IDEAS */}
+        {/* 2. SYSTEM ONLINE & 3. THE WEB OF IDEAS (Headline 48–52px on Desktop) */}
         {stage >= 3 && (
           <motion.div
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-            className="flex flex-col items-center mb-3 sm:mb-4"
+            className="flex flex-col items-center mb-5 sm:mb-6"
           >
             {/* 2. SYSTEM ONLINE */}
-            <h2 className="text-[10px] sm:text-xs font-mono tracking-[0.35em] text-[#8D94A3] uppercase mb-1">
+            <h2 className="text-[11px] sm:text-xs font-mono tracking-[0.35em] text-[#8D94A3] uppercase mb-1">
               System Online
             </h2>
-            {/* 3. THE WEB OF IDEAS */}
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-tight">
+            {/* 3. THE WEB OF IDEAS (48–52px on desktop) */}
+            <h1 className="text-3xl sm:text-4xl md:text-[50px] lg:text-[52px] font-bold tracking-tight text-white leading-tight">
               THE WEB OF <span className="text-[#FF3047] inline-block hover:scale-105 transition-transform duration-300">IDEAS</span>
             </h1>
           </motion.div>
         )}
 
-        {/* 4. Hexagonal Portrait (~200px wide) & 5. IDENTITY VERIFIED */}
+        {/* 4. Hexagonal Portrait (220–230px wide on desktop) & 5. IDENTITY VERIFIED */}
         {stage >= 4 && (
           <motion.div
             initial={{ opacity: 0, scale: 0.92 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-            className="mb-3 sm:mb-4"
+            className="mb-5 sm:mb-6"
           >
             <FuturisticHexProfile mousePos={mousePos} />
           </motion.div>
@@ -249,15 +249,15 @@ export const CinematicIntro: React.FC<CinematicIntroProps> = ({ onComplete }) =>
             className="flex flex-col items-center"
           >
             {/* Clean red accent line */}
-            <div className="w-16 h-0.5 bg-gradient-to-r from-transparent via-[#FF3047]/60 to-transparent mx-auto mb-2" />
+            <div className="w-16 h-0.5 bg-gradient-to-r from-transparent via-[#FF3047]/60 to-transparent mx-auto mb-2.5" />
             
-            {/* 6. BOYA SAIKIRAN */}
-            <h3 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-wider text-[#FFFFFF] mb-2 sm:mb-2.5">
+            {/* 6. BOYA SAIKIRAN (Slightly increased typography) */}
+            <h3 className="text-2xl sm:text-3xl md:text-[38px] lg:text-[40px] font-semibold tracking-wider text-[#FFFFFF] mb-2 sm:mb-3">
               BOYA SAIKIRAN
             </h3>
 
             {/* 7. Professional Roles */}
-            <div className="flex flex-wrap items-center justify-center gap-1.5 sm:gap-2.5 text-[10px] sm:text-xs font-mono tracking-wider text-[#8D94A3] mb-3 sm:mb-4 max-w-xl">
+            <div className="flex flex-wrap items-center justify-center gap-1.5 sm:gap-2.5 text-[11px] sm:text-xs font-mono tracking-wider text-[#8D94A3] mb-3 sm:mb-4 max-w-xl">
               <span className="text-[#C6CBD5]">AI / ML ENGINEER IN PROGRESS</span>
               <span className="text-[#FF3047]">•</span>
               <span className="text-[#C6CBD5]">COMPUTER VISION ENTHUSIAST</span>
@@ -266,16 +266,16 @@ export const CinematicIntro: React.FC<CinematicIntroProps> = ({ onComplete }) =>
             </div>
 
             {/* 8. Personal Tagline */}
-            <p className="text-xs sm:text-sm italic text-[#8D94A3] max-w-md mb-4 sm:mb-5 leading-relaxed hidden sm:block">
+            <p className="text-xs sm:text-sm italic text-[#8D94A3] max-w-md mb-5 sm:mb-6 leading-relaxed hidden sm:block">
               &ldquo;Every idea connects. Every connection builds something extraordinary.&rdquo;
             </p>
 
-            {/* 9. ENTER MY WORLD Button */}
+            {/* 9. ENTER MY WORLD Button (Target: approximately 190px wide) */}
             <motion.button
               onClick={handleEnterWorld}
               whileHover={{ scale: 1.04, y: -2 }}
               whileTap={{ scale: 0.96 }}
-              className="group relative flex items-center gap-2.5 px-8 sm:px-9 py-2.5 sm:py-3 rounded-full bg-[#E32636] hover:bg-[#FF3047] text-white font-medium text-xs sm:text-sm font-mono tracking-wider uppercase transition-all shadow-[0_0_25px_-5px_#FF3047] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF3047]"
+              className="group relative w-[190px] h-[46px] flex items-center justify-center gap-2 rounded-full bg-[#E32636] hover:bg-[#FF3047] text-white font-medium text-xs sm:text-sm font-mono tracking-wider uppercase transition-all shadow-[0_0_25px_-5px_#FF3047] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF3047]"
               aria-label="Enter Boya Saikiran's World"
             >
               <span>ENTER MY WORLD</span>
