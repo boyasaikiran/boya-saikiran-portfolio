@@ -85,4 +85,4 @@ For collaborations, opportunities, or interesting engineering discussions, feel 
 
 ---
 
-<p align="center">   \<strong>THE WEB OF IDEAS\</strong>\<br/>   Built with curiosity, code, and a passion for engineering. \</p>
+<p align="center">  <strong>THE WEB OF IDEAS</strong><br/>   Built with curiosity, code, and a passion for engineering.</p>
