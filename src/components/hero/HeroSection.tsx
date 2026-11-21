@@ -33,8 +33,33 @@ export const HeroSection: React.FC = () => {
   return (
     <section id="hero" className="relative min-h-screen flex flex-col justify-between pt-28 pb-12 overflow-hidden bg-[#07080C] bg-web-lattice">
       
-      {/* 1. Deep 3D Interactive Web Canvas Background (Placed behind portrait so zero lines cross face!) */}
-      <div className="absolute inset-0 z-0 pointer-events-none opacity-40 lg:opacity-50">
+      {/* 1. Developer Cyber Portrait Background (Full bleed, seamless integration, zero hard box edges) */}
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+        <img
+          src="/hero-portrait-clean.png"
+          alt="Boya Saikiran - Cyber Developer Portrait Background"
+          className="w-full h-full object-cover object-[75%_center] lg:object-right filter contrast-[1.05] brightness-[1.0] transition-transform duration-700"
+          style={{
+            maskImage: 'linear-gradient(to right, transparent 0%, rgba(0,0,0,0.4) 20%, rgba(0,0,0,0.9) 45%, black 100%), linear-gradient(to bottom, transparent 0%, black 12%, black 85%, transparent 100%)',
+            WebkitMaskImage: 'linear-gradient(to right, transparent 0%, rgba(0,0,0,0.4) 20%, rgba(0,0,0,0.9) 45%, black 100%), linear-gradient(to bottom, transparent 0%, black 12%, black 85%, transparent 100%)',
+            maskComposite: 'intersect',
+            WebkitMaskComposite: 'destination-in',
+          }}
+        />
+        {/* Soft edge-fading vignettes ensuring seamless blending with #07080C background */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#07080C] via-[#07080C]/85 to-transparent lg:via-[#07080C]/55 pointer-events-none" />
+        <div className="absolute inset-x-0 top-0 h-36 bg-gradient-to-b from-[#07080C] via-[#07080C]/70 to-transparent pointer-events-none" />
+        <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[#07080C] via-[#07080C]/85 to-transparent pointer-events-none" />
+      </div>
+
+      {/* 2. Interactive 3D Spider-Web Lattice (Framed behind hero text on left/center, smoothly masked so zero lines cross Saikiran's face) */}
+      <div 
+        className="absolute inset-0 z-[1] pointer-events-none opacity-45 lg:opacity-55"
+        style={{
+          maskImage: 'radial-gradient(ellipse at 28% 50%, black 15%, rgba(0,0,0,0.85) 45%, transparent 72%)',
+          WebkitMaskImage: 'radial-gradient(ellipse at 28% 50%, black 15%, rgba(0,0,0,0.85) 45%, transparent 72%)',
+        }}
+      >
         <Suspense fallback={
           <div className="w-full h-full flex items-center justify-center opacity-30">
             <div className="w-96 h-96 rounded-full border border-[#FF3548]/30 animate-pulse" />
@@ -44,23 +69,10 @@ export const HeroSection: React.FC = () => {
         </Suspense>
       </div>
 
-      {/* 2. Cyber Ambient Lighting Effects */}
+      {/* 3. Cyber Ambient Lighting Effects */}
       <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-[#E32636]/10 rounded-full blur-[140px] pointer-events-none z-[1]" />
-      <div className="absolute bottom-10 right-10 w-[450px] h-[450px] bg-[#FF3548]/12 rounded-full blur-[130px] pointer-events-none z-[1]" />
+      <div className="absolute top-1/4 right-[15%] w-80 h-80 bg-[#FF3548]/15 rounded-full blur-[100px] pointer-events-none mix-blend-screen z-[1]" />
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#E32636]/[0.015] to-transparent pointer-events-none animate-scanline z-[1]" />
-
-      {/* 3. Real Developer Portrait: Boya Saikiran (In FRONT of 3D Web Canvas - crystal-clear face & suit!) */}
-      <div className="absolute right-0 bottom-0 top-16 md:top-20 w-full sm:w-[520px] md:w-[640px] lg:w-[740px] xl:w-[860px] h-[calc(100%-4rem)] pointer-events-none z-[2] flex items-end justify-end overflow-hidden">
-        <div className="relative w-full h-full flex items-end justify-end">
-          <img
-            src="/hero-portrait-clean.png"
-            alt="Boya Saikiran - Cyber Developer Portrait"
-            className="w-full h-full object-cover sm:object-contain object-bottom-right lg:scale-105 xl:scale-110 origin-bottom-right filter contrast-[1.05] brightness-[1.02] drop-shadow-[0_10px_40px_rgba(255,53,72,0.2)] transition-transform duration-700"
-          />
-          {/* Subtle cyber red energetic aura around styled hair and shoulders */}
-          <div className="absolute top-1/4 right-1/4 w-72 h-72 bg-[#FF3548]/20 rounded-full blur-[90px] pointer-events-none mix-blend-screen" />
-        </div>
-      </div>
 
       {/* Main Content Area */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex-1 flex flex-col justify-center items-center text-center lg:items-start lg:text-left my-auto w-full">
