@@ -55,20 +55,20 @@ export const FuturisticHexProfile: React.FC<FuturisticHexProfileProps> = ({
         whileHover={{ scale: 1.02 }}
         className="relative cursor-pointer group flex items-center justify-center"
       >
-        {/* Subtle, soft radial red glow behind the hexagon (NO solid circular background) */}
-        <div className="absolute -inset-6 sm:-inset-8 rounded-full bg-[#FF3047]/14 blur-2xl opacity-75 group-hover:opacity-95 transition-opacity duration-500 pointer-events-none" />
+        {/* Subtle, soft radial red glow behind the chamfered shield (NO solid circular background) */}
+        <div className="absolute -inset-6 sm:-inset-8 rounded-full bg-[#FF3047]/15 blur-2xl opacity-75 group-hover:opacity-95 transition-opacity duration-500 pointer-events-none" />
 
-        {/* Clean Hexagonal Portrait Frame (~10-15% increase: Desktop ~250px wide x ~226px height) */}
-        <div className="relative w-[185px] h-[166px] sm:w-[218px] sm:h-[196px] md:w-[252px] md:h-[228px] p-[1.5px] transition-all duration-300">
+        {/* Chamfered Tech Shield / Octagon Portrait Frame (Cyber HUD operative badge) */}
+        <div className="relative w-[185px] h-[200px] sm:w-[215px] sm:h-[235px] md:w-[245px] md:h-[265px] p-[1.5px] transition-all duration-300">
           
-          {/* Inner Clean Hexagonal Image Crop (Pure hexagon, zero dark outer disks) */}
+          {/* Inner Clean Chamfered Octagon Image Crop (Angled 4 corners, preserves shoulders & natural portrait) */}
           <div
             className="relative w-full h-full overflow-hidden bg-[#08090D]"
             style={{
-              clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)',
+              clipPath: 'polygon(14% 0%, 86% 0%, 100% 14%, 100% 86%, 86% 100%, 14% 100%, 0% 86%, 0% 14%)',
             }}
           >
-            {/* Original Photograph: crisp, centered facial details, zero distortion */}
+            {/* Original Photograph: crisp, centered facial details, tie, styled hair, and full shoulders */}
             <img
               src="/images/profile.png"
               alt="Boya Saikiran Profile Portrait"
@@ -76,19 +76,19 @@ export const FuturisticHexProfile: React.FC<FuturisticHexProfileProps> = ({
               decoding="async"
               className="w-full h-full object-cover filter contrast-[1.05] brightness-[1.0] group-hover:scale-103 transition-transform duration-500"
               style={{
-                objectPosition: 'center 32%',
+                objectPosition: 'center 28%',
               }}
             />
 
-            {/* Subtle atmospheric vignette */}
-            <div className="absolute inset-0 bg-gradient-to-b from-[#FF3047]/[0.07] via-transparent to-[#08090D]/35 pointer-events-none" />
+            {/* Subtle atmospheric cyber vignette */}
+            <div className="absolute inset-0 bg-gradient-to-b from-[#FF3047]/[0.06] via-transparent to-[#08090D]/40 pointer-events-none" />
 
             {/* Slow, elegant laser scanning beam */}
             <motion.div
-              className="absolute inset-x-0 h-[2px] bg-gradient-to-r from-transparent via-[#FF3047] to-transparent shadow-[0_0_10px_#FF3047] pointer-events-none z-10"
+              className="absolute inset-x-0 h-[2px] bg-gradient-to-r from-transparent via-[#FF3047] to-transparent shadow-[0_0_12px_#FF3047] pointer-events-none z-10"
               animate={{
                 top: ['-5%', '105%'],
-                opacity: [0, 0.9, 0.9, 0],
+                opacity: [0, 0.95, 0.95, 0],
               }}
               transition={{
                 duration: 3.8,
@@ -98,13 +98,14 @@ export const FuturisticHexProfile: React.FC<FuturisticHexProfileProps> = ({
             />
           </div>
 
-          {/* Thin, elegant SVG Hexagonal Neon Border (#FF3047) with subtle breathing animation */}
+          {/* Thin, elegant SVG Chamfered Octagonal Neon Border (#FF3047) with breathing animation */}
           <svg
             className="absolute -inset-[2px] w-[calc(100%+4px)] h-[calc(100%+4px)] pointer-events-none z-20 overflow-visible"
             viewBox="0 0 100 100"
+            preserveAspectRatio="none"
           >
             <defs>
-              <filter id="hex-neon-glow-refined" x="-20%" y="-20%" width="140%" height="140%">
+              <filter id="shield-neon-glow" x="-20%" y="-20%" width="140%" height="140%">
                 <feGaussianBlur stdDeviation="1.5" result="blur" />
                 <feMerge>
                   <feMergeNode in="blur" />
@@ -115,16 +116,16 @@ export const FuturisticHexProfile: React.FC<FuturisticHexProfileProps> = ({
 
             {/* Breathing Outer Soft Neon Glow */}
             <polygon
-              points="50,1 99,25.5 99,74.5 50,99 1,74.5 1,25.5"
+              points="14,1 86,1 99,14 99,86 86,99 14,99 1,86 1,14"
               fill="none"
               stroke="#FF3047"
               strokeWidth="1.8"
-              filter="url(#hex-neon-glow-refined)"
+              filter="url(#shield-neon-glow)"
               className="opacity-75 group-hover:opacity-100 transition-opacity duration-300"
             >
               <animate
                 attributeName="stroke-opacity"
-                values="0.55;0.9;0.55"
+                values="0.55;0.95;0.55"
                 dur="3.2s"
                 repeatCount="indefinite"
               />
@@ -132,20 +133,22 @@ export const FuturisticHexProfile: React.FC<FuturisticHexProfileProps> = ({
 
             {/* Thin, Precise Inner Neon Line */}
             <polygon
-              points="50,1 99,25.5 99,74.5 50,99 1,74.5 1,25.5"
+              points="14,1 86,1 99,14 99,86 86,99 14,99 1,86 1,14"
               fill="none"
               stroke="#FF3047"
-              strokeWidth="1.1"
+              strokeWidth="1.2"
               strokeOpacity="0.9"
             />
 
-            {/* Subtle Corner Nodes (6 vertices) */}
-            <circle cx="50" cy="1" r="1.5" fill="#FFFFFF" />
-            <circle cx="99" cy="25.5" r="1.5" fill="#FF3047" />
-            <circle cx="99" cy="74.5" r="1.5" fill="#FF3047" />
-            <circle cx="50" cy="99" r="1.5" fill="#FF3047" />
-            <circle cx="1" cy="74.5" r="1.5" fill="#FF3047" />
-            <circle cx="1" cy="25.5" r="1.5" fill="#FF3047" />
+            {/* Chamfer Corner Tech Node Accents */}
+            <circle cx="14" cy="1" r="1.5" fill="#FFFFFF" />
+            <circle cx="86" cy="1" r="1.5" fill="#FFFFFF" />
+            <circle cx="99" cy="14" r="1.5" fill="#FF3047" />
+            <circle cx="99" cy="86" r="1.5" fill="#FF3047" />
+            <circle cx="86" cy="99" r="1.5" fill="#FF3047" />
+            <circle cx="14" cy="99" r="1.5" fill="#FF3047" />
+            <circle cx="1" cy="86" r="1.5" fill="#FF3047" />
+            <circle cx="1" cy="14" r="1.5" fill="#FF3047" />
           </svg>
         </div>
       </motion.div>
