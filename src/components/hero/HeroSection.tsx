@@ -174,24 +174,16 @@ export const HeroSection: React.FC = () => {
 
       {/* Bottom Telemetry Ticker */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pt-8">
-        <div className="border-t border-[#272D3A]/60 pt-4 flex flex-wrap items-center justify-between gap-4 text-xs font-mono text-[#8D94A3]">
-          
-          <div className="flex items-center gap-4">
-            <span className="text-[#C6CBD5] font-semibold">CORE ARCHITECTURES:</span>
-            <div className="flex flex-wrap items-center gap-2">
-              <span className="px-2 py-0.5 rounded bg-[#121621] border border-[#272D3A] text-[#FF3548]">Swin-Tiny</span>
-              <span className="px-2 py-0.5 rounded bg-[#121621] border border-[#272D3A] text-[#C6CBD5]">PyTorch</span>
-              <span className="px-2 py-0.5 rounded bg-[#121621] border border-[#272D3A] text-[#75E5ED]">FAISS</span>
-              <span className="px-2 py-0.5 rounded bg-[#121621] border border-[#272D3A] text-[#C6CBD5]">EfficientNet</span>
-              <span className="px-2 py-0.5 rounded bg-[#121621] border border-[#272D3A] text-[#C6CBD5]">MediaPipe</span>
-            </div>
+        <div className="border-t border-[#272D3A]/40 pt-4 flex flex-wrap items-center justify-between gap-4 text-xs font-mono text-[#8D94A3]">
+          <div className="flex items-center gap-2">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#FF3548] animate-pulse" />
+            <span>STATUS: READY FOR CONNECTIONS</span>
           </div>
 
           <div className="flex items-center gap-2">
             <span className="w-1.5 h-1.5 rounded-full bg-[#75E5ED] animate-ping" />
             <span>LOCATION: TAMIL NADU, INDIA</span>
           </div>
-
         </div>
       </div>
     </section>
