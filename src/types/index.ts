@@ -108,6 +108,14 @@ export interface Certification {
   verificationUrl?: string;
   skillsLearned: string[];
   category: 'AI & Deep Learning' | 'Cloud & DevOps' | 'Core Engineering' | 'Cybersecurity & Systems';
+  recipient?: string;
+  issueDate?: string;
+  validUntil?: string;
+  status?: string;
+  credentialType?: string;
+  badgeUrl?: string;
+  certificateUrl?: string;
+  isFeatured?: boolean;
 }
 
 export interface DeveloperRepo {
