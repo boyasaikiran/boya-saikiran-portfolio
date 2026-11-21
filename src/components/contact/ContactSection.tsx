@@ -8,7 +8,8 @@ import {
   Check, 
   Terminal, 
   AlertCircle,
-  ExternalLink
+  ExternalLink,
+  Loader2
 } from 'lucide-react';
 import { GithubIcon, LinkedinIcon } from '../ui/Icons';
 import { OWNER_EMAIL, OWNER_PHONE, OWNER_PHONE_RAW, RESUME_URL, GITHUB_PROFILE_URL, LINKEDIN_PROFILE_URL } from '../../data/developerActivity';
@@ -27,7 +28,7 @@ export const ContactSection: React.FC = () => {
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submissionFeedback, setSubmissionFeedback] = useState<{
-    status: 'idle' | 'prepared' | 'error';
+    status: 'idle' | 'success' | 'error';
     message: string;
   }>({ status: 'idle', message: '' });
 
@@ -64,8 +65,10 @@ export const ContactSection: React.FC = () => {
     return errs;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (isSubmitting) return;
+
     soundManager.playClick();
     const validationErrors = validateForm();
 
@@ -80,22 +83,52 @@ export const ContactSection: React.FC = () => {
 
     setErrors({});
     setIsSubmitting(true);
+    setSubmissionFeedback({ status: 'idle', message: '' });
 
-    // Prepare direct mailto communication without fake submission simulation
-    const subjectEncoded = encodeURIComponent(`[Portfolio Inquiry] ${formState.subject} - from ${formState.name}`);
-    const bodyEncoded = encodeURIComponent(
-      `Name: ${formState.name}\nEmail: ${formState.email}\n\nMessage:\n${formState.message}`
-    );
-    const mailtoUrl = `mailto:${OWNER_EMAIL}?subject=${subjectEncoded}&body=${bodyEncoded}`;
-
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setSubmissionFeedback({
-        status: 'prepared',
-        message: `Direct email dispatch prepared! Opening your mail client to send to ${OWNER_EMAIL}.`,
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: formState.name,
+          email: formState.email,
+          subject: formState.subject,
+          message: formState.message,
+          honeypot: formState.honeypot,
+        }),
       });
-      window.location.href = mailtoUrl;
-    }, 400);
+
+      const data = await response.json().catch(() => null);
+
+      if (response.ok && data?.success) {
+        setSubmissionFeedback({
+          status: 'success',
+          message: data.message || "MESSAGE TRANSMITTED SUCCESSFULLY. I'll get back to you soon.",
+        });
+        // Clear form fields on successful transmission
+        setFormState({
+          name: '',
+          email: '',
+          subject: '',
+          message: '',
+          honeypot: '',
+        });
+      } else {
+        setSubmissionFeedback({
+          status: 'error',
+          message: data?.error || 'TRANSMISSION FAILED. Please try again later.',
+        });
+      }
+    } catch {
+      setSubmissionFeedback({
+        status: 'error',
+        message: 'TRANSMISSION FAILED. Please try again later.',
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleDownloadResume = () => {
@@ -372,28 +405,41 @@ export const ContactSection: React.FC = () => {
               {/* Status and Feedback Messages */}
               {submissionFeedback.message && (
                 <div
-                  className={`p-3 rounded-lg text-xs font-mono flex items-start gap-2 ${
-                    submissionFeedback.status === 'prepared'
-                      ? 'bg-[#75E5ED]/10 text-[#75E5ED] border border-[#75E5ED]/30'
-                      : 'bg-[#E32636]/10 text-[#FF3548] border border-[#E32636]/30'
+                  className={`p-3.5 rounded-xl text-xs font-mono flex items-start gap-2.5 transition-all duration-300 ${
+                    submissionFeedback.status === 'success'
+                      ? 'bg-[#75E5ED]/10 text-[#75E5ED] border border-[#75E5ED]/40 shadow-[0_0_15px_rgba(117,229,237,0.15)]'
+                      : 'bg-[#E32636]/10 text-[#FF3548] border border-[#E32636]/40 shadow-[0_0_15px_rgba(227,38,54,0.15)]'
                   }`}
                 >
-                  <AlertCircle size={14} className="shrink-0 mt-0.5" />
-                  <span>{submissionFeedback.message}</span>
+                  {submissionFeedback.status === 'success' ? (
+                    <Check size={15} className="shrink-0 mt-0.5 text-[#75E5ED]" />
+                  ) : (
+                    <AlertCircle size={15} className="shrink-0 mt-0.5 text-[#FF3548]" />
+                  )}
+                  <span className="leading-relaxed">{submissionFeedback.message}</span>
                 </div>
               )}
 
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full py-3.5 rounded-xl bg-[#E32636] hover:bg-[#FF3548] text-white font-mono text-xs tracking-wider uppercase transition-all duration-200 shadow-[0_0_20px_rgba(227,38,54,0.3)] flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
+                className="w-full py-3.5 rounded-xl bg-[#E32636] hover:bg-[#FF3548] text-white font-mono text-xs tracking-wider uppercase transition-all duration-200 shadow-[0_0_20px_rgba(227,38,54,0.3)] flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                <Send size={14} />
-                <span>{isSubmitting ? 'DISPATCHING...' : 'TRANSMIT TO BOYA SAIKIRAN'}</span>
+                {isSubmitting ? (
+                  <>
+                    <Loader2 size={14} className="animate-spin" />
+                    <span>TRANSMITTING MESSAGE...</span>
+                  </>
+                ) : (
+                  <>
+                    <Send size={14} />
+                    <span>TRANSMIT TO BOYA SAIKIRAN</span>
+                  </>
+                )}
               </button>
 
               <div className="text-[11px] font-mono text-[#8D94A3] text-center pt-2">
-                * Dispatches directly to {OWNER_EMAIL} with input pre-populated.
+                * Direct encrypted transmission to {OWNER_EMAIL} via Resend.
               </div>
 
             </form>
