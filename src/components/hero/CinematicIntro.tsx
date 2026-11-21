@@ -108,7 +108,7 @@ export const CinematicIntro: React.FC<CinematicIntroProps> = ({ onComplete }) =>
         )}
       </AnimatePresence>
 
-      {/* Stage 2: Symmetrical, Slightly Enlarged Spider-Web Network with Gentle Mouse Parallax */}
+      {/* Stage 2: Symmetrical Spider-Web Network with Reduced Central Opacity and Mouse Parallax */}
       {stage >= 2 && (
         <motion.div
           className="absolute inset-0 flex items-center justify-center pointer-events-none z-0"
@@ -122,14 +122,19 @@ export const CinematicIntro: React.FC<CinematicIntroProps> = ({ onComplete }) =>
         >
           <svg className="w-[920px] h-[920px] max-w-[95vw] max-h-[95vh]" viewBox="0 0 400 400" fill="none">
             <defs>
-              {/* Radial gradient mask preventing lines from crossing the central portrait, heading or name (radius 120px) */}
+              {/* Soft radial mask reducing opacity behind central content (portrait, name & roles) */}
+              <radialGradient id="web-soft-mask-grad" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stopColor="black" stopOpacity="1" />
+                <stop offset="60%" stopColor="black" stopOpacity="1" />
+                <stop offset="80%" stopColor="white" stopOpacity="0.4" />
+                <stop offset="100%" stopColor="white" stopOpacity="1" />
+              </radialGradient>
               <mask id="web-center-mask">
-                <rect x="0" y="0" width="400" height="400" fill="white" />
-                <circle cx="200" cy="200" r="120" fill="black" />
+                <rect x="0" y="0" width="400" height="400" fill="url(#web-soft-mask-grad)" />
               </mask>
             </defs>
 
-            {/* Symmetrical Geometric Web Network masked so zero lines cross central portrait or typography */}
+            {/* Symmetrical Geometric Web Network with reduced opacity across central text and portrait */}
             <g mask="url(#web-center-mask)">
               {/* Concentric Polygonal Web Rings (radii 50 to 205) */}
               {[50, 90, 130, 170, 205].map((r, i) => (
@@ -147,7 +152,7 @@ export const CinematicIntro: React.FC<CinematicIntroProps> = ({ onComplete }) =>
                   `}
                   stroke={i % 2 === 0 ? "#FF3047" : "#272D3A"}
                   strokeWidth="1"
-                  strokeOpacity={i % 2 === 0 ? 0.35 : 0.2}
+                  strokeOpacity={i % 2 === 0 ? 0.32 : 0.18}
                   strokeDasharray={i % 2 === 1 ? "4 4" : "none"}
                 />
               ))}
@@ -166,7 +171,7 @@ export const CinematicIntro: React.FC<CinematicIntroProps> = ({ onComplete }) =>
                     y2={y2}
                     stroke="#FF3047"
                     strokeWidth="1"
-                    strokeOpacity="0.25"
+                    strokeOpacity="0.22"
                   />
                 );
               })}
@@ -193,7 +198,7 @@ export const CinematicIntro: React.FC<CinematicIntroProps> = ({ onComplete }) =>
       {/* Atmospheric Soft Gradient Backdrop */}
       <div className="absolute inset-0 bg-radial-gradient from-[#08090D]/90 via-[#08090D]/70 to-transparent pointer-events-none z-10" />
 
-      {/* Main Content Area: Exact Visual Hierarchy & Generous Spacing */}
+      {/* Main Content Area: Preserved 9-Step Hierarchy with Generous Spacing */}
       <div className="relative z-20 flex flex-col items-center text-center px-4 sm:px-6 max-w-3xl my-auto w-full">
         
         {/* 1. INTERACTIVE SPACE INITIALIZED */}
@@ -209,7 +214,7 @@ export const CinematicIntro: React.FC<CinematicIntroProps> = ({ onComplete }) =>
           </motion.div>
         )}
 
-        {/* 2. SYSTEM ONLINE & 3. THE WEB OF IDEAS (Headline 48–52px on Desktop) */}
+        {/* 2. SYSTEM ONLINE & 3. THE WEB OF IDEAS (Headline 54–56px on Desktop) */}
         {stage >= 3 && (
           <motion.div
             initial={{ opacity: 0, y: 12 }}
@@ -221,14 +226,14 @@ export const CinematicIntro: React.FC<CinematicIntroProps> = ({ onComplete }) =>
             <h2 className="text-[11px] sm:text-xs font-mono tracking-[0.35em] text-[#8D94A3] uppercase mb-1">
               System Online
             </h2>
-            {/* 3. THE WEB OF IDEAS (48–52px on desktop) */}
-            <h1 className="text-3xl sm:text-4xl md:text-[50px] lg:text-[52px] font-bold tracking-tight text-white leading-tight">
+            {/* 3. THE WEB OF IDEAS (Increased 5-10%: 54–56px on desktop) */}
+            <h1 className="text-3xl sm:text-4xl md:text-[54px] lg:text-[56px] font-bold tracking-tight text-white leading-tight">
               THE WEB OF <span className="text-[#FF3047] inline-block hover:scale-105 transition-transform duration-300">IDEAS</span>
             </h1>
           </motion.div>
         )}
 
-        {/* 4. Hexagonal Portrait (220–230px wide on desktop) & 5. IDENTITY VERIFIED */}
+        {/* 4. Hexagonal Portrait (~10-15% increased: 250px on desktop) & 5. IDENTITY VERIFIED */}
         {stage >= 4 && (
           <motion.div
             initial={{ opacity: 0, scale: 0.92 }}
@@ -251,7 +256,7 @@ export const CinematicIntro: React.FC<CinematicIntroProps> = ({ onComplete }) =>
             {/* Clean red accent line */}
             <div className="w-16 h-0.5 bg-gradient-to-r from-transparent via-[#FF3047]/60 to-transparent mx-auto mb-2.5" />
             
-            {/* 6. BOYA SAIKIRAN (Slightly increased typography) */}
+            {/* 6. BOYA SAIKIRAN */}
             <h3 className="text-2xl sm:text-3xl md:text-[38px] lg:text-[40px] font-semibold tracking-wider text-[#FFFFFF] mb-2 sm:mb-3">
               BOYA SAIKIRAN
             </h3>
@@ -270,7 +275,7 @@ export const CinematicIntro: React.FC<CinematicIntroProps> = ({ onComplete }) =>
               &ldquo;Every idea connects. Every connection builds something extraordinary.&rdquo;
             </p>
 
-            {/* 9. ENTER MY WORLD Button (Target: approximately 190px wide) */}
+            {/* 9. ENTER MY WORLD Button (190px wide) */}
             <motion.button
               onClick={handleEnterWorld}
               whileHover={{ scale: 1.04, y: -2 }}

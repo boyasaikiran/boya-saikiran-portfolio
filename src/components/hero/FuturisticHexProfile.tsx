@@ -41,7 +41,7 @@ export const FuturisticHexProfile: React.FC<FuturisticHexProfileProps> = ({
 
   return (
     <div className={`flex flex-col items-center justify-center select-none ${className}`}>
-      {/* 3D Tilt Container (NO black background disks or circular shapes) */}
+      {/* 3D Tilt Container (NO circular backgrounds or extra decorative rings) */}
       <motion.div
         onMouseMove={handleMouseMove}
         onMouseEnter={() => setIsHovered(true)}
@@ -55,15 +55,11 @@ export const FuturisticHexProfile: React.FC<FuturisticHexProfileProps> = ({
         whileHover={{ scale: 1.02 }}
         className="relative cursor-pointer group flex items-center justify-center"
       >
-        {/* Soft, subtle radial red glow behind the hexagon (NO solid circular background) */}
-        <div className="absolute -inset-6 sm:-inset-8 rounded-full bg-[#FF3047]/15 blur-2xl opacity-75 group-hover:opacity-95 transition-opacity duration-500 pointer-events-none" />
+        {/* Subtle, soft radial red glow behind the hexagon (NO solid circular background) */}
+        <div className="absolute -inset-6 sm:-inset-8 rounded-full bg-[#FF3047]/14 blur-2xl opacity-75 group-hover:opacity-95 transition-opacity duration-500 pointer-events-none" />
 
-        {/* Clean Hexagonal Portrait Frame (Target: 220–230px wide on desktop)
-            Desktop: 226px wide, 204px height (within 220–230px target, ~15% larger than 197px)
-            Tablet: 195px wide, 176px height
-            Mobile: 170px wide, 154px height
-        */}
-        <div className="relative w-[170px] h-[154px] sm:w-[195px] sm:h-[176px] md:w-[226px] md:h-[204px] p-[1.5px] transition-all duration-300">
+        {/* Clean Hexagonal Portrait Frame (~10-15% increase: Desktop ~250px wide x ~226px height) */}
+        <div className="relative w-[185px] h-[166px] sm:w-[218px] sm:h-[196px] md:w-[252px] md:h-[228px] p-[1.5px] transition-all duration-300">
           
           {/* Inner Clean Hexagonal Image Crop (Pure hexagon, zero dark outer disks) */}
           <div
