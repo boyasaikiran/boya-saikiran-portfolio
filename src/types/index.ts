@@ -57,7 +57,10 @@ export type SkillCategory =
   | 'AI AND MACHINE LEARNING'
   | 'COMPUTER VISION'
   | 'WEB DEVELOPMENT'
-  | 'TOOLS AND PLATFORMS';
+  | 'TOOLS AND PLATFORMS'
+  | 'AI / DATA RETRIEVAL'
+  | 'DEVOPS / MONITORING'
+  | 'DATA / SCIENTIFIC COMPUTING';
 
 export type ExperienceLevel = 'Hands-on Experience' | 'Used in Projects' | 'Familiar';
 
@@ -70,6 +73,7 @@ export interface SkillNode {
   projectsUsed: string[];
   relatedSkillIds: string[];
   iconName?: string;
+  isCore?: boolean;
 }
 
 export type TimelineCategory = 
