@@ -162,6 +162,11 @@ export const AchievementsSection: React.FC = () => {
                     <div className="text-[#C6CBD5]">
                       Issuer: <span className="text-white font-medium">{cert.issuer}</span>
                     </div>
+                    {cert.credentialId && (
+                      <div className="text-[#8D94A3] text-[11px]">
+                        Certificate ID: <span className="text-[#75E5ED]">{cert.credentialId}</span>
+                      </div>
+                    )}
                     {cert.issueDate && (
                       <div className="text-[#8D94A3] flex items-center gap-1.5 text-[11px]">
                         <Calendar size={11} className="text-[#75E5ED]" />
@@ -314,6 +319,12 @@ export const AchievementsSection: React.FC = () => {
                     <span className="text-[#8D94A3]">Issuer:</span>{' '}
                     <span className="text-white font-medium">{previewCert.issuer}</span>
                   </div>
+                  {previewCert.credentialId && (
+                    <div>
+                      <span className="text-[#8D94A3]">Certificate ID:</span>{' '}
+                      <span className="text-[#75E5ED] font-mono font-medium">{previewCert.credentialId}</span>
+                    </div>
+                  )}
                   {previewCert.issueDate && (
                     <div>
                       <span className="text-[#8D94A3]">Issued On:</span>{' '}

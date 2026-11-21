@@ -5,12 +5,13 @@ export const CERTIFICATIONS: Certification[] = [
     id: 'oracle-ai-foundations-2025',
     title: 'Oracle Cloud Infrastructure 2025 Certified AI Foundations Associate',
     issuer: 'Oracle',
-    date: 'Certified',
+    date: '21 October 2025',
     issueDate: '21 October 2025',
     validUntil: '21 October 2027',
     recipient: 'BOYA SAIKIRAN',
     status: 'CERTIFIED',
     credentialType: 'Oracle Certified Foundations Associate',
+    credentialId: '102958255OCI25AICFA',
     category: 'AI & Deep Learning',
     skillsLearned: [
       'Artificial Intelligence Fundamentals',
@@ -20,57 +21,83 @@ export const CERTIFICATIONS: Certification[] = [
       'Oracle Cloud Infrastructure AI'
     ],
     badgeUrl: '/images/certificates/oracle-badge.png',
-    certificateUrl: '/images/certificates/oracle-ai-foundations-certificate.jpg',
+    certificateUrl: '/images/certificates/oracle-ai-foundations-cert.png',
     isFeatured: true
   },
   {
     id: 'azure-ai-900',
-    title: 'Microsoft Certified: Azure AI Fundamentals (AI-900)',
-    issuer: 'Microsoft',
-    date: 'Certified',
-    credentialType: 'Industry Certification',
-    skillsLearned: ['Azure AI Studio', 'Computer Vision APIs', 'Natural Language Processing', 'Conversational AI', 'Responsible AI'],
+    title: 'Azure AI Fundamentals',
+    issuer: 'CloudThat / Microsoft',
+    date: '10 March 2026',
+    issueDate: '10 March 2026',
+    recipient: 'BOYA SAIKIRAN',
+    status: 'CERTIFIED',
+    credentialType: 'Certificate of Completion (CloudThat / Microsoft / nasscom)',
+    credentialId: 'CT/25/99464',
     category: 'Cloud & DevOps',
-    status: 'CERTIFIED'
+    skillsLearned: [
+      'Azure AI Studio',
+      'Computer Vision APIs',
+      'Natural Language Processing',
+      'Conversational AI',
+      'Responsible AI'
+    ],
+    certificateUrl: '/images/certificates/azure-ai-fundamentals-cert.png'
   },
   {
     id: 'ibm-ai-practitioner',
-    title: 'IBM AI Practitioner',
+    title: 'IBM Artificial Intelligence Practitioner Certificate V2',
     issuer: 'IBM',
-    date: 'Certified',
-    credentialType: 'Professional Course Completion',
-    skillsLearned: ['Machine Learning Workflows', 'Deep Learning Concepts', 'Model Evaluation', 'Enterprise AI Deployment'],
+    date: '15 May 2024',
+    issueDate: '15 May 2024',
+    recipient: 'Boya saikiran',
+    status: 'CERTIFIED',
+    credentialType: 'Professional Certificate',
     category: 'AI & Deep Learning',
-    status: 'COMPLETED'
+    verificationUrl: 'https://www.credly.com/go/uh74a72o',
+    skillsLearned: [
+      'Machine Learning Workflows',
+      'Deep Learning Concepts',
+      'Model Evaluation',
+      'Enterprise AI Deployment'
+    ],
+    certificateUrl: '/images/certificates/ibm-ai-practitioner-cert.png'
   },
   {
     id: 'cisco-cybersecurity-essentials',
-    title: 'Cisco Cybersecurity Essentials',
+    title: 'Cybersecurity Essentials',
     issuer: 'Cisco Networking Academy',
-    date: 'Certified',
-    credentialType: 'Academy Certification',
-    skillsLearned: ['Network Defense', 'Threat Landscape Analysis', 'Security Architecture', 'Confidentiality & Integrity'],
+    date: '24 June 2024',
+    issueDate: '24 June 2024',
+    recipient: 'Boya saikiran',
+    status: 'CERTIFIED',
+    credentialType: 'Certificate of Course Completion',
     category: 'Cybersecurity & Systems',
-    status: 'CERTIFIED'
-  },
-  {
-    id: 'google-genai-intro',
-    title: 'Introduction to Generative AI',
-    issuer: 'Google',
-    date: 'Certified',
-    credentialType: 'Learning Credential',
-    skillsLearned: ['Large Language Models', 'Generative AI Principles', 'Transformer Architectures', 'Responsible AI'],
-    category: 'AI & Deep Learning',
-    status: 'COMPLETED'
+    skillsLearned: [
+      'Network Defense',
+      'Threat Landscape Analysis',
+      'Security Architecture',
+      'Confidentiality & Integrity'
+    ],
+    certificateUrl: '/images/certificates/cisco-cybersecurity-cert.jpg'
   },
   {
     id: 'simplilearn-ai-web',
     title: 'Master AI for Web App Development',
-    issuer: 'Simplilearn',
-    date: 'Certified',
-    credentialType: 'Skill Certification',
-    skillsLearned: ['AI Model Integration', 'RESTful Inference APIs', 'Client-Side AI', 'Full-Stack Model Deployment'],
+    issuer: 'Simplilearn SkillUp',
+    date: '7 April 2026',
+    issueDate: '7 April 2026',
+    recipient: 'BOYA SAIKIRAN',
+    status: 'CERTIFIED',
+    credentialType: 'Certificate of Completion',
+    credentialId: '10069684',
     category: 'AI & Deep Learning',
-    status: 'COMPLETED'
+    skillsLearned: [
+      'AI Model Integration',
+      'RESTful Inference APIs',
+      'Client-Side AI',
+      'Full-Stack Model Deployment'
+    ],
+    certificateUrl: '/images/certificates/simplilearn-ai-web-cert.jpg'
   }
 ];
