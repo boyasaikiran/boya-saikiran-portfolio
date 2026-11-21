@@ -82,6 +82,7 @@ export type TimelineCategory =
   | 'LEADERSHIP'
   | 'HACKATHON'
   | 'WEB DEVELOPMENT'
+  | 'PROFESSIONAL DEVELOPMENT'
   | 'RECOGNITION';
 
 export interface TimelineItem {
