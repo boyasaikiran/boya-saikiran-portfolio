@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { AnimatePresence } from 'framer-motion';
 import { CinematicIntro } from './components/hero/CinematicIntro';
 import { Navbar } from './components/layout/Navbar';
@@ -15,18 +15,17 @@ import { ContactSection } from './components/contact/ContactSection';
 import { Footer } from './components/layout/Footer';
 
 export function App() {
-  const [introFinished, setIntroFinished] = useState<boolean>(false);
-
-  useEffect(() => {
-    // Check if visitor has completed the intro in this browsing session
-    const hasSeen = sessionStorage.getItem('web_of_ideas_intro_completed');
-    if (hasSeen === 'true') {
-      setIntroFinished(true);
+  const [introFinished, setIntroFinished] = useState<boolean>(() => {
+    if (typeof window !== 'undefined') {
+      return sessionStorage.getItem('web_of_ideas_intro_completed') === 'true';
     }
-  }, []);
+    return false;
+  });
 
   const handleCompleteIntro = () => {
-    sessionStorage.setItem('web_of_ideas_intro_completed', 'true');
+    if (typeof window !== 'undefined') {
+      sessionStorage.setItem('web_of_ideas_intro_completed', 'true');
+    }
     setIntroFinished(true);
   };
 

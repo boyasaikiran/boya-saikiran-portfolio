@@ -89,7 +89,7 @@ export const CERTIFICATIONS: Certification[] = [
     issueDate: '7 April 2026',
     recipient: 'BOYA SAIKIRAN',
     status: 'CERTIFIED',
-    credentialType: 'Certificate of Completion',
+    credentialType: 'Course Completion Certificate',
     credentialId: '10069684',
     category: 'AI & Deep Learning',
     skillsLearned: [
@@ -99,5 +99,21 @@ export const CERTIFICATIONS: Certification[] = [
       'Full-Stack Model Deployment'
     ],
     certificateUrl: '/images/certificates/simplilearn-ai-web-cert.jpg'
+  },
+  {
+    id: 'google-genai-intro',
+    title: 'Introduction to Generative AI',
+    issuer: 'Google Cloud',
+    date: 'Completed',
+    recipient: 'BOYA SAIKIRAN',
+    status: 'COMPLETED',
+    credentialType: 'Course Completion Certificate',
+    category: 'AI & Deep Learning',
+    skillsLearned: [
+      'Large Language Models',
+      'Generative AI Principles',
+      'Transformer Architectures',
+      'Responsible AI'
+    ]
   }
 ];

@@ -63,6 +63,9 @@ export const MissionDetailModal: React.FC<MissionDetailModalProps> = ({ project,
 
         {/* Modal Window Container */}
         <motion.div
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="mission-modal-title"
           initial={{ opacity: 0, scale: 0.95, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.95, y: 20 }}
@@ -126,7 +129,7 @@ export const MissionDetailModal: React.FC<MissionDetailModalProps> = ({ project,
             
             {/* Title & Overview Banner */}
             <div>
-              <h2 className="text-2xl sm:text-4xl font-bold text-white mb-2">
+              <h2 id="mission-modal-title" className="text-2xl sm:text-4xl font-bold text-white mb-2">
                 {project.title}
               </h2>
               <p className="text-sm sm:text-base text-[#75E5ED] font-mono mb-4">

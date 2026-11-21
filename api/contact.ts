@@ -76,7 +76,7 @@ function parseBody(req: IncomingMessage): Promise<ContactRequestBody> {
         } else {
           resolve(JSON.parse(rawData));
         }
-      } catch (err) {
+      } catch {
         reject(new Error('Invalid JSON payload'));
       }
     });

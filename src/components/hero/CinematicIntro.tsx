@@ -9,7 +9,12 @@ interface CinematicIntroProps {
 }
 
 export const CinematicIntro: React.FC<CinematicIntroProps> = ({ onComplete }) => {
-  const [stage, setStage] = useState<number>(0);
+  const [stage, setStage] = useState<number>(() => {
+    if (typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      return 5;
+    }
+    return 0;
+  });
   const [isAudioMuted, setIsAudioMuted] = useState<boolean>(true);
   const [mousePos, setMousePos] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
 
@@ -21,16 +26,12 @@ export const CinematicIntro: React.FC<CinematicIntroProps> = ({ onComplete }) =>
     setMousePos({ x, y });
   };
 
-  // Check prefers-reduced-motion
-  useEffect(() => {
-    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
-    if (mediaQuery.matches) {
-      setStage(5);
-    }
-  }, []);
-
   // Cinematic 4.5-second sequence progression
   useEffect(() => {
+    if (typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      return;
+    }
+
     const timers = [
       setTimeout(() => setStage(1), 500),   // Stage 1: Emergent Crimson Core
       setTimeout(() => setStage(2), 1400),  // Stage 2: Symmetrical Web Network Awakens

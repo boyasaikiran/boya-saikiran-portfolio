@@ -142,9 +142,16 @@ function DustParticles() {
   const positions = useMemo(() => {
     const pos = new Float32Array(count * 3);
     for (let i = 0; i < count; i++) {
-      pos[i * 3] = (Math.random() - 0.5) * 16;
-      pos[i * 3 + 1] = (Math.random() - 0.5) * 12;
-      pos[i * 3 + 2] = (Math.random() - 0.5) * 8 - 2;
+      // Deterministic pseudo-random distribution
+      const s1 = Math.sin(i * 12.9898 + 78.233) * 43758.5453;
+      const r1 = s1 - Math.floor(s1);
+      const s2 = Math.sin(i * 26.3141 + 45.164) * 23421.631;
+      const r2 = s2 - Math.floor(s2);
+      const s3 = Math.sin(i * 39.7821 + 12.943) * 31245.892;
+      const r3 = s3 - Math.floor(s3);
+      pos[i * 3] = (r1 - 0.5) * 16;
+      pos[i * 3 + 1] = (r2 - 0.5) * 12;
+      pos[i * 3 + 2] = (r3 - 0.5) * 8 - 2;
     }
     return pos;
   }, [count]);

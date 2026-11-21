@@ -47,6 +47,22 @@ export const AchievementsSection: React.FC = () => {
     setPreviewCert(null);
   };
 
+  React.useEffect(() => {
+    if (!previewCert) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        soundManager.playClick();
+        setPreviewCert(null);
+      }
+    };
+    document.body.style.overflow = 'hidden';
+    window.addEventListener('keydown', handleKeyDown);
+    return () => {
+      document.body.style.overflow = 'unset';
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [previewCert]);
+
   return (
     <section id="achievements" className="relative py-24 sm:py-28 bg-[#0D1018] border-t border-[#272D3A]/60 overflow-hidden">
       
@@ -162,9 +178,14 @@ export const AchievementsSection: React.FC = () => {
                     <div className="text-[#C6CBD5]">
                       Issuer: <span className="text-white font-medium">{cert.issuer}</span>
                     </div>
+                    {cert.credentialType && (
+                      <div className="text-[#8D94A3] text-[11px]">
+                        Type: <span className="text-[#C6CBD5]">{cert.credentialType}</span>
+                      </div>
+                    )}
                     {cert.credentialId && (
                       <div className="text-[#8D94A3] text-[11px]">
-                        Certificate ID: <span className="text-[#75E5ED]">{cert.credentialId}</span>
+                        Credential ID: <span className="text-[#75E5ED]">{cert.credentialId}</span>
                       </div>
                     )}
                     {cert.issueDate && (
@@ -197,18 +218,18 @@ export const AchievementsSection: React.FC = () => {
                 {/* Meaningful Action Footer */}
                 <div className="pt-3.5 border-t border-[#272D3A]/60 flex items-center justify-between gap-2 text-xs font-mono">
                   
-                  {/* View Certificate Action */}
+                  {/* View Certificate / Credential Action */}
                   <button
                     onClick={() => handleOpenPreview(cert)}
-                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#07080C] hover:bg-[#1A2030] border border-[#272D3A] hover:border-[#FF3548] text-[#C6CBD5] hover:text-white transition-all text-[11px]"
-                    title="View Certificate Document"
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#07080C] hover:bg-[#1A2030] border border-[#272D3A] hover:border-[#FF3548] text-[#C6CBD5] hover:text-white transition-all text-[11px] cursor-pointer"
+                    title={cert.certificateUrl ? 'View Certificate Document' : 'View Credential Overview'}
                   >
                     <Eye size={12} className="text-[#FF3548]" />
-                    <span>View Certificate</span>
+                    <span>{cert.certificateUrl ? 'View Certificate' : 'View Credential'}</span>
                   </button>
 
-                  {/* Verify Credential Action */}
-                  {cert.verificationUrl ? (
+                  {/* Verify Credential Action (only shown when official verification link exists) */}
+                  {cert.verificationUrl && (
                     <a
                       href={cert.verificationUrl}
                       target="_blank"
@@ -216,17 +237,9 @@ export const AchievementsSection: React.FC = () => {
                       className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-[#75E5ED]/10 hover:bg-[#75E5ED]/20 border border-[#75E5ED]/30 text-[#75E5ED] hover:text-white transition-all text-[11px]"
                       title="Verify on Official Registry"
                     >
-                      <span>Verify</span>
+                      <span>Verify Registry</span>
                       <ExternalLink size={11} />
                     </a>
-                  ) : (
-                    <span 
-                      className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-[#121621] border border-[#272D3A]/60 text-[#8D94A3] cursor-not-allowed text-[11px] opacity-75"
-                      title="Official verification URL pending direct registry link"
-                    >
-                      <Lock size={10} />
-                      <span>Verify (Pending)</span>
-                    </span>
                   )}
 
                 </div>
@@ -254,6 +267,9 @@ export const AchievementsSection: React.FC = () => {
             />
 
             <motion.div
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="cert-modal-title"
               initial={{ opacity: 0, scale: 0.95, y: 15 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 15 }}
@@ -271,7 +287,7 @@ export const AchievementsSection: React.FC = () => {
                       {previewCert.status || 'CERTIFIED'}
                     </span>
                   </div>
-                  <h3 className="text-lg sm:text-xl font-bold text-white leading-snug">
+                  <h3 id="cert-modal-title" className="text-lg sm:text-xl font-bold text-white leading-snug">
                     {previewCert.title}
                   </h3>
                 </div>
@@ -301,7 +317,7 @@ export const AchievementsSection: React.FC = () => {
                   <div className="rounded-xl border border-[#272D3A] bg-[#121621]/60 p-6 text-center space-y-3">
                     <Award size={36} className="text-[#FF3548] mx-auto mb-2" />
                     <div className="text-base font-bold text-white">
-                      Official Document Verified on File
+                      Credential Summary &amp; Curriculum Details
                     </div>
                     <div className="text-xs font-mono text-[#8D94A3]">
                       Recipient: <span className="text-white font-medium">{previewCert.recipient || 'BOYA SAIKIRAN'}</span>

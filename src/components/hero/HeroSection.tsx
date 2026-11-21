@@ -1,7 +1,8 @@
 import React, { useState, useEffect, Suspense, lazy } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowDown, Compass, Cpu, Layers, Sparkles, Terminal } from 'lucide-react';
+import { Compass, Cpu, Layers, Terminal, FileText, Mail } from 'lucide-react';
 import { soundManager } from '../../audio/soundEffects';
+import { RESUME_URL } from '../../data/developerActivity';
 
 const ThreeWebScene = lazy(() =>
   import('./ThreeWebScene').then((module) => ({ default: module.ThreeWebScene }))
@@ -144,30 +145,34 @@ export const HeroSection: React.FC = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.35 }}
-          className="flex flex-wrap items-center justify-center lg:justify-start gap-4"
+          className="flex flex-wrap items-center justify-center lg:justify-start gap-3 sm:gap-4"
         >
           <button
             onClick={() => scrollToSection('missions')}
-            className="group relative flex items-center gap-2.5 px-7 py-3 rounded-full bg-[#E32636] hover:bg-[#FF3548] text-white text-xs sm:text-sm font-mono tracking-wider uppercase transition-all duration-300 shadow-[0_0_25px_rgba(227,38,54,0.4)]"
+            className="group relative flex items-center gap-2.5 px-6 sm:px-7 py-3 rounded-full bg-[#E32636] hover:bg-[#FF3548] text-white text-xs sm:text-sm font-mono tracking-wider uppercase transition-all duration-300 shadow-[0_0_25px_rgba(227,38,54,0.4)] cursor-pointer"
           >
             <Compass size={15} className="group-hover:rotate-45 transition-transform" />
             <span>EXPLORE MISSIONS</span>
           </button>
 
-          <button
-            onClick={() => scrollToSection('arsenal')}
-            className="flex items-center gap-2 px-6 py-3 rounded-full bg-[#121621]/90 hover:bg-[#1A2030] text-[#C6CBD5] hover:text-white border border-[#272D3A] hover:border-[#8D94A3] text-xs sm:text-sm font-mono tracking-wider uppercase transition-all duration-300 backdrop-blur-sm"
+          <a
+            href={RESUME_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => soundManager.playClick()}
+            className="flex items-center gap-2 px-5 sm:px-6 py-3 rounded-full bg-[#121621]/90 hover:bg-[#1A2030] text-[#C6CBD5] hover:text-white border border-[#272D3A] hover:border-[#FF3548] text-xs sm:text-sm font-mono tracking-wider uppercase transition-all duration-300 backdrop-blur-sm cursor-pointer"
+            aria-label="Open Boya Saikiran Resume PDF"
           >
-            <Sparkles size={15} className="text-[#75E5ED]" />
-            <span>SKILL ARSENAL</span>
-          </button>
+            <FileText size={15} className="text-[#FF3548]" />
+            <span>VIEW RESUME</span>
+          </a>
 
           <button
-            onClick={() => scrollToSection('origin')}
-            className="flex items-center gap-2 px-6 py-3 rounded-full bg-transparent hover:bg-[#121621]/60 text-[#8D94A3] hover:text-[#F5F6F8] text-xs sm:text-sm font-mono tracking-wider uppercase transition-colors"
+            onClick={() => scrollToSection('contact')}
+            className="flex items-center gap-2 px-5 sm:px-6 py-3 rounded-full bg-[#121621]/60 hover:bg-[#121621] text-[#8D94A3] hover:text-[#75E5ED] border border-[#272D3A] hover:border-[#75E5ED]/50 text-xs sm:text-sm font-mono tracking-wider uppercase transition-all duration-300 backdrop-blur-sm cursor-pointer"
           >
-            <span>ORIGIN STORY</span>
-            <ArrowDown size={14} />
+            <Mail size={14} className="text-[#75E5ED]" />
+            <span>GET IN TOUCH</span>
           </button>
         </motion.div>
       </div>
