@@ -1,32 +1,88 @@
-# React + TypeScript + Vite
+# Boya Saikiran | The Web of Ideas
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+> Every idea connects. Every connection builds something extraordinary.
 
-Currently, two official plugins are available:
+Welcome to my personal developer portfolio — a digital space where I showcase my journey in Artificial Intelligence, Machine Learning, Computer Vision, and Software Engineering.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+I'm **Boya Saikiran**, an aspiring AI/ML Engineer and Computer Vision enthusiast pursuing B.Tech in Computer Science and Engineering (AI & ML) at Karunya Institute of Technology and Sciences.
 
-## React Compiler
+This portfolio brings together my technical skills, engineering projects, academic journey, certifications, and the ideas I'm building into real-world applications.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the Oxlint configuration
+## About Me
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
+- 🎓 B.Tech CSE — Artificial Intelligence & Machine Learning
+- 🤖 Interested in AI, Deep Learning, and Computer Vision
+- 💻 Building backend systems, intelligent applications, and interactive web experiences
+- 🔬 Exploring computer vision architectures, image retrieval, and AI-powered systems
+- 🚀 Focused on learning through projects, experimentation, and engineering challenges
 
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
-```
+I enjoy connecting different technologies to solve meaningful problems and turning ideas into practical software.
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+---
+
+## Featured Projects
+
+| Project                              | Description                                                                             |
+| ------------------------------------ | --------------------------------------------------------------------------------------- |
+| Cross-View University Campus Locator | Computer vision system for matching ground and aerial imagery with satellite references |
+| Real-Time CCTV Night Vision          | Deep learning-based nighttime image enhancement and color reconstruction                |
+| AI vs Human Image Classifier         | Classification system for distinguishing AI-generated images from authentic photography |
+| Recovery Orchestrator                | Backend decision workflow built with FastAPI and PostgreSQL                             |
+| OpsGuardian                          | Containerized monitoring and diagnostic platform using Prometheus and Grafana           |
+| GiftGenie                            | Multi-agent recommendation platform for personalized gift discovery                     |
+
+Explore the portfolio for project details, technologies, and implementation highlights.
+
+---
+
+## Tech Stack
+
+**Programming:** Python, JavaScript, Java, SQL
+
+**AI & Machine Learning:** PyTorch, Scikit-learn, Deep Learning, Machine Learning
+
+**Computer Vision:** OpenCV, Swin Transformer, EfficientNet, FAISS
+
+**Web Development:** React, Node.js, Express.js, FastAPI, REST APIs
+
+**Databases:** PostgreSQL, MongoDB, Firebase
+
+**Tools & Platforms:** Git, GitHub, Docker, Prometheus, Grafana
+
+---
+
+## Portfolio Features
+
+- Interactive developer portfolio experience
+- Personal introduction and academic journey
+- Curated technical skills and technology relationships
+- Project mission archives with detailed project briefs
+- Experience, leadership, and hackathon milestones
+- Certifications and achievements
+- Professional contact section and resume access
+
+---
+
+## Built With
+
+- React
+- TypeScript
+- Vite
+- Tailwind CSS
+- Three.js / React Three Fiber
+- Framer Motion
+
+---
+
+## Connect With Me
+
+- **GitHub:** [Boya Saikiran](https://github.com/boyasaikiran58)
+- **LinkedIn:** [Boya Saikiran](https://www.linkedin.com/in/boya-saikiran-15aab1294/)
+
+For collaborations, opportunities, or interesting engineering discussions, feel free to connect.
+
+---
+
+\<p align="center">   \<strong>THE WEB OF IDEAS\</strong>\<br/>   Built with curiosity, code, and a passion for engineering. \</p>
