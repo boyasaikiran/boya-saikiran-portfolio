@@ -180,7 +180,7 @@ export async function handleContactRequest(req: IncomingMessage, res: ServerResp
 
   // 3. Resend configuration
   const resendApiKey = process.env.RESEND_API_KEY;
-  const recipientEmail = process.env.RECIPIENT_EMAIL || 'saikiranboya84@gmail.com';
+  const recipientEmail = process.env.RECIPIENT_EMAIL || 'boyasaikiran37@gmail.com';
   const fromEmail = process.env.RESEND_FROM_EMAIL || 'Portfolio Contact <onboarding@resend.dev>';
 
   if (!resendApiKey || resendApiKey === 're_your_api_key_here') {
